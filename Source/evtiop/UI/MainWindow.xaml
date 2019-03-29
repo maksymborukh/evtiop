@@ -4,9 +4,55 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
+        xmlns:pages="clr-namespace:UI.pages"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="evtiop" Height="600" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="images/logo.png">
+
+    <Window.Resources>
+
+        <!-- style of close button-->
+        <Style x:Key="CloseButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+
+            <!-- change cursor when nouse over button -->
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+
+                        <!-- round button -->
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    
     <Grid>
+
+        <Frame Source="/UI;component/pages/MainLoginPage.xaml"/>
+
+        <!-- show close button when mause over current grid -->
+        <Grid x:Name="closeArea" MouseLeave="GridForCloseButton_MouseLeave" MouseEnter="GridForCloseButton_MouseEnter" Margin="10,10,10,0" Height="120" VerticalAlignment="Top">
+            <Grid.Background>
+                <SolidColorBrush Color="White" Opacity="0"/>
+            </Grid.Background>
+            <Button Click="CloseButton_Click" x:Name="CloseButton" Width="40" Height="40" Style="{StaticResource CloseButton}" Margin="0" Visibility="Collapsed">
+                <Button.Background>
+                    <ImageBrush ImageSource="images/close.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+
         
+
     </Grid>
 </Window>

@@ -13,31 +13,31 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI
+namespace UI.pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainLoginPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainLoginPage : Page
     {
-        public MainWindow()
+        public MainLoginPage()
         {
             InitializeComponent();
         }
 
-        private void GridForCloseButton_MouseEnter(object sender, MouseEventArgs e)
+        private void login_Click(object sender, RoutedEventArgs e)
         {
-            CloseButton.Visibility = Visibility.Visible;
+
         }
 
-        private void GridForCloseButton_MouseLeave(object sender, MouseEventArgs e)
+        private void signUp_Click(object sender, RoutedEventArgs e)
         {
-            CloseButton.Visibility = Visibility.Collapsed;
+
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void SkipLogging_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+
         }
     }
 }
