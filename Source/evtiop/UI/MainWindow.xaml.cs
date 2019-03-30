@@ -35,7 +35,7 @@ namespace UI
             CloseButton.Visibility = Visibility.Collapsed;
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void CloseButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
         }

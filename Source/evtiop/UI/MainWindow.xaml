@@ -10,49 +10,45 @@
 
     <Window.Resources>
 
+        <!-- close button images -->
+        <BitmapImage UriSource="images/close.png" x:Key="blackClose" />
+        <BitmapImage UriSource="images/close_over.png" x:Key="redClose" />
+
         <!-- style of close button-->
-        <Style x:Key="CloseButton" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Style x:Key="CloseButtonStyle" TargetType="{x:Type Image}">
 
-            <!-- change cursor when nouse over button -->
+            <!-- change cursor when mouse over button -->
             <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
 
-                        <!-- round button -->
-                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Opacity" Value="0.5" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <!-- set default close button image -->
+            <Setter Property="Source" Value="{StaticResource blackClose}" />
+            <Style.Triggers>
+                <!-- change close button image when mouse over -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Source" Value="{StaticResource redClose}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
+
+
     </Window.Resources>
-    
+
     <Grid>
 
         <Frame Source="/UI;component/pages/MainLoginPage.xaml"/>
 
         <!-- show close button when mause over current grid -->
         <Grid x:Name="closeArea" MouseLeave="GridForCloseButton_MouseLeave" MouseEnter="GridForCloseButton_MouseEnter" Margin="10,10,10,0" Height="120" VerticalAlignment="Top">
-            <Grid.Background>
-                <SolidColorBrush Color="White" Opacity="0"/>
-            </Grid.Background>
-            <Button Click="CloseButton_Click" x:Name="CloseButton" Width="40" Height="40" Style="{StaticResource CloseButton}" Margin="0" Visibility="Collapsed">
-                <Button.Background>
-                    <ImageBrush ImageSource="images/close.png" Stretch="Uniform"/>
-                </Button.Background>
-            </Button>
-        </Grid>
 
-        
+            <!-- treansparent grid -->
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0"/>
+            </Grid.Background>
+
+            <!-- close button image -->
+            <Image x:Name="CloseButton" Style="{StaticResource CloseButtonStyle}" MouseDown="CloseButton_MouseDown" Width="40" Height="40" Visibility="Collapsed" />
+        </Grid>
 
     </Grid>
 </Window>

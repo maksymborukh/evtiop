@@ -27,10 +27,10 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Opacity" Value="0.5" />
+                                    <Setter TargetName="button"  Property="Background" Value="#FF66B2B2" />
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="button"  Property="Background" Value="#FF3FB9AA"/>
+                                    <Setter TargetName="button"  Property="Background" Value="#FFB2D8D8"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
