@@ -5,93 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="evtiop" Height="600" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="images/logo.png">
+        Title="evtiop" 
+        Height="600" 
+        Width="350" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
+        Icon="images/logo.png">
 
     <Window.Resources>
 
-        <!-- close button images -->
-        <BitmapImage UriSource="images/close.png" x:Key="blackClose" />
-        <BitmapImage UriSource="images/close_over.png" x:Key="redClose" />
-
-        <!-- style of close button-->
-        <Style x:Key="CloseButtonStyle" TargetType="{x:Type Image}">
-
-            <!-- change cursor when mouse over button -->
-            <Setter Property="Cursor" Value="Hand" />
-
-            <!-- set default close button image -->
-            <Setter Property="Source" Value="{StaticResource blackClose}" />
-            <Style.Triggers>
-                <!-- change close button image when mouse over -->
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Source" Value="{StaticResource redClose}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <SolidColorBrush x:Key="transparentBrash" Color="Black" Opacity="0"/>
-
-        <!-- style of sign up and login button-->
-        <Style TargetType="Button" x:Key="AuthButton">
-            <Style.Setters>
-                <Setter Property="OverridesDefaultStyle" Value="True" />
-
-                <Setter Property="Background" Value="{StaticResource transparentBrash}"/>
-
-                <!-- size button -->
-                <Setter Property="Width" Value="260"/>
-                <Setter Property="Height" Value="40"/>
-
-                <!-- font style -->
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="FontSize" Value="20"/>
-
-                <!-- change cursor when nouse over button -->
-                <Setter Property="Cursor" Value="Hand" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-
-                            <!-- round button-->
-                            <Border x:Name="button" CornerRadius="20" BorderBrush="White" BorderThickness="2" Background="{TemplateBinding Background}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="button"  Property="Background" Value="#FF66B2B2" />
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="button"  Property="Background" Value="#FFB2D8D8"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style.Setters>
-        </Style>
 
     </Window.Resources>
 
     <!-- page background-->
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF006666"/>
-            <GradientStop Color="#FF66B2B2" Offset="1"/>
-            <GradientStop Color="#008080" Offset="0.327"/>
+            <GradientStop Color="{StaticResource DarkTeal}"/>
+            <GradientStop Color="{StaticResource LightTeal}" Offset="1"/>
+            <GradientStop Color="{StaticResource Teal}" Offset="0.327"/>
         </LinearGradientBrush>
     </Window.Background>
-
 
     <Grid>
 
         <!-- show close button when mause over current grid -->
-        <Grid x:Name="closeArea" MouseLeave="GridForCloseButton_MouseLeave" MouseEnter="GridForCloseButton_MouseEnter" Margin="10,10,10,0" Height="100" VerticalAlignment="Top">
-
-            <!-- treansparent grid -->
-            <Grid.Background>
-                <SolidColorBrush Color="Black" Opacity="0"/>
-            </Grid.Background>
-
+        <Grid x:Name="closeArea" Background="{StaticResource TransparentBrash}" MouseLeave="GridForCloseButton_MouseLeave" MouseEnter="GridForCloseButton_MouseEnter" Margin="10,10,10,0" Height="100" VerticalAlignment="Top">
             <!-- close button image -->
             <Image x:Name="CloseButton" Style="{StaticResource CloseButtonStyle}" MouseDown="CloseButton_MouseDown" Width="40" Height="40" Visibility="Collapsed" />
         </Grid>
@@ -119,7 +58,7 @@
                     <Setter Property="Cursor" Value="Hand" />
                     <Style.Triggers>
                         <Trigger Property ="IsMouseOver" Value="True">
-                            <Setter Property= "Foreground" Value="LemonChiffon"/>
+                            <Setter Property= "Foreground" Value="{StaticResource VeryDarkTealBrush}"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
