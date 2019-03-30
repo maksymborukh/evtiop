@@ -15,19 +15,45 @@
 
     <Window.Resources>
 
+        <Storyboard x:Key="TheStoryboard">
+            <DoubleAnimation To="-310" Duration="0:0:0.5" Storyboard.TargetProperty="X"
+                             Storyboard.TargetName="Translate" AutoReverse="False"/>
+        </Storyboard>
+
+        <Storyboard x:Key="LogoAnimation">
+            <DoubleAnimation To="-60" Duration="0:0:0.5" Storyboard.TargetProperty="Y"
+                             Storyboard.TargetName="LogoTranslate" AutoReverse="False"/>
+        </Storyboard>
+
+        <Storyboard x:Key="BackgroundAnimation">
+            <DoubleAnimation To="-600" Duration="0:0:0.5" Storyboard.TargetProperty="Y"
+                             Storyboard.TargetName="BackgroundTranslate" AutoReverse="False"/>
+        </Storyboard>
+
+        <Storyboard x:Key="ForegroundAnimation">
+            <ColorAnimation To="{StaticResource Teal}" Storyboard.TargetName="Logo"
+                            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.5"/>
+        </Storyboard>
 
     </Window.Resources>
 
-    <!-- page background-->
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="{StaticResource DarkTeal}"/>
-            <GradientStop Color="{StaticResource LightTeal}" Offset="1"/>
-            <GradientStop Color="{StaticResource Teal}" Offset="0.327"/>
-        </LinearGradientBrush>
-    </Window.Background>
-
     <Grid>
+
+        <!-- page background-->
+        <Grid>
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform x:Name="BackgroundTranslate" Y="0"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="{StaticResource DarkTeal}"/>
+                    <GradientStop Color="{StaticResource LightTeal}" Offset="1"/>
+                    <GradientStop Color="{StaticResource Teal}" Offset="0.327"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
 
         <!-- show close button when mause over current grid -->
         <Grid x:Name="closeArea" Background="{StaticResource TransparentBrash}" MouseLeave="GridForCloseButton_MouseLeave" MouseEnter="GridForCloseButton_MouseEnter" Margin="10,10,10,0" Height="100" VerticalAlignment="Top">
@@ -36,34 +62,53 @@
         </Grid>
 
         <!-- logo -->
-        <TextBlock Text="evtiop" Width="270" VerticalAlignment="Top" Margin="0,150,0,0" Height="100" FontFamily="SimSun" FontSize="90" Foreground="White"/>
+        <TextBlock x:Name="Logo" Text="evtiop" Width="270" VerticalAlignment="Top" Margin="0,150,0,0" Height="100" FontFamily="SimSun" FontSize="90" Foreground="White" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform x:Name="LogoTranslate" Y="0"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
 
-        <!-- title -->
-        <TextBlock Text="START BUYING NOW!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,240" Foreground="White" FontSize="14" />
+        <Grid x:Name="containerOfBaseButton" Height="260" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,330,0,0" RenderTransformOrigin="0.5,0.5" >
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform x:Name="Translate" X="0"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <!-- title -->
+            <TextBlock Text="START BUYING NOW!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,240" Foreground="White" FontSize="14" />
 
-        <!-- login button -->
-        <Button x:Name="login" Click="login_Click" Style="{StaticResource AuthButton}" 
+            <!-- login button -->
+            <Button x:Name="login" Click="login_Click" Style="{StaticResource AuthButton}" 
                 Content="LOGIN" Margin="0,0,0,170" VerticalAlignment="Bottom"/>
 
-        <!-- sign up button-->
-        <Button x:Name="signUp" Click="signUp_Click" Style="{StaticResource AuthButton}" 
+            <!-- sign up button-->
+            <Button x:Name="signUp" Click="signUp_Click" Style="{StaticResource AuthButton}" 
                 Content="SIGN UP" Margin="0,0,0,100" VerticalAlignment="Bottom"/>
 
-        <!-- skip button -->
-        <TextBlock PreviewMouseDown="SkipLogging_PreviewMouseDown" HorizontalAlignment="Center" Margin="0,0,0,60" VerticalAlignment="Bottom" FontSize="14">
+            <!-- skip button -->
+            <TextBlock PreviewMouseDown="SkipLogging_PreviewMouseDown" HorizontalAlignment="Center" Margin="0,0,0,60" VerticalAlignment="Bottom" FontSize="14">
             <Underline>Skip</Underline>
-            <TextBlock.Style>
-                <Style TargetType="TextBlock">
-                    <Setter Property= "Foreground" Value="White"/>
-                    <Setter Property="Cursor" Value="Hand" />
-                    <Style.Triggers>
-                        <Trigger Property ="IsMouseOver" Value="True">
-                            <Setter Property= "Foreground" Value="{StaticResource VeryDarkTealBrush}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property= "Foreground" Value="White"/>
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Style.Triggers>
+                            <Trigger Property ="IsMouseOver" Value="True">
+                                <Setter Property= "Foreground" Value="{StaticResource VeryDarkTealBrush}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+
+
+        </Grid>
+        <Grid x:Name="userControlContainer" HorizontalAlignment="Center" VerticalAlignment="Top" Height="340" Margin="0,240,0,0" Width="290" RenderTransformOrigin="0.5,0.5">
+
+        </Grid>
 
     </Grid>
 </Window>
