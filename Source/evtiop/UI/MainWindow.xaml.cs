@@ -39,5 +39,20 @@ namespace UI
         {
             this.Close();
         }
+
+        private void login_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void signUp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SkipLogging_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
