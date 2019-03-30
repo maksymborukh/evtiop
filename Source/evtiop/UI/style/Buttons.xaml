@@ -5,7 +5,7 @@
     <ResourceDictionary.MergedDictionaries>
         <!-- Order is important -->
         <ResourceDictionary Source="Colors.xaml" />
-        
+        <ResourceDictionary Source="Text.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <!-- style of sign up and login button white -->

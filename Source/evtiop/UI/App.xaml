@@ -9,6 +9,7 @@
                 <!-- order is important -->
                 <ResourceDictionary Source="Style/Colors.xaml"/>
                 <ResourceDictionary Source="Style/Buttons.xaml"/>
+                <ResourceDictionary Source="Style/Text.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
