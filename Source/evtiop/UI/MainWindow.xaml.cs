@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.user_control;
+using UI.animation;
 
 namespace UI
 {
@@ -26,6 +27,15 @@ namespace UI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void windowLoaded(object sender, RoutedEventArgs e)
+        {
+            LoginUserControl loginUserControl = new LoginUserControl();
+            loginUserControlContainer.Children.Add(loginUserControl);
+
+            SignUpUserControl signUpUserControl = new SignUpUserControl();
+            SignUpUserControlContainer.Children.Add(signUpUserControl);
         }
 
         private void GridForCloseButton_MouseEnter(object sender, MouseEventArgs e)
@@ -45,16 +55,14 @@ namespace UI
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-            LoginUserControl loginUserControl = new LoginUserControl();
-            loginUserControlContainer.Children.Add(loginUserControl);
+            
 
             someAnimation("login");            
         }
 
         private void signUp_Click(object sender, RoutedEventArgs e)
         {
-            SignUpUserControl signUpUserControl = new SignUpUserControl();
-            SignUpUserControlContainer.Children.Add(signUpUserControl);
+            
 
             someAnimation("signUp");
         }
@@ -64,18 +72,29 @@ namespace UI
 
         }
 
-        private void someAnimation(string tag) 
+        public void someAnimation(string tag) 
         {
-
-            ((Storyboard)this.Resources["ButtonsAnimation"]).Begin(this);
-            ((Storyboard)this.Resources["LogoAnimation"]).Begin(this);
-            ((Storyboard)this.Resources["BackgroundAnimation"]).Begin(this);
-            ((Storyboard)this.Resources["ForegroundAnimation"]).Begin(this);
+            Animation.TranslateY(0, -60, 500, Logo);
+            Animation.TranslateY(0, -600, 500, WindowBackgound);
+            Animation.TranslateX(0, -310, 500, containerOfBaseButton);
+            Animation.ForegroundColor(Colors.White, Colors.Teal, 500, Logo); //work only for textblock
 
             if (tag == "login")
-                ((Storyboard)this.Resources["LoginUserControlAnimation"]).Begin(this);
+                Animation.TranslateX(330, 0, 500, loginUserControlContainer);
             else if (tag == "signUp")
-                ((Storyboard)this.Resources["SignUpUserControlAnimation"]).Begin(this);
+                Animation.TranslateX(330, 0, 500, SignUpUserControlContainer);
         } //TODO REWRITE
+
+        private void GoToLoginPage_Click(object sender, MouseButtonEventArgs e)
+        {
+            Animation.TranslateX(0, -330, 500, SignUpUserControlContainer);
+            Animation.TranslateX(330, 0, 500, loginUserControlContainer);
+        }
+
+        private void GoToCreateAccPage_Click(object sender, MouseButtonEventArgs e)
+        {
+            Animation.TranslateX(0, 330, 500, loginUserControlContainer);
+            Animation.TranslateX(-330, 0, 500, SignUpUserControlContainer);
+        }
     }
 }

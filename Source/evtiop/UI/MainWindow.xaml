@@ -11,57 +11,18 @@
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None" 
-        Icon="images/logo.png">
+        Icon="images/logo.png"
+        Loaded="windowLoaded">
 
     <Window.Resources>
 
-        <!-- login and sign up buttons animation -->
-        <Storyboard x:Key="ButtonsAnimation">
-            <DoubleAnimation To="-310" Duration="0:0:0.5" Storyboard.TargetProperty="X"
-                             Storyboard.TargetName="Translate" AutoReverse="False"/>
-        </Storyboard>
-
-        <!-- logo go to up animation -->
-        <Storyboard x:Key="LogoAnimation">
-            <DoubleAnimation To="-60" Duration="0:0:0.5" Storyboard.TargetProperty="Y"
-                             Storyboard.TargetName="LogoTranslate" AutoReverse="False"/>
-        </Storyboard>
-
-        <!-- background change color -->
-        <Storyboard x:Key="BackgroundAnimation">
-            <DoubleAnimation To="-600" Duration="0:0:0.5" Storyboard.TargetProperty="Y"
-                             Storyboard.TargetName="BackgroundTranslate" AutoReverse="False"/>
-        </Storyboard>
-
-        <!-- show login user control -->
-        <Storyboard x:Key="LoginUserControlAnimation">
-            <DoubleAnimation To="0" Duration="0:0:0.5" Storyboard.TargetProperty="X"
-                             Storyboard.TargetName="LoginUserControlTranslate"/>
-        </Storyboard>
-
-        <!-- show sign up user control -->
-        <Storyboard x:Key="SignUpUserControlAnimation">
-            <DoubleAnimation To="0" Duration="0:0:0.5" Storyboard.TargetProperty="X"
-                             Storyboard.TargetName="SignUpUserControlTranslate"/>
-        </Storyboard>
-
-        <!-- change logo color -->
-        <Storyboard x:Key="ForegroundAnimation">
-            <ColorAnimation To="{StaticResource Teal}" Storyboard.TargetName="Logo"
-                            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.5"/>
-        </Storyboard>
 
     </Window.Resources>
 
     <Grid>
 
         <!-- page background-->
-        <Grid>
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <TranslateTransform x:Name="BackgroundTranslate" Y="0"/>
-                </TransformGroup>
-            </Grid.RenderTransform>
+        <Grid x:Name="WindowBackgound">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="{StaticResource DarkTeal}"/>
@@ -78,21 +39,10 @@
         </Grid>
 
         <!-- logo -->
-        <TextBlock x:Name="Logo" Text="evtiop" Width="270" VerticalAlignment="Top" Margin="0,150,0,0" Height="100" FontFamily="SimSun" FontSize="90" Foreground="White" RenderTransformOrigin="0.5,0.5">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <TranslateTransform x:Name="LogoTranslate" Y="0"/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-        </TextBlock>
+        <TextBlock x:Name="Logo" Text="evtiop" Width="270" VerticalAlignment="Top" Margin="0,150,0,0" Height="100" FontFamily="SimSun" FontSize="90" Foreground="White"/>
 
         <!-- container for base buttons -->
-        <Grid x:Name="containerOfBaseButton" Height="260" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,330,0,0" RenderTransformOrigin="0.5,0.5" >
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <TranslateTransform x:Name="Translate" X="0"/>
-                </TransformGroup>
-            </Grid.RenderTransform>
+        <Grid x:Name="containerOfBaseButton" Height="260" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,330,0,0" >
             <!-- title -->
             <TextBlock Text="START BUYING NOW!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,240" Foreground="White" FontSize="14" />
 
@@ -123,24 +73,33 @@
 
         <!-- login user control container -->
         <Grid x:Name="loginUserControlContainer" HorizontalAlignment="Center" 
-              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="290" 
-              RenderTransformOrigin="0.5,0.5">
+              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="290">
             <Grid.RenderTransform>
                 <TransformGroup>
-                    <TranslateTransform x:Name="LoginUserControlTranslate" X="330"/>
+                    <TranslateTransform X="330"/>
                 </TransformGroup>
             </Grid.RenderTransform>
+            
+            <!-- create new account button -->
+            <TextBlock Text="CREATE NEW ACCOUNT" PreviewMouseDown="GoToCreateAccPage_Click" 
+                   HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top"
+                   Style="{StaticResource UnderlineText}"/>
+
         </Grid>
 
         <!-- sign up user control container -->
         <Grid x:Name="SignUpUserControlContainer" HorizontalAlignment="Center" 
-              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="290" 
-              RenderTransformOrigin="0.5,0.5">
+              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="290" >
             <Grid.RenderTransform>
                 <TransformGroup>
-                    <TranslateTransform x:Name="SignUpUserControlTranslate" X="330"/>
+                    <TranslateTransform X="330"/>
                 </TransformGroup>
             </Grid.RenderTransform>
+
+            <!-- login button -->
+            <TextBlock Text="Already have an account" PreviewMouseDown="GoToLoginPage_Click" 
+                   HorizontalAlignment="Center" Margin="0,320,0,0" VerticalAlignment="Top" 
+                   Style="{StaticResource UnderlineText}"/>
         </Grid>
 
     </Grid>
