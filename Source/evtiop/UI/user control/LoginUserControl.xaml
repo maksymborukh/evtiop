@@ -77,20 +77,9 @@
         </Button>
 
         <!-- create new account button -->
-        <TextBlock PreviewMouseDown="CreateAccStackPanel_PreviewMouseDown" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" FontSize="12">
-            <Underline>CREATE NEW ACCOUNT</Underline>
-            <TextBlock.Style>
-                <Style TargetType="TextBlock">
-                    <Setter Property= "Foreground" Value="{StaticResource TealBrush}"/>
-                    <Setter Property="Cursor" Value="Hand" />
-                    <Style.Triggers>
-                        <Trigger Property ="IsMouseOver" Value="True">
-                            <Setter Property= "Foreground" Value="{StaticResource VeryDarkTealBrush}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
-   
+        <TextBlock Text="CREATE NEW ACCOUNT" PreviewMouseDown="CreateAccStackPanel_PreviewMouseDown" 
+                   HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top"
+                   Style="{StaticResource UnderlineText}"/>
+
     </Grid>
 </UserControl>

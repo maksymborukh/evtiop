@@ -15,26 +15,37 @@
 
     <Window.Resources>
 
-        <Storyboard x:Key="TheStoryboard">
+        <!-- login and sign up buttons animation -->
+        <Storyboard x:Key="ButtonsAnimation">
             <DoubleAnimation To="-310" Duration="0:0:0.5" Storyboard.TargetProperty="X"
                              Storyboard.TargetName="Translate" AutoReverse="False"/>
         </Storyboard>
 
+        <!-- logo go to up animation -->
         <Storyboard x:Key="LogoAnimation">
             <DoubleAnimation To="-60" Duration="0:0:0.5" Storyboard.TargetProperty="Y"
                              Storyboard.TargetName="LogoTranslate" AutoReverse="False"/>
         </Storyboard>
 
+        <!-- background change color -->
         <Storyboard x:Key="BackgroundAnimation">
             <DoubleAnimation To="-600" Duration="0:0:0.5" Storyboard.TargetProperty="Y"
                              Storyboard.TargetName="BackgroundTranslate" AutoReverse="False"/>
         </Storyboard>
 
-        <Storyboard x:Key="UserControlAnimation">
+        <!-- show login user control -->
+        <Storyboard x:Key="LoginUserControlAnimation">
             <DoubleAnimation To="0" Duration="0:0:0.5" Storyboard.TargetProperty="X"
-                             Storyboard.TargetName="UserControlTranslate"/>
+                             Storyboard.TargetName="LoginUserControlTranslate"/>
         </Storyboard>
 
+        <!-- show sign up user control -->
+        <Storyboard x:Key="SignUpUserControlAnimation">
+            <DoubleAnimation To="0" Duration="0:0:0.5" Storyboard.TargetProperty="X"
+                             Storyboard.TargetName="SignUpUserControlTranslate"/>
+        </Storyboard>
+
+        <!-- change logo color -->
         <Storyboard x:Key="ForegroundAnimation">
             <ColorAnimation To="{StaticResource Teal}" Storyboard.TargetName="Logo"
                             Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.5"/>
@@ -110,11 +121,24 @@
             </TextBlock>
         </Grid>
 
-        <!-- user control container -->
-        <Grid x:Name="userControlContainer" HorizontalAlignment="Center" VerticalAlignment="Top" Height="340" Margin="0,240,0,0" Width="290" RenderTransformOrigin="0.5,0.5">
+        <!-- login user control container -->
+        <Grid x:Name="loginUserControlContainer" HorizontalAlignment="Center" 
+              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="290" 
+              RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
-                    <TranslateTransform x:Name="UserControlTranslate" X="330"/>
+                    <TranslateTransform x:Name="LoginUserControlTranslate" X="330"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+        </Grid>
+
+        <!-- sign up user control container -->
+        <Grid x:Name="SignUpUserControlContainer" HorizontalAlignment="Center" 
+              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="290" 
+              RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform x:Name="SignUpUserControlTranslate" X="330"/>
                 </TransformGroup>
             </Grid.RenderTransform>
         </Grid>

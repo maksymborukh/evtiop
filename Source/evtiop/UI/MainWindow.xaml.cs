@@ -45,24 +45,37 @@ namespace UI
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-            ((Storyboard)this.Resources["TheStoryboard"]).Begin(this);
-            ((Storyboard)this.Resources["LogoAnimation"]).Begin(this);           
-            ((Storyboard)this.Resources["BackgroundAnimation"]).Begin(this);
-            ((Storyboard)this.Resources["ForegroundAnimation"]).Begin(this);
-            ((Storyboard)this.Resources["UserControlAnimation"]).Begin(this);
-            
             LoginUserControl loginUserControl = new LoginUserControl();
-            userControlContainer.Children.Add(loginUserControl);
+            loginUserControlContainer.Children.Add(loginUserControl);
+
+            someAnimation("login");            
         }
 
         private void signUp_Click(object sender, RoutedEventArgs e)
         {
+            SignUpUserControl signUpUserControl = new SignUpUserControl();
+            SignUpUserControlContainer.Children.Add(signUpUserControl);
 
+            someAnimation("signUp");
         }
 
         private void SkipLogging_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
 
         }
+
+        private void someAnimation(string tag) 
+        {
+
+            ((Storyboard)this.Resources["ButtonsAnimation"]).Begin(this);
+            ((Storyboard)this.Resources["LogoAnimation"]).Begin(this);
+            ((Storyboard)this.Resources["BackgroundAnimation"]).Begin(this);
+            ((Storyboard)this.Resources["ForegroundAnimation"]).Begin(this);
+
+            if (tag == "login")
+                ((Storyboard)this.Resources["LoginUserControlAnimation"]).Begin(this);
+            else if (tag == "signUp")
+                ((Storyboard)this.Resources["SignUpUserControlAnimation"]).Begin(this);
+        } //TODO REWRITE
     }
 }
