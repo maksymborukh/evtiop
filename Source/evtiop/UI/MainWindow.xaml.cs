@@ -49,6 +49,7 @@ namespace UI
             ((Storyboard)this.Resources["LogoAnimation"]).Begin(this);           
             ((Storyboard)this.Resources["BackgroundAnimation"]).Begin(this);
             ((Storyboard)this.Resources["ForegroundAnimation"]).Begin(this);
+            ((Storyboard)this.Resources["UserControlAnimation"]).Begin(this);
             
             LoginUserControl loginUserControl = new LoginUserControl();
             userControlContainer.Children.Add(loginUserControl);

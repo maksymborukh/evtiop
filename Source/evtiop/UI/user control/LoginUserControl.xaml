@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI.user_control"
              mc:Ignorable="d" 
-             d:DesignHeight="120" d:DesignWidth="310">
+             d:DesignHeight="240" d:DesignWidth="310">
     <UserControl.Resources>
 
         
@@ -14,6 +14,7 @@
     
     <Grid>
 
+        <!-- wrap for email-->
         <Grid x:Name="emailWrap" Width="300" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.4*"/>
@@ -27,7 +28,7 @@
                      FontSize="20" 
                      Cursor="IBeam" 
                      Tag="Email" 
-                     Style="{StaticResource WaterMark}">
+                     Style="{StaticResource WaterMark}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0">
                 <!--Validation.ErrorTemplate="{StaticResource validationFailed}"
                      --> 
                      
@@ -42,6 +43,7 @@
 
         </Grid>
 
+        <!-- wrap for password -->
         <Grid x:Name="passwordWrap"  Width="300" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.4*"/>
@@ -67,6 +69,28 @@
                 </TextBox.Text>-->
             </TextBox>
         </Grid>
-        
+
+        <!-- login button -->
+        <Button x:Name="loginAction" Click="loginAction_Click" 
+                Style="{StaticResource TealButton}" Content="LOGIN"
+                Margin="0,140,0,0" VerticalAlignment="Top">
+        </Button>
+
+        <!-- create new account button -->
+        <TextBlock PreviewMouseDown="CreateAccStackPanel_PreviewMouseDown" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" FontSize="12">
+            <Underline>CREATE NEW ACCOUNT</Underline>
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property= "Foreground" Value="{StaticResource TealBrush}"/>
+                    <Setter Property="Cursor" Value="Hand" />
+                    <Style.Triggers>
+                        <Trigger Property ="IsMouseOver" Value="True">
+                            <Setter Property= "Foreground" Value="{StaticResource VeryDarkTealBrush}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+   
     </Grid>
 </UserControl>

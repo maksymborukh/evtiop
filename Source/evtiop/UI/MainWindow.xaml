@@ -30,6 +30,11 @@
                              Storyboard.TargetName="BackgroundTranslate" AutoReverse="False"/>
         </Storyboard>
 
+        <Storyboard x:Key="UserControlAnimation">
+            <DoubleAnimation To="0" Duration="0:0:0.5" Storyboard.TargetProperty="X"
+                             Storyboard.TargetName="UserControlTranslate"/>
+        </Storyboard>
+
         <Storyboard x:Key="ForegroundAnimation">
             <ColorAnimation To="{StaticResource Teal}" Storyboard.TargetName="Logo"
                             Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.5"/>
@@ -70,6 +75,7 @@
             </TextBlock.RenderTransform>
         </TextBlock>
 
+        <!-- container for base buttons -->
         <Grid x:Name="containerOfBaseButton" Height="260" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,330,0,0" RenderTransformOrigin="0.5,0.5" >
             <Grid.RenderTransform>
                 <TransformGroup>
@@ -80,11 +86,11 @@
             <TextBlock Text="START BUYING NOW!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,240" Foreground="White" FontSize="14" />
 
             <!-- login button -->
-            <Button x:Name="login" Click="login_Click" Style="{StaticResource AuthButton}" 
+            <Button x:Name="login" Click="login_Click" Style="{StaticResource WhiteButton}" 
                 Content="LOGIN" Margin="0,0,0,170" VerticalAlignment="Bottom"/>
 
             <!-- sign up button-->
-            <Button x:Name="signUp" Click="signUp_Click" Style="{StaticResource AuthButton}" 
+            <Button x:Name="signUp" Click="signUp_Click" Style="{StaticResource WhiteButton}" 
                 Content="SIGN UP" Margin="0,0,0,100" VerticalAlignment="Bottom"/>
 
             <!-- skip button -->
@@ -102,12 +108,15 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-
-
-
         </Grid>
-        <Grid x:Name="userControlContainer" HorizontalAlignment="Center" VerticalAlignment="Top" Height="340" Margin="0,240,0,0" Width="290" RenderTransformOrigin="0.5,0.5">
 
+        <!-- user control container -->
+        <Grid x:Name="userControlContainer" HorizontalAlignment="Center" VerticalAlignment="Top" Height="340" Margin="0,240,0,0" Width="290" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform x:Name="UserControlTranslate" X="330"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
         </Grid>
 
     </Grid>

@@ -24,5 +24,15 @@ namespace UI.user_control
         {
             InitializeComponent();
         }
+
+        private void CreateAccStackPanel_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void loginAction_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
