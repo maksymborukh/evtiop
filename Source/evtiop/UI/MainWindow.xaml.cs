@@ -80,21 +80,21 @@ namespace UI
             Animation.ForegroundColor(Colors.White, Colors.Teal, 500, Logo); //work only for textblock
 
             if (tag == "login")
-                Animation.TranslateX(330, 0, 500, loginUserControlContainer);
+                Animation.TranslateX(340, 0, 500, loginUserControlContainer);
             else if (tag == "signUp")
-                Animation.TranslateX(330, 0, 500, SignUpUserControlContainer);
+                Animation.TranslateX(340, 0, 500, SignUpUserControlContainer);
         } //TODO REWRITE
 
         private void GoToLoginPage_Click(object sender, MouseButtonEventArgs e)
         {
-            Animation.TranslateX(0, -330, 500, SignUpUserControlContainer);
-            Animation.TranslateX(330, 0, 500, loginUserControlContainer);
+            Animation.TranslateX(0, -340, 500, SignUpUserControlContainer);
+            Animation.TranslateX(340, 0, 500, loginUserControlContainer);
         }
 
         private void GoToCreateAccPage_Click(object sender, MouseButtonEventArgs e)
         {
-            Animation.TranslateX(0, 330, 500, loginUserControlContainer);
-            Animation.TranslateX(-330, 0, 500, SignUpUserControlContainer);
+            Animation.TranslateX(0, 340, 500, loginUserControlContainer);
+            Animation.TranslateX(-340, 0, 500, SignUpUserControlContainer);
         }
     }
 }

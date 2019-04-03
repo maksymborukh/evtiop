@@ -73,10 +73,10 @@
 
         <!-- login user control container -->
         <Grid x:Name="loginUserControlContainer" HorizontalAlignment="Center" 
-              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="290">
+              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="320">
             <Grid.RenderTransform>
                 <TransformGroup>
-                    <TranslateTransform X="330"/>
+                    <TranslateTransform X="340"/>
                 </TransformGroup>
             </Grid.RenderTransform>
             
@@ -89,10 +89,10 @@
 
         <!-- sign up user control container -->
         <Grid x:Name="SignUpUserControlContainer" HorizontalAlignment="Center" 
-              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="290" >
+              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="320" >
             <Grid.RenderTransform>
                 <TransformGroup>
-                    <TranslateTransform X="330"/>
+                    <TranslateTransform X="340"/>
                 </TransformGroup>
             </Grid.RenderTransform>
 

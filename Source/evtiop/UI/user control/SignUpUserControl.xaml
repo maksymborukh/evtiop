@@ -15,7 +15,7 @@
                 <ColumnDefinition Width="0.4*"/>
                 <ColumnDefinition Width="2.6*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Width="40" Height="40" Source="/LogInPage;component/images/user_icon.png"/>
+            <Image Grid.Column="0" Width="35" Height="35" Source="/UI;component/images/user_icon.png"/>
             <TextBox x:Name="firstNameTextBox" Grid.Column="1" 
                      Width="260" Height="40" 
                      HorizontalContentAlignment="Center" 
@@ -42,7 +42,7 @@
                 <ColumnDefinition Width="0.4*"/>
                 <ColumnDefinition Width="2.6*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Width="40" Height="40" Source="/LogInPage;component/images/user_icon.png"/>
+            <Image Grid.Column="0" Width="35" Height="35" Source="/UI;component/images/user_icon.png"/>
             <TextBox x:Name="lastNameTextBox" Grid.Column="1"
                      Width="260" Height="40" 
                      HorizontalContentAlignment="Center" 
@@ -69,7 +69,7 @@
                 <ColumnDefinition Width="0.4*"/>
                 <ColumnDefinition Width="2.6*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Width="40" Height="40" Source="/LogInPage;component/images/email_icon.png"/>
+            <Image Grid.Column="0" Width="35" Height="35" Source="/UI;component/images/email_icon.png"/>
             <TextBox x:Name="emailTextBox" Grid.Column="1" 
                      Width="260" Height="40" 
                      HorizontalContentAlignment="Center" 
@@ -98,7 +98,7 @@
                 <ColumnDefinition Width="0.4*"/>
                 <ColumnDefinition Width="2.6*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Width="40" Height="40" Source="/LogInPage;component/images/lock_icon.png"/>
+            <Image Grid.Column="0" Width="35" Height="35" Source="/UI;component/images/password_icon.png"/>
             <TextBox x:Name="passwordTextBox" Grid.Column="1" 
                      Width="260" Height="40" 
                      HorizontalContentAlignment="Center" 
