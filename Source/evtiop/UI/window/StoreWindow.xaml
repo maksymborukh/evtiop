@@ -26,15 +26,18 @@
             <!-- menu icon -->
             <Grid Grid.Column="0" Style="{StaticResource HighlightGrid}">
                 <Image x:Name="menuIcon"  MouseDown="menuIcon_MouseDown" 
-                       Source="/UI;component/images/bars_icon.png" HorizontalAlignment="Center" 
+                       Style="{StaticResource RotateImage}"
+                       Source="/UI;component/images/bars_icon.png" 
+                       HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
-                       RenderTransformOrigin="0.5,0.5" Tag="ZeroAngle" Width="40" Height="40" Cursor="Hand">
-                </Image>
+                       RenderTransformOrigin="0.5,0.5"
+                       Width="40" Height="40" Cursor="Hand"/>
             </Grid>
 
             <!-- logo -->
             <Grid Grid.Column="1">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="evtiop" FontSize="48" Foreground="White" FontFamily="SimSun" />
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" 
+                           Text="evtiop" FontSize="48" Foreground="White" FontFamily="SimSun" />
             </Grid>
 
             <!-- search -->
