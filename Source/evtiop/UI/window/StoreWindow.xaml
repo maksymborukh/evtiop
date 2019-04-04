@@ -26,9 +26,9 @@
             <!-- menu icon -->
             <Grid Grid.Column="0" Style="{StaticResource HighlightGrid}">
                 <Image x:Name="menuIcon"  MouseDown="menuIcon_MouseDown" 
-                       Source="images/menu_icon.png" HorizontalAlignment="Center" 
+                       Source="/UI;component/images/bars_icon.png" HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
-                       RenderTransformOrigin="0.5,0.5" Tag="ZeroAngle" Width="70" Height="70" Cursor="Hand">
+                       RenderTransformOrigin="0.5,0.5" Tag="ZeroAngle" Width="40" Height="40" Cursor="Hand">
                 </Image>
             </Grid>
 
@@ -50,21 +50,21 @@
                     <TextBox Style="{StaticResource WaterMarkGrey}" Tag="I am looking for..." Height="30" Margin="20,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontStyle="Italic" Padding="5,0,0,0" />
                 </Grid>
 
-                <Grid Grid.Column="2" Style="{StaticResource HighlightGrid}" HorizontalAlignment="Left" Margin="0,14,0,15">
-                    <Image x:Name="searchIcon" MouseDown="searchIcon_MouseDown" Cursor="Hand" HorizontalAlignment="Center" VerticalAlignment="Center" Source="images/search_icon.png" Width="50" Height="50" />
+                <Grid Grid.Column="2" Style="{StaticResource HighlightGrid}" HorizontalAlignment="Left" Margin="0,14,0,16" Width="30">
+                    <Image x:Name="searchIcon" MouseDown="searchIcon_MouseDown" Cursor="Hand" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/UI;component/images/search_icon.png" Width="20" Height="20" Margin="1,0,0,0" />
                 </Grid>
 
             </Grid>
 
             <!-- wish list icon -->
             <Grid Grid.Column="3" Style="{StaticResource HighlightGrid}">
-                <Image x:Name="heartIcon" MouseDown="heartIcon_MouseDown" Cursor="Hand" Source="images/heart_icon.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Image x:Name="heartIcon" MouseDown="heartIcon_MouseDown" Cursor="Hand" Source="/UI;component/images/heart_icon.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
 
             <!-- basket icon -->
             <Grid Grid.Column="4" Style="{StaticResource HighlightGrid}">
-                <Image MouseDown="Basket_MouseDown" Cursor="Hand" Source="images/shop_cart_icon.png" Width="60" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Border x:Name="quantityInBasket" Cursor="Hand" MouseDown="Basket_MouseDown" CornerRadius="50,50,50,50" Background="Black" Width="15" Height="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,13,8,0"/>
+                <Image MouseDown="Basket_MouseDown" Cursor="Hand" Source="/UI;component/images/cart_icon.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Border x:Name="quantityInBasket" Cursor="Hand" MouseDown="Basket_MouseDown" CornerRadius="10,10,10,10" Background="Black" Width="25" Height="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,12,10.4,0"/>
             </Grid>
 
             <!-- user icon -->
@@ -83,18 +83,26 @@
                     <Style TargetType="{x:Type MenuItem}">
                         <Setter Property="Template">
                             <Setter.Value>
-                                --><!-- style a non-top level menu item --><!--
+                                -->
+        <!-- style a non-top level menu item -->
+        <!--
                                 <ControlTemplate TargetType="MenuItem">
                                     <DockPanel TextBlock.FontSize="15px" x:Name="panel" >
 
-                                        --><!-- label, icons, etc. --><!--
+                                        -->
+        <!-- label, icons, etc. -->
+        <!--
                                         <Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="20" Margin="5,0" />
                                         <Label x:Name="label" Content="{Binding Path=Name}" Foreground="Black" Margin="0,5,5,5" />
 
-                                        --><!-- draw the right arrow only if this menu item has sub items --><!--
+                                        -->
+        <!-- draw the right arrow only if this menu item has sub items -->
+        <!--
                                         <Image Source="images/right_arrow.png" Visibility="{Binding HasItems, Converter={StaticResource btv}, RelativeSource={RelativeSource TemplatedParent}}" Width="15" Height="15" />
 
-                                        --><!-- sub items --><!--
+                                        -->
+        <!-- sub items -->
+        <!--
                                         <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" Placement="Right" >
                                             <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
                                                 <StackPanel IsItemsHost="True" />
