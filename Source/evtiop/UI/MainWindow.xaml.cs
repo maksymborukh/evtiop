@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.user_control;
 using UI.animation;
+using UI.window;
 
 namespace UI
 {
@@ -24,9 +25,12 @@ namespace UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        StoreWindow storeWindow;
+
         public MainWindow()
         {
             InitializeComponent();
+            storeWindow = new StoreWindow();
         }
 
         private void windowLoaded(object sender, RoutedEventArgs e)
@@ -69,7 +73,9 @@ namespace UI
 
         private void SkipLogging_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            this.Close();
+            storeWindow.ShowDialog();
+            
         }
 
         public void someAnimation(string tag) 
