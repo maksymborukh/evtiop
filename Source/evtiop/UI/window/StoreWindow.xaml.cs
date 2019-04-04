@@ -26,6 +26,32 @@ namespace UI.window
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            this.MinWidth = 800;
+            this.MinHeight = 600;
+        }
+
+        private void searchIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Basket_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void heartIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void menuIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void userIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        {
 
         }
     }

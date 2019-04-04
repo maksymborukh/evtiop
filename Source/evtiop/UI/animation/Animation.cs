@@ -55,5 +55,19 @@ namespace UI.animation
             brush.BeginAnimation(SolidColorBrush.ColorProperty, fade);
         }
 
+        //public static void HighlightButton(Color from, Color to, double duration, Grid element)
+        //{
+        //    var fade = new ColorAnimation()
+        //    {
+        //        From = from,
+        //        To = to,
+        //        Duration = new Duration(TimeSpan.FromMilliseconds(duration))
+        //    };
+
+        //    SolidColorBrush brush = new SolidColorBrush();
+        //    element.Background = brush;
+        //    brush.BeginAnimation(SolidColorBrush.ColorProperty, fade);
+        //}
+
     }
 }

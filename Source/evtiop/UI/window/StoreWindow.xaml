@@ -6,11 +6,114 @@
         xmlns:local="clr-namespace:UI.window"
         mc:Ignorable="d"
         Title="evtiop" 
-        Height="450" Width="800"
+        Height="600" Width="800"
         WindowStartupLocation="CenterScreen"
         Icon="/UI;component/images/logo.png"
         Loaded="Window_Loaded">
     <Grid>
-        
+
+        <!-- header -->
+        <Grid x:Name="header"  Height="60" VerticalAlignment="Top" Background="{StaticResource TealBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- menu icon -->
+            <Grid Grid.Column="0" Style="{StaticResource HighlightGrid}">
+                <Image x:Name="menuIcon"  MouseDown="menuIcon_MouseDown" 
+                       Source="images/menu_icon.png" HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"
+                       RenderTransformOrigin="0.5,0.5" Tag="ZeroAngle" Width="70" Height="70" Cursor="Hand">
+                </Image>
+            </Grid>
+
+            <!-- logo -->
+            <Grid Grid.Column="1">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="evtiop" FontSize="48" Foreground="White" FontFamily="SimSun" />
+            </Grid>
+
+            <!-- search -->
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="0.15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1">
+                    <TextBox Style="{StaticResource WaterMarkGrey}" Tag="I am looking for..." Height="30" Margin="20,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="18" FontStyle="Italic" Padding="5,0,0,0" />
+                </Grid>
+
+                <Grid Grid.Column="2" Style="{StaticResource HighlightGrid}" HorizontalAlignment="Left" Margin="0,14,0,15">
+                    <Image x:Name="searchIcon" MouseDown="searchIcon_MouseDown" Cursor="Hand" HorizontalAlignment="Center" VerticalAlignment="Center" Source="images/search_icon.png" Width="50" Height="50" />
+                </Grid>
+
+            </Grid>
+
+            <!-- wish list icon -->
+            <Grid Grid.Column="3" Style="{StaticResource HighlightGrid}">
+                <Image x:Name="heartIcon" MouseDown="heartIcon_MouseDown" Cursor="Hand" Source="images/heart_icon.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+
+            <!-- basket icon -->
+            <Grid Grid.Column="4" Style="{StaticResource HighlightGrid}">
+                <Image MouseDown="Basket_MouseDown" Cursor="Hand" Source="images/shop_cart_icon.png" Width="60" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Border x:Name="quantityInBasket" Cursor="Hand" MouseDown="Basket_MouseDown" CornerRadius="50,50,50,50" Background="Black" Width="15" Height="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,13,8,0"/>
+            </Grid>
+
+            <!-- user icon -->
+            <Grid Grid.Column="5" Style="{StaticResource HighlightGrid}">
+                <Border x:Name="userIcon" MouseDown="userIcon_MouseDown"  CornerRadius="50,50,50,50" Background="Black" Width="50" Height="50" Cursor="Hand"/>
+            </Grid>
+
+        </Grid>
+
+        <!-- menu -->
+        <!--<StackPanel x:Name="stackPanelMenu" Width="200px" Tag="Closed" HorizontalAlignment="Left" Margin="0,60,0,0" Visibility="Collapsed">
+            <Menu ItemsPanel="{StaticResource menuPanelTemplate}"
+                  ItemsSource="{Binding Source={StaticResource menuProvider}}"
+                  ItemTemplate="{StaticResource menuTemplate}">
+                <Menu.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                --><!-- style a non-top level menu item --><!--
+                                <ControlTemplate TargetType="MenuItem">
+                                    <DockPanel TextBlock.FontSize="15px" x:Name="panel" >
+
+                                        --><!-- label, icons, etc. --><!--
+                                        <Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="20" Margin="5,0" />
+                                        <Label x:Name="label" Content="{Binding Path=Name}" Foreground="Black" Margin="0,5,5,5" />
+
+                                        --><!-- draw the right arrow only if this menu item has sub items --><!--
+                                        <Image Source="images/right_arrow.png" Visibility="{Binding HasItems, Converter={StaticResource btv}, RelativeSource={RelativeSource TemplatedParent}}" Width="15" Height="15" />
+
+                                        --><!-- sub items --><!--
+                                        <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" Placement="Right" >
+                                            <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                                                <StackPanel IsItemsHost="True" />
+                                            </Border>
+                                        </Popup>
+                                    </DockPanel>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsHighlighted" Value="True">
+                                            <Setter Property="Background" TargetName="panel" Value="#EFF6FC" />
+                                            <Setter Property="Foreground" TargetName="label" Value="Red"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Menu.ItemContainerStyle>
+            </Menu>
+        </StackPanel>-->
+
     </Grid>
 </Window>
