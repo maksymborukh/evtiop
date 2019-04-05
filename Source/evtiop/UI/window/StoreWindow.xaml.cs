@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI.animation;
 
 namespace UI.window
 {
@@ -47,7 +48,16 @@ namespace UI.window
 
         private void menuIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (menuIcon.Tag.ToString() == "closed")
+            {
+                Animation.Rotate(0, 90, 500, menuIcon);
+                menuIcon.Tag = "opened";
+            }
+            else if (menuIcon.Tag.ToString() == "opened")
+            {
+                Animation.Rotate(90, 0, 500, menuIcon);
+                menuIcon.Tag = "closed";
+            }
         }
 
         private void userIcon_MouseDown(object sender, MouseButtonEventArgs e)

@@ -26,12 +26,18 @@
             <!-- menu icon -->
             <Grid Grid.Column="0" Style="{StaticResource HighlightGrid}">
                 <Image x:Name="menuIcon"  MouseDown="menuIcon_MouseDown" 
-                       Style="{StaticResource RotateImage}"
                        Source="/UI;component/images/bars_icon.png" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
                        RenderTransformOrigin="0.5,0.5"
-                       Width="40" Height="40" Cursor="Hand"/>
+                       Width="40" Height="40" Cursor="Hand"
+                       Tag="closed">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="0"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
             </Grid>
 
             <!-- logo -->

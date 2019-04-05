@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:UI">
 
-    <SolidColorBrush x:Key="TransparentBrash" Color="Black" Opacity="0"/>
+    <Color x:Key="Transparent">#00000000</Color>
+    <SolidColorBrush x:Key="TransparentBrash" Color="{StaticResource Transparent}"/>
 
     <Color x:Key="Teal">#008080</Color>
     <SolidColorBrush x:Key="TealBrush" Color="{StaticResource Teal}"/>

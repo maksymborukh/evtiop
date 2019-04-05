@@ -55,6 +55,7 @@ namespace UI
         private void CloseButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+            storeWindow.Close();
         }
 
         private void login_Click(object sender, RoutedEventArgs e)
