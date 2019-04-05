@@ -20,6 +20,7 @@ namespace UI.window
     /// </summary>
     public partial class StoreWindow : Window
     {
+
         public StoreWindow()
         {
             InitializeComponent();
@@ -62,7 +63,16 @@ namespace UI.window
 
         private void userIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (userMenuButtons.Tag.ToString() == "closed")
+            {
+                userMenuButtons.Visibility = Visibility.Visible;
+                userMenuButtons.Tag = "opened";
+            }
+            else if (userMenuButtons.Tag.ToString() == "opened")
+            {
+                userMenuButtons.Visibility = Visibility.Collapsed;
+                userMenuButtons.Tag = "closed";
+            }
         }
     }
 }
