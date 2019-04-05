@@ -78,7 +78,7 @@
 
             <!-- user icon -->
             <Grid Grid.Column="5" Style="{StaticResource HighlightGrid}">
-                <Border x:Name="userIcon" MouseDown="userIcon_MouseDown"  CornerRadius="50,50,50,50" Background="Black" Width="50" Height="50" Cursor="Hand"/>
+                <Border x:Name="userIcon" MouseDown="userIcon_MouseDown"  CornerRadius="50,50,50,50" Background="Black" Width="40" Height="40" Cursor="Hand"/>
             </Grid>
 
         </Grid>
