@@ -96,6 +96,25 @@
             </WrapPanel>
         </Border>
 
+        <!-- grid for displaying user control pages -->
+        <Grid x:Name="GridForUserContorlContainer" MinHeight="500" MinWidth="700" Visibility="Collapsed">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="UserContorlContainer" Grid.Column="1" Grid.Row="1" Background="Red">
+                
+            </Grid>
+        </Grid>
 
         <!-- menu -->
         <!--<StackPanel x:Name="stackPanelMenu" Width="200px" Tag="Closed" HorizontalAlignment="Left" Margin="0,60,0,0" Visibility="Collapsed">
