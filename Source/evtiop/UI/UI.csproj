@@ -66,6 +66,9 @@
     <Compile Include="user control\SignUpUserControl.xaml.cs">
       <DependentUpon>SignUpUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="user control\UserHelp.xaml.cs">
+      <DependentUpon>UserHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="user control\UserSetting.xaml.cs">
       <DependentUpon>UserSetting.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="user control\SignUpUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="user control\UserHelp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

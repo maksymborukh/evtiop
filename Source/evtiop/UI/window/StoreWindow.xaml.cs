@@ -81,11 +81,7 @@ namespace UI.window
             Account account = new Account();
             UserContorlContainer.Children.Add(account);
 
-            //todo move to business logic
-            GridForUserContorlContainer.Visibility = Visibility.Visible;
-            userMenuButtons.Visibility = Visibility.Collapsed;
-            userMenuButtons.Tag = "closed";
-            header.IsEnabled = false;
+            CloseUserMenu();
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
@@ -108,7 +104,19 @@ namespace UI.window
             UserSetting userSetting = new UserSetting();
             UserContorlContainer.Children.Add(userSetting);
 
-            //todo move to business logic
+            CloseUserMenu();
+        }
+
+        private void HelpPage_Click(object sender, RoutedEventArgs e)
+        {
+            UserHelp userHelp = new UserHelp();
+            UserContorlContainer.Children.Add(userHelp);
+
+            CloseUserMenu();
+        }
+
+        private void CloseUserMenu()
+        {
             GridForUserContorlContainer.Visibility = Visibility.Visible;
             userMenuButtons.Visibility = Visibility.Collapsed;
             userMenuButtons.Tag = "closed";
