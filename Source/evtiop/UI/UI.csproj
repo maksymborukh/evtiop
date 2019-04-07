@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -63,6 +65,9 @@
     </Compile>
     <Compile Include="user control\SignUpUserControl.xaml.cs">
       <DependentUpon>SignUpUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="user control\UserSetting.xaml.cs">
+      <DependentUpon>UserSetting.xaml</DependentUpon>
     </Compile>
     <Compile Include="window\StoreWindow.xaml.cs">
       <DependentUpon>StoreWindow.xaml</DependentUpon>
@@ -100,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="user control\SignUpUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="user control\UserSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

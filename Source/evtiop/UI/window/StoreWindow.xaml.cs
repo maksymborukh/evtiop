@@ -80,6 +80,8 @@ namespace UI.window
         {
             Account account = new Account();
             UserContorlContainer.Children.Add(account);
+
+            //todo move to business logic
             GridForUserContorlContainer.Visibility = Visibility.Visible;
             userMenuButtons.Visibility = Visibility.Collapsed;
             userMenuButtons.Tag = "closed";
@@ -98,8 +100,19 @@ namespace UI.window
             //in new funct
             userMenuButtons.Visibility = Visibility.Collapsed;
             userMenuButtons.Tag = "closed";
-
             header.IsEnabled = true;
+        }
+
+        private void SettingPage_Click(object sender, RoutedEventArgs e)
+        {
+            UserSetting userSetting = new UserSetting();
+            UserContorlContainer.Children.Add(userSetting);
+
+            //todo move to business logic
+            GridForUserContorlContainer.Visibility = Visibility.Visible;
+            userMenuButtons.Visibility = Visibility.Collapsed;
+            userMenuButtons.Tag = "closed";
+            header.IsEnabled = false;
         }
     }
 }

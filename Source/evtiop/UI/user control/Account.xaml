@@ -8,6 +8,8 @@
              MinHeight="360" MinWidth="560">
 
     <Grid>
+        
+        <!-- set all content -->
         <Grid x:Name="PersonalDataPage">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -49,194 +51,113 @@
             </Grid>
 
             <!-- photo -->
-            <Grid Grid.Column="1" Grid.Row="3">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Photo" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
-                           Foreground="Gray"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="3">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Source="/UI;component/images/email_icon.png" HorizontalAlignment="Left" />
-                </Border>
-            </Grid>
-            <Grid Grid.Column="3" Grid.Row="3">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Style="{StaticResource EditButtonStyle}" 
-                           MouseDown="Image_MouseDown"/>
-                </Border>
-            </Grid>
+            <Border Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3"
+                    BorderBrush="Gray" BorderThickness="0 0 0 1"/>
+            <TextBlock Text="Photo" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                           Foreground="Gray" Grid.Column="1" Grid.Row="3"/>
+            <Image Source="/UI;component/images/email_icon.png" HorizontalAlignment="Left" 
+                   Grid.Column="2" Grid.Row="3"/>
+            <Image Style="{StaticResource EditButtonStyle}" 
+                           MouseDown="Image_MouseDown" Grid.Column="3" Grid.Row="3"/>
 
             <!-- Name -->
-            <Grid Grid.Column="1" Grid.Row="5">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Name" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
-                           Foreground="Gray"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="5">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Mike" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="3" Grid.Row="5">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Style="{StaticResource EditButtonStyle}"
-                           MouseDown="Edit_MouseDown" Tag="Name"/>
-                </Border>
-            </Grid>
+            <Border Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3"
+                    BorderBrush="Gray" BorderThickness="0 0 0 1"/>
+            <TextBlock Text="Name" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="5"/>
+            <TextBlock Text="Mike" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="5"/>
+            <Image Style="{StaticResource EditButtonStyle}"
+                   MouseDown="Edit_MouseDown" Tag="Name"
+                   Grid.Column="3" Grid.Row="5"/>
 
             <!-- last Name -->
-            <Grid Grid.Column="1" Grid.Row="7">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Last Name" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
-                           Foreground="Gray"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="7">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Smith" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="3" Grid.Row="7">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Style="{StaticResource EditButtonStyle}"
-                           MouseDown="Edit_MouseDown" Tag="Last Name"/>
-                </Border>
-            </Grid>
+            <Border Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3"
+                    BorderBrush="Gray" BorderThickness="0 0 0 1"/>
+            <TextBlock Text="Last Name" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="7"/>
+            <TextBlock Text="Smith" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="7"/>
+            <Image Style="{StaticResource EditButtonStyle}"
+                   MouseDown="Edit_MouseDown" Tag="Last Name"
+                   Grid.Column="3" Grid.Row="7"/>
 
             <!-- Email -->
-            <Grid Grid.Column="1" Grid.Row="9">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Email" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
-                           Foreground="Gray"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="9">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="someone@example.com" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="3" Grid.Row="9">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Style="{StaticResource EditButtonStyle}"
-                           MouseDown="Edit_MouseDown" Tag="Email"/>
-                </Border>
-            </Grid>
+            <Border Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3"
+                    BorderBrush="Gray" BorderThickness="0 0 0 1"/>
+            <TextBlock Text="Email" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="9"/>
+            <TextBlock Text="someone@example.com" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="9"/>
+            <Image Style="{StaticResource EditButtonStyle}"
+                   MouseDown="Edit_MouseDown" Tag="Email"
+                   Grid.Column="3" Grid.Row="9"/>
 
             <!-- Phone -->
-            <Grid Grid.Column="1" Grid.Row="11">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Phone" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
-                           Foreground="Gray"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="11">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="00000000" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="3" Grid.Row="11">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Style="{StaticResource EditButtonStyle}"
-                           MouseDown="Edit_MouseDown" Tag="Phone"/>
-                </Border>
-            </Grid>
+            <Border Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="3"
+                    BorderBrush="Gray" BorderThickness="0 0 0 1"/>
+            <TextBlock Text="Phone" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="11"/>
+            <TextBlock Text="00000000" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="11"/>
+            <Image Style="{StaticResource EditButtonStyle}"
+                   MouseDown="Edit_MouseDown" Tag="Phone"
+                   Grid.Column="3" Grid.Row="11"/>
 
             <!-- Password -->
-            <Grid Grid.Column="1" Grid.Row="13">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Password" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
-                           Foreground="Gray"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="13">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="******" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="3" Grid.Row="13">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Style="{StaticResource EditButtonStyle}"
-                           MouseDown="Edit_MouseDown" Tag="Password"/>
-                </Border>
-            </Grid>
+            <Border Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="3"
+                    BorderBrush="Gray" BorderThickness="0 0 0 1"/>
+            <TextBlock Text="Password" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="13"/>
+            <TextBlock Text="******" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="13"/>
+            <Image Style="{StaticResource EditButtonStyle}"
+                   MouseDown="Edit_MouseDown" Tag="Password"
+                   Grid.Column="3" Grid.Row="13"/>
 
             <!-- Country -->
-            <Grid Grid.Column="1" Grid.Row="15">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Country" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
-                           Foreground="Gray"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="15">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Ukraine" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="3" Grid.Row="15">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Height="20" Width="20" Source="/UI;component/images/pencil_icon.png" 
-                       Cursor="Hand" MouseDown="Edit_MouseDown" Tag="Country"/>
-                </Border>
-            </Grid>
+            <Border Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="3"
+                    BorderBrush="Gray" BorderThickness="0 0 0 1"/>
+            <TextBlock Text="Password" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="15"/>
+            <TextBlock Text="Ukraine" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="15"/>
+            <Image Style="{StaticResource EditButtonStyle}"
+                   MouseDown="Edit_MouseDown" Tag="Country"
+                   Grid.Column="3" Grid.Row="15"/>
 
             <!-- Region -->
-            <Grid Grid.Column="1" Grid.Row="17">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Region" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
-                           Foreground="Gray"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="17">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Lviv region" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="3" Grid.Row="17">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Style="{StaticResource EditButtonStyle}"
-                           MouseDown="Edit_MouseDown" Tag="Region"/>
-                </Border>
-            </Grid>
+            <Border Grid.Column="1" Grid.Row="17" Grid.ColumnSpan="3"
+                    BorderBrush="Gray" BorderThickness="0 0 0 1"/>
+            <TextBlock Text="Region" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="17"/>
+            <TextBlock Text="Lviv region" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="17"/>
+            <Image Style="{StaticResource EditButtonStyle}"
+                   MouseDown="Edit_MouseDown" Tag="Region"
+                   Grid.Column="3" Grid.Row="17"/>
 
             <!-- City -->
-            <Grid Grid.Column="1" Grid.Row="19">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="City" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
-                           Foreground="Gray"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="19">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Lviv" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="3" Grid.Row="19">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Style="{StaticResource EditButtonStyle}"
-                           MouseDown="Edit_MouseDown" Tag="City"/>
-                </Border>
-            </Grid>
+            <Border Grid.Column="1" Grid.Row="19" Grid.ColumnSpan="3"
+                    BorderBrush="Gray" BorderThickness="0 0 0 1"/>
+            <TextBlock Text="City" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="19"/>
+            <TextBlock Text="Lviv" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="19"/>
+            <Image Style="{StaticResource EditButtonStyle}"
+                   MouseDown="Edit_MouseDown" Tag="City"
+                   Grid.Column="3" Grid.Row="19"/>
 
             <!-- Street -->
-            <Grid Grid.Column="1" Grid.Row="21">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Street" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
-                           Foreground="Gray"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="2" Grid.Row="21">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <TextBlock Text="Doroshenka" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
-                </Border>
-            </Grid>
-            <Grid Grid.Column="3" Grid.Row="21">
-                <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Style="{StaticResource EditButtonStyle}"
-                           MouseDown="Edit_MouseDown" Tag="Street"/>
-                </Border>
-            </Grid>
+            <Border Grid.Column="1" Grid.Row="21" Grid.ColumnSpan="3"
+                    BorderBrush="Gray" BorderThickness="0 0 0 1"/>
+            <TextBlock Text="Street" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="21"/>
+            <TextBlock Text="Doroshenka" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="21"/>
+            <Image Style="{StaticResource EditButtonStyle}"
+                   MouseDown="Edit_MouseDown" Tag="Street"
+                   Grid.Column="3" Grid.Row="21"/>
         </Grid>
 
         <!-- display edit page -->
