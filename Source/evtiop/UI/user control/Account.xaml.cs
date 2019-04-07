@@ -25,9 +25,26 @@ namespace UI.user_control
             InitializeComponent();
         }
 
+        private void Edit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            EditPage.Visibility = Visibility.Visible;
+            PersonalDataPage.IsEnabled = false;
+        }
+
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void SaveChange_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelChange_Click(object sender, RoutedEventArgs e)
+        {
+            EditPage.Visibility = Visibility.Collapsed;
+            PersonalDataPage.IsEnabled = true;
         }
     }
 }

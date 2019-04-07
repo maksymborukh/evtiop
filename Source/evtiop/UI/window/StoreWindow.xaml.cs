@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UI.animation;
+using UI.user_control;
 
 namespace UI.window
 {
@@ -29,7 +30,7 @@ namespace UI.window
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.MinWidth = 800;
-            this.MinHeight = 600;
+            this.MinHeight = 600;           
         }
 
         private void searchIcon_MouseDown(object sender, MouseButtonEventArgs e)
@@ -73,6 +74,32 @@ namespace UI.window
                 userMenuButtons.Visibility = Visibility.Collapsed;
                 userMenuButtons.Tag = "closed";
             }
+        }
+
+        private void AccountPage_Click(object sender, RoutedEventArgs e)
+        {
+            Account account = new Account();
+            UserContorlContainer.Children.Add(account);
+            GridForUserContorlContainer.Visibility = Visibility.Visible;
+            userMenuButtons.Visibility = Visibility.Collapsed;
+            userMenuButtons.Tag = "closed";
+            header.IsEnabled = false;
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void CloseUserControlContainer_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            UserContorlContainer.Children.Clear();
+            GridForUserContorlContainer.Visibility = Visibility.Collapsed;
+            //in new funct
+            userMenuButtons.Visibility = Visibility.Collapsed;
+            userMenuButtons.Tag = "closed";
+
+            header.IsEnabled = true;
         }
     }
 }

@@ -15,7 +15,7 @@
         </Style.Triggers>
     </Style>
     
-    <!-- water mark -->
+    <!-- watermark -->
     <Style x:Key="WaterMark" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ValidationHint}">
         <Setter Property="Template">
             <Setter.Value>
@@ -59,7 +59,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- watermark style-->
+    <!-- watermark style gray-->
     <Style x:Key="WaterMarkGrey" TargetType="{x:Type TextBox}">
         <Setter Property="Template">
             <Setter.Value>
