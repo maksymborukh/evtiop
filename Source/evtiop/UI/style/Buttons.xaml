@@ -106,6 +106,30 @@
         </Style.Triggers>
     </Style>
 
+    <!-- edit button images -->
+    <BitmapImage UriSource="/UI;component/images/pencil_icon.png" x:Key="blackPencil" />
+    <BitmapImage UriSource="/UI;component/images/pencil_icon_over.png" x:Key="tealPencil" />
+
+    <!-- style of edit button-->
+    <Style x:Key="EditButtonStyle" TargetType="{x:Type Image}">
+
+        <!-- change cursor when mouse over button -->
+        <Setter Property="Cursor" Value="Hand" />
+        
+        <!--size of button -->
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="20"/>
+
+        <!-- set default close button image -->
+        <Setter Property="Source" Value="{StaticResource blackPencil}" />
+        <Style.Triggers>
+            <!-- change close button image when mouse over -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Source" Value="{StaticResource tealPencil}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
     <!-- highlight grid item style -->
     <Style x:Key="HighlightGrid" TargetType="{x:Type Grid}">
         <Setter Property="Background">
@@ -199,10 +223,14 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="button" Background="White">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border x:Name="text" Background="White">
+                            <ContentPresenter x:Name="Text" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                        
+                        <ControlTemplate.Triggers>
+                            <Trigger  Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource TealBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

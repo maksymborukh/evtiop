@@ -57,13 +57,13 @@
             </Grid>
             <Grid Grid.Column="2" Grid.Row="3">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Source="/UI;component/images/email_icon.png" />
+                    <Image Source="/UI;component/images/email_icon.png" HorizontalAlignment="Left" />
                 </Border>
             </Grid>
             <Grid Grid.Column="3" Grid.Row="3">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Height="20" Width="20" Source="/UI;component/images/pencil_icon.png" 
-                       Cursor="Hand" MouseDown="Image_MouseDown"/>
+                    <Image Style="{StaticResource EditButtonStyle}" 
+                           MouseDown="Image_MouseDown"/>
                 </Border>
             </Grid>
 
@@ -81,8 +81,8 @@
             </Grid>
             <Grid Grid.Column="3" Grid.Row="5">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Height="20" Width="20" Source="/UI;component/images/pencil_icon.png" 
-                       Cursor="Hand" MouseDown="Edit_MouseDown"/>
+                    <Image Style="{StaticResource EditButtonStyle}"
+                           MouseDown="Edit_MouseDown" Tag="Name"/>
                 </Border>
             </Grid>
 
@@ -100,8 +100,8 @@
             </Grid>
             <Grid Grid.Column="3" Grid.Row="7">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Height="20" Width="20" Source="/UI;component/images/pencil_icon.png" 
-                       Cursor="Hand" MouseDown="Edit_MouseDown"/>
+                    <Image Style="{StaticResource EditButtonStyle}"
+                           MouseDown="Edit_MouseDown" Tag="Last Name"/>
                 </Border>
             </Grid>
 
@@ -119,8 +119,8 @@
             </Grid>
             <Grid Grid.Column="3" Grid.Row="9">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Height="20" Width="20" Source="/UI;component/images/pencil_icon.png" 
-                       Cursor="Hand" MouseDown="Edit_MouseDown"/>
+                    <Image Style="{StaticResource EditButtonStyle}"
+                           MouseDown="Edit_MouseDown" Tag="Email"/>
                 </Border>
             </Grid>
 
@@ -138,8 +138,8 @@
             </Grid>
             <Grid Grid.Column="3" Grid.Row="11">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Height="20" Width="20" Source="/UI;component/images/pencil_icon.png" 
-                       Cursor="Hand" MouseDown="Edit_MouseDown"/>
+                    <Image Style="{StaticResource EditButtonStyle}"
+                           MouseDown="Edit_MouseDown" Tag="Phone"/>
                 </Border>
             </Grid>
 
@@ -157,8 +157,8 @@
             </Grid>
             <Grid Grid.Column="3" Grid.Row="13">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Height="20" Width="20" Source="/UI;component/images/pencil_icon.png" 
-                       Cursor="Hand" MouseDown="Edit_MouseDown"/>
+                    <Image Style="{StaticResource EditButtonStyle}"
+                           MouseDown="Edit_MouseDown" Tag="Password"/>
                 </Border>
             </Grid>
 
@@ -177,7 +177,7 @@
             <Grid Grid.Column="3" Grid.Row="15">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
                     <Image Height="20" Width="20" Source="/UI;component/images/pencil_icon.png" 
-                       Cursor="Hand" MouseDown="Edit_MouseDown"/>
+                       Cursor="Hand" MouseDown="Edit_MouseDown" Tag="Country"/>
                 </Border>
             </Grid>
 
@@ -195,8 +195,8 @@
             </Grid>
             <Grid Grid.Column="3" Grid.Row="17">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Height="20" Width="20" Source="/UI;component/images/pencil_icon.png" 
-                       Cursor="Hand" MouseDown="Edit_MouseDown"/>
+                    <Image Style="{StaticResource EditButtonStyle}"
+                           MouseDown="Edit_MouseDown" Tag="Region"/>
                 </Border>
             </Grid>
 
@@ -214,8 +214,8 @@
             </Grid>
             <Grid Grid.Column="3" Grid.Row="19">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image Height="20" Width="20" Source="/UI;component/images/pencil_icon.png" 
-                       Cursor="Hand" MouseDown="Edit_MouseDown"/>
+                    <Image Style="{StaticResource EditButtonStyle}"
+                           MouseDown="Edit_MouseDown" Tag="City"/>
                 </Border>
             </Grid>
 
@@ -233,8 +233,8 @@
             </Grid>
             <Grid Grid.Column="3" Grid.Row="21">
                 <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                    <Image MouseDown="Edit_MouseDown" Height="20" Width="20" 
-                       Source="/UI;component/images/pencil_icon.png" Cursor="Hand"/>
+                    <Image Style="{StaticResource EditButtonStyle}"
+                           MouseDown="Edit_MouseDown" Tag="Street"/>
                 </Border>
             </Grid>
         </Grid>
@@ -258,21 +258,57 @@
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Example" FontSize="16" FontFamily="SimSun" 
+                <TextBlock x:Name="EditMessageTextBlock" Text="Example" FontSize="16" FontFamily="SimSun" 
                            FontWeight="Bold" Grid.Column="1" Grid.Row="1" 
                            HorizontalAlignment="Center" VerticalAlignment="Center" 
                            Foreground="Gray" Grid.ColumnSpan="2"/>
 
-                <TextBox FontSize="16" FontFamily="SimSun" 
+                <TextBox Text="Example" FontSize="16" FontFamily="SimSun" 
                          FontWeight="Bold" Grid.Column="1" Grid.Row="2" 
                          HorizontalAlignment="Center" VerticalAlignment="Center" 
-                         Foreground="Gray" Grid.ColumnSpan="2"
+                         Grid.ColumnSpan="2" 
                          Height="25" Width="200"/>
 
                 <Button x:Name="SaveChange" Content="Save" Grid.Column="1" Grid.Row="3"
                         Click="SaveChange_Click" Style="{StaticResource EditButton}"/>
 
                 <Button x:Name="CancelChange" Content="Cancel" Grid.Column="2" Grid.Row="3"
+                        Click="CancelChange_Click" Style="{StaticResource EditButton}"/>
+
+            </Grid>
+        </Border>
+
+        <!-- display edit image page -->
+        <Border x:Name="EditImagePage" BorderBrush="Black" BorderThickness="1" CornerRadius="10"
+                Height="250" Width="300" Background="White" Visibility="Collapsed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+
+                <!-- need to upload from computer -->
+                <Image Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" 
+                       Source="/UI;component/images/logo.png"/>
+                
+                <Button  Content="Upload" Grid.Column="1" Grid.Row="3"
+                        Click="Upload_Click" Style="{StaticResource EditButton}"/>
+
+                <Button  Content="Save" Grid.Column="2" Grid.Row="3"
+                        Click="SaveChange_Click" Style="{StaticResource EditButton}"/>
+
+                <Button  Content="Cancel" Grid.Column="3" Grid.Row="3"
                         Click="CancelChange_Click" Style="{StaticResource EditButton}"/>
 
             </Grid>

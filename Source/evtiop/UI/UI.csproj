@@ -159,5 +159,8 @@
   <ItemGroup>
     <Resource Include="images\pencil_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\pencil_icon_over.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
