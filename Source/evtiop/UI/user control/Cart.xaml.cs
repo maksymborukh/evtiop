@@ -21,12 +21,12 @@ namespace UI.user_control
 
         private void Minus_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("jjk");
+            
         }
 
         private void Plus_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            
         }
 
         private void RemoveFromCart_MouseDown(object sender, MouseButtonEventArgs e)

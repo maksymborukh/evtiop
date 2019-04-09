@@ -8,10 +8,10 @@
              MinHeight="360" MinWidth="560">
 
     <UserControl.Resources>
-
+                
         <DataTemplate x:Key="CartProduct">
             <!-- style of product in cart -->
-            <StackPanel Margin="0 0 0 5" Height="42" Grid.Column="1" Grid.Row="3">
+            <StackPanel Margin="0 0 0 5" Width="Auto" Height="42" Grid.Column="1" Grid.Row="3">
                 <Border BorderBrush="Black" BorderThickness="0 1 0 1">
                     <Grid Height="40">
                         <Grid.ColumnDefinitions>
@@ -30,11 +30,12 @@
 
                         <!-- product name and details -->
                         <TextBlock Grid.Column="2" Text="Example" FontFamily="SimSun" 
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center" FontSize="14"/>
 
                         <!-- product price -->
                         <TextBlock Grid.Column="3" Text="Price" FontFamily="SimSun" 
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="14"/>
 
                         <!-- make form for quantity -->
                         <Grid Grid.Column="4">
@@ -57,7 +58,7 @@
                         </Grid>
 
                         <!-- total price -->
-                        <TextBlock Grid.Column="5" Text="Total" FontFamily="SimSun" 
+                        <TextBlock Grid.Column="5" Text="Total" FontFamily="SimSun" FontSize="14" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                         <!-- remove from cart -->
@@ -111,28 +112,28 @@
                 <!--product name -->
                 <TextBlock Grid.Column="1" Text="Product name and details" 
                            FontFamily="SimSun" HorizontalAlignment="Center" 
-                           VerticalAlignment="Center">
+                           VerticalAlignment="Center" FontSize="14">
                     
                 </TextBlock>
 
                 <!-- price -->
                 <TextBlock Grid.Column="2" Text="Price" 
                            FontFamily="SimSun" HorizontalAlignment="Center" 
-                           VerticalAlignment="Center">
+                           VerticalAlignment="Center" FontSize="14">
                     
                 </TextBlock>
 
                 <!-- quantity -->
                 <TextBlock Grid.Column="3" Text="Quantity" 
                            FontFamily="SimSun" HorizontalAlignment="Center" 
-                           VerticalAlignment="Center">
+                           VerticalAlignment="Center" FontSize="14">
 
                 </TextBlock>
 
                 <!-- total price -->
                 <TextBlock Grid.Column="4" Text="Total" 
                            FontFamily="SimSun" HorizontalAlignment="Center" 
-                           VerticalAlignment="Center">
+                           VerticalAlignment="Center" FontSize="14">
 
                 </TextBlock>
             </Grid>
@@ -140,7 +141,7 @@
             <!-- container of products -->
             <ListBox Grid.Column="1" Grid.Row="3" 
                      ItemTemplate="{StaticResource CartProduct}">
-                <StackPanel /> 
+                
             </ListBox>
 
 
