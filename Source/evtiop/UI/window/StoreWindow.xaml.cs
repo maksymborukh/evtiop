@@ -173,5 +173,10 @@ namespace UI.window
             GridForUserContorlContainer.Visibility = Visibility.Visible;
             header.IsEnabled = false;
         }
+
+        private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
