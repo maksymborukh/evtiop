@@ -60,8 +60,8 @@
     <Compile Include="user control\Account.xaml.cs">
       <DependentUpon>Account.xaml</DependentUpon>
     </Compile>
-    <Compile Include="user control\Basket.xaml.cs">
-      <DependentUpon>Basket.xaml</DependentUpon>
+    <Compile Include="user control\Cart.xaml.cs">
+      <DependentUpon>Cart.xaml</DependentUpon>
     </Compile>
     <Compile Include="user control\LoginUserControl.xaml.cs">
       <DependentUpon>LoginUserControl.xaml</DependentUpon>
@@ -109,7 +109,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="user control\Basket.xaml">
+    <Page Include="user control\Cart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,6 +191,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\pencil_icon_over.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\minus_icon.png" />
+    <Resource Include="images\plus_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

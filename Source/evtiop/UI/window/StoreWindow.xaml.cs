@@ -39,16 +39,16 @@ namespace UI.window
 
         }
 
-        //click on basket icon 
+        //click on cart icon 
         private void Basket_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //create basket user control
-            Basket basket = new Basket();
+            //create cart user control
+            Cart basket = new Cart();
 
-            //add basket user control to grid
+            //add cart user control to grid
             UserContorlContainer.Children.Add(basket);
 
-            //show basket page
+            //show cart page
             ShowUserControlPage();
         }
 
