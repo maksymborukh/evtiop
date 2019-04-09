@@ -40,7 +40,10 @@ namespace UI.window
 
         private void Basket_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Basket basket = new Basket();
+            UserContorlContainer.Children.Add(basket);
+            GridForUserContorlContainer.Visibility = Visibility.Visible;
+            header.IsEnabled = false;
         }
 
         private void heartIcon_MouseDown(object sender, MouseButtonEventArgs e)
@@ -93,9 +96,6 @@ namespace UI.window
         {
             UserContorlContainer.Children.Clear();
             GridForUserContorlContainer.Visibility = Visibility.Collapsed;
-            //in new funct
-            userMenuButtons.Visibility = Visibility.Collapsed;
-            userMenuButtons.Tag = "closed";
             header.IsEnabled = true;
         }
 
