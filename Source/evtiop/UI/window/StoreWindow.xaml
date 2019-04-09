@@ -9,8 +9,18 @@
         Title="evtiop" 
         Height="600" Width="800"
         WindowStartupLocation="CenterScreen"
-        Icon="/UI;component/images/logo.png"
+        Icon="/UI;component/images/logo.png" 
         Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <DataTemplate x:Key="Categories">
+            
+            <!-- style of product in categories -->
+            <Button Content="ghgh" Style="{StaticResource CategoryButton}"/>
+        </DataTemplate>
+
+    </Window.Resources>
+
     <Grid>
 
         <!-- header -->
@@ -133,54 +143,13 @@
             </WrapPanel>
         </Grid>
 
-        <!-- menu -->
-        <!--<StackPanel x:Name="stackPanelMenu" Width="200px" Tag="Closed" HorizontalAlignment="Left" Margin="0,60,0,0" Visibility="Collapsed">
-            <Menu ItemsPanel="{StaticResource menuPanelTemplate}"
-                  ItemsSource="{Binding Source={StaticResource menuProvider}}"
-                  ItemTemplate="{StaticResource menuTemplate}">
-                <Menu.ItemContainerStyle>
-                    <Style TargetType="{x:Type MenuItem}">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                -->
-        <!-- style a non-top level menu item -->
-        <!--
-                                <ControlTemplate TargetType="MenuItem">
-                                    <DockPanel TextBlock.FontSize="15px" x:Name="panel" >
-
-                                        -->
-        <!-- label, icons, etc. -->
-        <!--
-                                        <Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="20" Margin="5,0" />
-                                        <Label x:Name="label" Content="{Binding Path=Name}" Foreground="Black" Margin="0,5,5,5" />
-
-                                        -->
-        <!-- draw the right arrow only if this menu item has sub items -->
-        <!--
-                                        <Image Source="images/right_arrow.png" Visibility="{Binding HasItems, Converter={StaticResource btv}, RelativeSource={RelativeSource TemplatedParent}}" Width="15" Height="15" />
-
-                                        -->
-        <!-- sub items -->
-        <!--
-                                        <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" Placement="Right" >
-                                            <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
-                                                <StackPanel IsItemsHost="True" />
-                                            </Border>
-                                        </Popup>
-                                    </DockPanel>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsHighlighted" Value="True">
-                                            <Setter Property="Background" TargetName="panel" Value="#EFF6FC" />
-                                            <Setter Property="Foreground" TargetName="label" Value="Red"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Menu.ItemContainerStyle>
-            </Menu>
-        </StackPanel>-->
+        <!-- categories -->
+        <Border x:Name="categories" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,65,5,0" 
+                BorderBrush="Black" BorderThickness="1" Visibility="Collapsed" Tag="closed">
+            <ListBox ItemTemplate="{StaticResource Categories}">
+                
+            </ListBox>
+        </Border>
 
     </Grid>
 </Window>

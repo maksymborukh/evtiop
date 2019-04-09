@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,13 +72,15 @@ namespace UI.window
             //animate bars icon
             if (menuIcon.Tag.ToString() == "closed")
             {
-                Animation.Rotate(0, 90, 500, menuIcon);
-                menuIcon.Tag = "opened";
+                Animation.Rotate(0, 90, 300, menuIcon);
+                menuIcon.Tag = "opened";              
+                categories.Visibility = Visibility.Visible;
             }
             else if (menuIcon.Tag.ToString() == "opened")
             {
-                Animation.Rotate(90, 0, 500, menuIcon);
+                Animation.Rotate(90, 0, 300, menuIcon);
                 menuIcon.Tag = "closed";
+                categories.Visibility = Visibility.Collapsed;
             }
         }
 
