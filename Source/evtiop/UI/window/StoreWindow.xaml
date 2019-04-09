@@ -116,6 +116,9 @@
             <!-- display user control pages -->
             <Border BorderBrush="Black" BorderThickness="1" CornerRadius="20" 
                      Background="White" Grid.Column="1" Grid.Row="1">
+                <Border.Effect>
+                    <DropShadowEffect/>
+                </Border.Effect>
                 <Grid x:Name="UserContorlContainer">
 
                 </Grid>

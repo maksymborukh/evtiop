@@ -75,6 +75,9 @@
     <Compile Include="user control\UserSetting.xaml.cs">
       <DependentUpon>UserSetting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="user control\WishList.xaml.cs">
+      <DependentUpon>WishList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="window\StoreWindow.xaml.cs">
       <DependentUpon>StoreWindow.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="user control\UserSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="user control\WishList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

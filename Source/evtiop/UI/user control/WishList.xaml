@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="UI.user_control.Basket"
+﻿<UserControl x:Class="UI.user_control.WishList"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,7 +9,7 @@
     <Grid>
 
         <!-- set all content -->
-        <Grid x:Name="BasketPage">
+        <Grid x:Name="WishListPage">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="*"/>
@@ -25,32 +25,19 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Column="1" Grid.Row="1">
-                <TextBlock Text="Basket" FontFamily="SimSun" FontSize="36" 
+                <TextBlock Text="Wishlist" FontFamily="SimSun" FontSize="36" 
                        HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
 
             <ListBox Grid.Column="1" Grid.Row="2">
-                
+
             </ListBox>
+
+            <Button  Content="Save" Grid.Column="1" Grid.Row="3"
+                     Click="Save_Click" Style="{StaticResource EditButton}"/>
             
-            <Grid Grid.Column="1" Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="80"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Text="Price:" Grid.Column="0" FontFamily="SimSun" FontSize="16"
-                           HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                <TextBlock Text="352" Grid.Column="1" FontFamily="SimSun" FontSize="16"
-                           HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                
-                <Button  Content="Buy" Grid.Column="3"
-                     Click="Buy_Click" Style="{StaticResource EditButton}"/>
-            </Grid>
         </Grid>
 
+        
     </Grid>
 </UserControl>

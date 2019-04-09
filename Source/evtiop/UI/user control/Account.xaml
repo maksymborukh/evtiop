@@ -163,6 +163,9 @@
         <!-- display edit page -->
         <Border x:Name="EditPage" BorderBrush="Black" BorderThickness="1" CornerRadius="10"
                 Height="150" Width="300" Background="White" Visibility="Collapsed">
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
@@ -202,6 +205,9 @@
         <!-- display edit image page -->
         <Border x:Name="EditImagePage" BorderBrush="Black" BorderThickness="1" CornerRadius="10"
                 Height="250" Width="300" Background="White" Visibility="Collapsed">
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
