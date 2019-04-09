@@ -29,5 +29,10 @@ namespace UI.user_control
         {
 
         }
+
+        private void RemoveFromWishList_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

@@ -6,6 +6,46 @@
              xmlns:local="clr-namespace:UI.user_control"
              mc:Ignorable="d" 
              MinHeight="360" MinWidth="560">
+
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="WishListProduct">
+            <!-- style of product in wishlist -->
+            <StackPanel Margin="0 0 0 5" Width="Auto" Height="42" Grid.Column="1" Grid.Row="3">
+                <Border BorderBrush="Black" BorderThickness="0 1 0 1">
+                    <Grid Height="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="1.3*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="5"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- product image -->
+                        <Image Grid.Column="1" Source="/UI;component/images/bars_icon.png" />
+
+                        <!-- product name and details -->
+                        <TextBlock Grid.Column="2" Text="Example" FontFamily="SimSun" 
+                                   HorizontalAlignment="Center" FontSize="14"/>
+
+                        <!-- product price -->
+                        <TextBlock Grid.Column="3" Text="Price" FontFamily="SimSun" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="14"/>
+
+                        <!-- remove from wishlist -->
+                        <Image Grid.Column="4" Height="15"
+                               MouseDown="RemoveFromWishList_MouseDown" 
+                               Style="{StaticResource CloseButtonStyle}"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
     <Grid>
 
         <!-- set all content -->
@@ -24,15 +64,19 @@
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
 
+            <!-- title -->
             <Grid Grid.Column="1" Grid.Row="1">
                 <TextBlock Text="Wishlist" FontFamily="SimSun" FontSize="36" 
                        HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
 
-            <ListBox Grid.Column="1" Grid.Row="2">
+            <!-- container of products -->
+            <ListBox Grid.Column="1" Grid.Row="2"
+                     ItemTemplate="{StaticResource WishListProduct}">
 
             </ListBox>
 
+            <!-- save button -->
             <Button  Content="Save" Grid.Column="1" Grid.Row="3"
                      Click="Save_Click" Style="{StaticResource EditButton}"/>
             
