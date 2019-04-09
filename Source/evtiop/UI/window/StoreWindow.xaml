@@ -33,7 +33,7 @@
     <Grid>
 
         <!-- header -->
-        <Grid x:Name="header"  Height="60" VerticalAlignment="Top" Background="{StaticResource TealBrush}">
+        <Grid x:Name="header" Height="60" VerticalAlignment="Top" Background="{StaticResource TealBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="170"/>
@@ -105,6 +105,76 @@
 
         </Grid>
 
+        <!-- product list -->
+        <ListBox x:Name="ProductList"  
+                     SelectionChanged="ProductList_SelectionChanged"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ItemsPanel="{StaticResource listPanelTemplate}"
+                     Margin="0,60,0,0" >
+            <!--ItemsSource="{Binding Source={StaticResource productProvider}}"-->
+
+            <ListBox.ItemContainerStyle>
+                <!-- style of product item -->
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Border x:Name="border" CornerRadius="20" BorderThickness="1" Background="#FFF0F0F0" Margin="10">
+                                    <StackPanel Width="260" Height="440" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+
+                                        <Image Source="/UI;component/images/bars_icon.png"  Width="220" Height="220" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" />
+                                        <TextBlock Margin="0,20,0,0" Width="220" HorizontalAlignment="Center" Text="{Binding Path=Name}" FontSize="18" Height="50" />
+
+                                        <WrapPanel Width="220" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                            <Image Source="/UI;component/images/bars_icon.png" Height="30" Width="60" 
+                                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                                   Margin="10,5,0,0" Cursor="Hand"/>
+                                            <Image Margin="55,5,0,0" Width="30" Height="30" 
+                                                   Source="/UI;component/images/cart_icon.png" 
+                                                   Cursor="Hand"/>
+                                            <Image Source="/UI;component/images/heart_icon.png" 
+                                                   Width="30" Height="30" VerticalAlignment="Center" 
+                                                   Margin="25,5,9,0" HorizontalAlignment="Left" 
+                                                   Cursor="Hand"/>
+                                        </WrapPanel>
+
+                                        <WrapPanel Width="220" Height="50" VerticalAlignment="Top" Margin="0,10,0,0" >
+                                            <TextBlock Width="100" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="5,5,0,0" Text="{Binding Path=Price}" FontSize="24" />
+                                            <Button  Width="100" Height="40" Margin="10,5,0,0" Style="{StaticResource TealButton}">
+                                                <WrapPanel >
+                                                    <Image Source="/UI;component/images/cart_icon.png"  />
+                                                    <TextBlock Text="Buy" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="8,0,0,0"/>
+                                                </WrapPanel>
+                                            </Button>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- action when mouse over item and leave item -->
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color" From="#FFF0F0F0" To="LightGray" Duration="00:00:00:01"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color" From="LightGray" To="#FFF0F0F0" Duration="00:00:00:01"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </ControlTemplate.Triggers>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
         <!-- buttons for account control -->
         <Border x:Name="userMenuButtons" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,5,0" Width="64" 
                 BorderBrush="Black" BorderThickness="1" Visibility="Collapsed" Tag="closed">
@@ -156,74 +226,9 @@
         <Border x:Name="categories" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,65,5,0" 
                 BorderBrush="Black" BorderThickness="1" Visibility="Collapsed" Tag="closed">
             <ListBox ItemTemplate="{StaticResource Categories}">
-                
+
             </ListBox>
         </Border>
-
-        <!-- product list -->
-        <ListBox Grid.Column="1" x:Name="ProductList"  
-                     SelectionChanged="ProductList_SelectionChanged"
-                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                     ItemsPanel="{StaticResource listPanelTemplate}"
-                     Margin="0,50,0,0" >
-                     <!--ItemsSource="{Binding Source={StaticResource productProvider}}"--> 
-                     
-            <ListBox.ItemContainerStyle>
-                <!-- style of product item -->
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                <Border x:Name="border" CornerRadius="20" BorderThickness="1" Background="#FFF0F0F0" Margin="10">
-                                    <StackPanel Width="260" Height="440" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
-
-                                        <!-- must be image instead rectangle -->
-                                        <Rectangle Fill="Black" Width="220" Height="220" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" />
-                                        <TextBlock Margin="0,20,0,0" Width="220" HorizontalAlignment="Center" Text="{Binding Path=Name}" FontSize="18" Height="50" />
-
-                                        <!-- rewrite using grid -->
-                                        <WrapPanel Width="220" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                                            <Image Source="/UI;component/images/bars_icon.png" Height="30" Width="60" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,5,0,0" />
-                                            <Image Margin="55,5,0,0" Width="30" Height="30" Source="/UI;component/images/cart_icon.png" />
-                                            <Image Source="/UI;component/images/heart_icon.png" Width="30" Height="30" VerticalAlignment="Center" Margin="25,5,9,0" HorizontalAlignment="Left" />
-                                        </WrapPanel>
-
-                                        <WrapPanel Width="220" Height="50" VerticalAlignment="Top" Margin="0,10,0,0" >
-                                            <TextBlock Width="100" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="5,5,0,0" Text="{Binding Path=Price}" FontSize="24" />
-                                            <Button  Width="100" Height="40" Margin="10,5,0,0" >
-                                                <WrapPanel >
-                                                    <Image Source="/UI;component/images/cart_icon.png"  />
-                                                    <TextBlock Text="Buy" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="8,0,0,0"/>
-                                                </WrapPanel>
-                                            </Button>
-                                        </WrapPanel>
-                                    </StackPanel>
-                                </Border>
-
-                                <!-- action when mouse over item and leave item -->
-                                <ControlTemplate.Triggers>
-                                    <EventTrigger RoutedEvent="MouseEnter">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <ColorAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color" From="#FFF0F0F0" To="LightGray" Duration="00:00:00:01"/>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                    <EventTrigger RoutedEvent="MouseLeave">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <ColorAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color" From="LightGray" To="#FFF0F0F0" Duration="00:00:00:01"/>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                </ControlTemplate.Triggers>
-
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
 
     </Grid>
 </Window>
