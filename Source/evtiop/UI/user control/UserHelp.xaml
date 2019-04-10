@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="UI.user_control.UserHelp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI.user_control"
+             mc:Ignorable="d" 
+             MinHeight="360" MinWidth="560">
+    <Grid>
+
+        <!-- set all content -->
+        <Grid x:Name="HelpPage">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+                <TextBlock Text="Help" FontFamily="SimSun" FontSize="36" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+
+
+            <!-- Name -->
+            <TextBlock Text="Name" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="3"/>
+            <TextBox Text="Mike" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="3"/>
+
+            <!-- last Name -->
+            <TextBlock Text="Last Name" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="5"/>
+            <TextBox Text="Smith" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="5"/>
+
+            <!-- Email -->
+            <TextBlock Text="Email" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="7"/>
+            <TextBox Text="someone@example.com" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="7"/>
+
+            <!-- Subject -->
+            <TextBlock Text="Subject" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="9"/>
+            <TextBox Text="Subject" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+                       Grid.Column="2" Grid.Row="9"/>
+
+            <!-- Message -->
+            <TextBlock Text="Message" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
+                       Foreground="Gray" Grid.Column="1" Grid.Row="11"/>
+            <TextBox Text="Message" FontSize="16" FontFamily="SimSun"
+                       Grid.Column="2" Grid.Row="11" Grid.RowSpan="7" AutoWordSelection="True" AcceptsTab="True" TextWrapping="Wrap"/>
+
+            <Button  Content="Send" Grid.Column="1" Grid.Row="19"
+                     Grid.ColumnSpan="2" Grid.RowSpan="3"
+                     Click="Send_Click" Style="{StaticResource EditButton}"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

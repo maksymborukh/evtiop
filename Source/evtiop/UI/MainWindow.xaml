@@ -5,8 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="evtiop" 
+        Height="600" 
+        Width="350" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
+        Icon="images/logo.png"
+        Loaded="windowLoaded">
+
     <Grid>
-        
+        <!-- page background-->
+        <Grid x:Name="WindowBackgound">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="{StaticResource DarkTeal}"/>
+                    <GradientStop Color="{StaticResource LightTeal}" Offset="1"/>
+                    <GradientStop Color="{StaticResource Teal}" Offset="0.327"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+
+        <!-- show close button when mause over current grid -->
+        <Grid x:Name="closeArea" Background="{StaticResource TransparentBrash}" MouseLeave="GridForCloseButton_MouseLeave" MouseEnter="GridForCloseButton_MouseEnter" Margin="10,10,10,0" Height="100" VerticalAlignment="Top">
+            <!-- close button image -->
+            <Image x:Name="CloseButton" Style="{StaticResource CloseButtonStyle}" MouseDown="CloseButton_MouseDown" Width="40" Height="40" Visibility="Collapsed" />
+        </Grid>
+
+        <!-- logo -->
+        <TextBlock x:Name="Logo" Text="evtiop" Width="270" VerticalAlignment="Top" Margin="0,150,0,0" Height="100" FontFamily="SimSun" FontSize="90" Foreground="White"/>
+
+        <!-- container for base buttons -->
+        <Grid x:Name="containerOfBaseButton" Height="260" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,330,0,0" >
+            <!-- title -->
+            <TextBlock Text="START BUYING NOW!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,240" Foreground="White" FontSize="14" />
+
+            <!-- login button -->
+            <Button x:Name="login" Click="login_Click" Style="{StaticResource WhiteButton}" 
+                Content="LOGIN" Margin="0,0,0,170" VerticalAlignment="Bottom"/>
+
+            <!-- sign up button-->
+            <Button x:Name="signUp" Click="signUp_Click" Style="{StaticResource WhiteButton}" 
+                Content="SIGN UP" Margin="0,0,0,100" VerticalAlignment="Bottom"/>
+
+            <!-- skip button -->
+            <TextBlock PreviewMouseDown="SkipLogging_PreviewMouseDown" HorizontalAlignment="Center" Margin="0,0,0,60" VerticalAlignment="Bottom" FontSize="14">
+            <Underline>Skip</Underline>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property= "Foreground" Value="White"/>
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Style.Triggers>
+                            <Trigger Property ="IsMouseOver" Value="True">
+                                <Setter Property= "Foreground" Value="{StaticResource VeryDarkTealBrush}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+
+        <!-- login user control container -->
+        <Grid x:Name="loginUserControlContainer" HorizontalAlignment="Center" 
+              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="320">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform X="340"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            
+            <!-- create new account button -->
+            <TextBlock Text="CREATE NEW ACCOUNT" PreviewMouseDown="GoToCreateAccPage_Click" 
+                   HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top"
+                   Style="{StaticResource UnderlineText}"/>
+
+        </Grid>
+
+        <!-- sign up user control container -->
+        <Grid x:Name="SignUpUserControlContainer" HorizontalAlignment="Center" 
+              VerticalAlignment="Top" Height="360" Margin="0,220,0,0" Width="320" >
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform X="340"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+
+            <!-- login button -->
+            <TextBlock Text="Already have an account" PreviewMouseDown="GoToLoginPage_Click" 
+                   HorizontalAlignment="Center" Margin="0,320,0,0" VerticalAlignment="Top" 
+                   Style="{StaticResource UnderlineText}"/>
+        </Grid>
+
     </Grid>
 </Window>

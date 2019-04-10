@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:UI">
+
+    <Color x:Key="Transparent">#00000000</Color>
+    <SolidColorBrush x:Key="TransparentBrash" Color="{StaticResource Transparent}"/>
+
+    <Color x:Key="Teal">#008080</Color>
+    <SolidColorBrush x:Key="TealBrush" Color="{StaticResource Teal}"/>
+
+    <Color x:Key="LightTeal">#66b2b2</Color>
+    <SolidColorBrush x:Key="LightTealBrush" Color="{StaticResource LightTeal}"/>
+
+    <Color x:Key="DarkTeal">#006666</Color>
+    <SolidColorBrush x:Key="DarkTealBrush" Color="{StaticResource DarkTeal}"/>
+
+    <Color x:Key="VeryLightTeal">#b2d8d8</Color>
+    <SolidColorBrush x:Key="VeryLightTealBrush" Color="{StaticResource VeryLightTeal}"/>
+
+    <Color x:Key="VeryDarkTeal">#004c4c</Color>
+    <SolidColorBrush x:Key="VeryDarkTealBrush" Color="{StaticResource VeryDarkTeal}"/>
+
+</ResourceDictionary>
