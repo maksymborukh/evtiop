@@ -15,7 +15,6 @@
         Loaded="windowLoaded">
 
     <Grid>
-
         <!-- page background-->
         <Grid x:Name="WindowBackgound">
             <Grid.Background>
