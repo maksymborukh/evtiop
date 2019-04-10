@@ -132,6 +132,7 @@ namespace UI.window
 
             //enable header
             header.IsEnabled = true;
+            ProductList.IsEnabled = true;
         }
 
         private void SettingPage_Click(object sender, RoutedEventArgs e)
@@ -172,9 +173,20 @@ namespace UI.window
         {
             GridForUserContorlContainer.Visibility = Visibility.Visible;
             header.IsEnabled = false;
+            ProductList.IsEnabled = false; 
         }
 
         private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void LeftArrow_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void RightArrow_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
         }

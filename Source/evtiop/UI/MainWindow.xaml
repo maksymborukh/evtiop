@@ -14,11 +14,6 @@
         Icon="images/logo.png"
         Loaded="windowLoaded">
 
-    <Window.Resources>
-
-
-    </Window.Resources>
-
     <Grid>
 
         <!-- page background-->

@@ -47,7 +47,7 @@
         </Style.Setters>
     </Style>
 
-    <!-- style of sign up and login button white -->
+    <!-- style of sign up and login button teal -->
     <Style TargetType="Button" x:Key="TealButton">
         <Style.Setters>
             <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -266,6 +266,45 @@
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="button" Property="Background" Value="{StaticResource LightTealBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <!-- style of buy button in product -->
+    <Style TargetType="Button" x:Key="BuyButton">
+        <Style.Setters>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+
+            <Setter Property="Background" Value="{StaticResource TransparentBrash}"/>
+
+            <!-- size button -->
+            <Setter Property="Width" Value="260"/>
+            <Setter Property="Height" Value="40"/>
+
+            <!-- font style -->
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="20"/>
+
+            <!-- change cursor when nouse over button -->
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <!-- round button-->
+                        <Border x:Name="button" CornerRadius="5" BorderBrush="Black" BorderThickness="1" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="button"  Property="Background" Value="#FFBABABA" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="button"  Property="Background" Value="LightGray"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

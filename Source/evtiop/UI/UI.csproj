@@ -196,5 +196,11 @@
     <Resource Include="images\minus_icon.png" />
     <Resource Include="images\plus_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\left_arrow_icon.png" />
+    <Resource Include="images\right_arrow_icon.png" />
+    <Resource Include="images\star_gray_icon.png" />
+    <Resource Include="images\star_yellow_icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
