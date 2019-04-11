@@ -73,7 +73,7 @@
             <!-- container of products -->
             <ListBox Grid.Column="1" Grid.Row="2"
                      ItemTemplate="{StaticResource WishListProduct}">
-
+                
             </ListBox>
 
             <!-- save button -->
