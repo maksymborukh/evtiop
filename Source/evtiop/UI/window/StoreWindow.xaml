@@ -29,110 +29,85 @@
         </DataTemplate>
 
         <!-- style of product item -->
-        <Style TargetType="{x:Type ListBoxItem}" x:Key="MainProduct">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                        <Border x:Name="border" CornerRadius="20" BorderThickness="1" Background="#FFF0F0F0" Margin="10">
-                            <StackPanel Width="260" Height="440" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+        <DataTemplate x:Key="MainProduct">
+            <Border x:Name="border" CornerRadius="20" BorderThickness="1" Background="#FFF0F0F0" Margin="10">
+                <StackPanel Width="260" Height="440" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
 
-                                <Grid Height="220" Width="260">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
-                                        <ColumnDefinition Width="220"/>
-                                        <ColumnDefinition Width="20"/>
-                                    </Grid.ColumnDefinitions>
+                    <Grid Height="220" Width="260">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="220"/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
 
-                                    <!-- left arrow -->
-                                    <Image Source="/UI;component/images/left_arrow_icon.png"
+                        <!-- left arrow -->
+                        <Image Source="/UI;component/images/left_arrow_icon.png"
                                                    Grid.Column="0" MouseDown="LeftArrow_MouseDown"
                                                    Cursor="Hand"/>
 
-                                    <!-- images of product -->
-                                    <Image Source="/UI;component/images/bars_icon.png"  Grid.Column="1"
+                        <!-- images of product -->
+                        <Image Source="/UI;component/images/bars_icon.png"  Grid.Column="1"
                                                    Width="220" Height="220"/>
 
-                                    <!-- right arrow -->
-                                    <Image Source="/UI;component/images/right_arrow_icon.png"
+                        <!-- right arrow -->
+                        <Image Source="/UI;component/images/right_arrow_icon.png"
                                                    Grid.Column="2" MouseDown="RightArrow_MouseDown"
                                                    Cursor="Hand"/>
 
-                                </Grid>
-                                <TextBlock Margin="0,20,0,0" Width="220" HorizontalAlignment="Center" Text="{Binding Path=Name}" FontSize="18" Height="50" />
+                    </Grid>
+                    <TextBlock Margin="0,20,0,0" Width="220" HorizontalAlignment="Center" Text="{Binding Path=Name}" FontSize="18" Height="50" />
 
-                                <Grid Width="220" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.2*"/>
-                                        <ColumnDefinition Width="0.2*"/>
-                                        <ColumnDefinition Width="0.2*"/>
-                                        <ColumnDefinition Width="0.2*"/>
-                                        <ColumnDefinition Width="0.2*"/>
-                                        <ColumnDefinition Width="10"/>
-                                        <ColumnDefinition Width="0.6*"/>
-                                    </Grid.ColumnDefinitions>
+                    <Grid Width="220" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="0.6*"/>
+                        </Grid.ColumnDefinitions>
 
-                                    <!--rate icon -->
-                                    <Image Source="/UI;component/images/star_gray_icon.png"
+                        <!--rate icon -->
+                        <Image Source="/UI;component/images/star_gray_icon.png"
                                            Height="20" Width="30" VerticalAlignment="Center" 
                                            Cursor="Hand" Grid.Column="0"/>
-                                    <Image Source="/UI;component/images/star_gray_icon.png"
+                        <Image Source="/UI;component/images/star_gray_icon.png"
                                            Height="20" Width="30" VerticalAlignment="Center" 
                                            Cursor="Hand" Grid.Column="1"/>
-                                    <Image Source="/UI;component/images/star_gray_icon.png"
+                        <Image Source="/UI;component/images/star_gray_icon.png"
                                            Height="20" Width="30" VerticalAlignment="Center" 
                                            Cursor="Hand" Grid.Column="2"/>
-                                    <Image Source="/UI;component/images/star_gray_icon.png"
+                        <Image Source="/UI;component/images/star_gray_icon.png"
                                            Height="20" Width="30" VerticalAlignment="Center" 
                                            Cursor="Hand" Grid.Column="3"/>
-                                    <Image Source="/UI;component/images/star_gray_icon.png"
+                        <Image Source="/UI;component/images/star_gray_icon.png"
                                            Height="20" Width="30" VerticalAlignment="Center" 
                                            Cursor="Hand" Grid.Column="4"/>
-                                    
 
-                                    <!-- wishlist -->
-                                    <Image Source="/UI;component/images/heart_icon.png" 
+
+                        <!-- wishlist -->
+                        <Image Source="/UI;component/images/heart_icon.png" 
                                                    Width="30" Height="30" VerticalAlignment="Center" 
                                                    Cursor="Hand" Grid.Column="6"/>
-                                </Grid>
+                    </Grid>
 
-                                <WrapPanel Width="220" Height="50" VerticalAlignment="Top" Margin="0,20,0,0" >
-                                    <!-- price -->
-                                    <TextBlock Width="100" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="5,5,0,0" Text="{Binding Path=Price}" FontSize="24" />
+                    <WrapPanel Width="220" Height="50" VerticalAlignment="Top" Margin="0,20,0,0" >
+                        <!-- price -->
+                        <TextBlock Width="100" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="5,5,0,0" Text="{Binding Path=Price}" FontSize="24" />
 
-                                    <!-- buy button-->
-                                    <Button  Width="90" Height="40" Margin="10,5,0,0" Style="{StaticResource  BuyButton}">
-                                        <WrapPanel >
-                                            <Image Height="20" Source="/UI;component/images/cart_icon.png"  />
-                                            <TextBlock Text="Buy" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="8,0,0,0"/>
-                                        </WrapPanel>
-                                    </Button>
-                                </WrapPanel>
-                            </StackPanel>
-                        </Border>
-
-                        <!-- action when mouse over item and leave item -->
-                        <ControlTemplate.Triggers>
-                            <EventTrigger RoutedEvent="MouseEnter">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color" From="#FFF0F0F0" To="LightGray" Duration="00:00:00:01"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                            <EventTrigger RoutedEvent="MouseLeave">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color" From="LightGray" To="#FFF0F0F0" Duration="00:00:00:01"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </ControlTemplate.Triggers>
-
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
+                        <!-- buy button-->
+                        <Button  Width="90" Height="40" Margin="10,5,0,0" Style="{StaticResource  BuyButton}">
+                            <WrapPanel >
+                                <Image Height="20" Source="/UI;component/images/cart_icon.png"  />
+                                <TextBlock Text="Buy" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="8,0,0,0"/>
+                            </WrapPanel>
+                        </Button>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        
     </Window.Resources>
 
     <Grid>
@@ -215,9 +190,9 @@
                      SelectionChanged="ProductList_SelectionChanged"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      ItemsPanel="{StaticResource listPanelTemplate}"
-                     Margin="0,60,0,0" >
+                     Margin="0,60,0,0" 
+                     ItemTemplate="{StaticResource MainProduct}">
             <!--ItemsSource="{Binding Source={StaticResource productProvider}}"-->
-
         </ListBox>
 
         <!-- buttons for account control -->
