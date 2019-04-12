@@ -193,7 +193,6 @@
                      Margin="0,60,0,0" 
                      ItemTemplate="{StaticResource MainProduct}">
             <!--ItemsSource="{Binding Source={StaticResource productProvider}}"-->
-
         </ListBox>
 
         <!-- buttons for account control -->
