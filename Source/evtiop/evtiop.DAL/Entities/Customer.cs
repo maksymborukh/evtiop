@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System;
 
 namespace evtiop.DAL.Entities
 {
-    class Customer
+    public class Customer
     {
         public ulong ID { get; set; }
         public string FirstName { get; set; }
@@ -16,5 +13,7 @@ namespace evtiop.DAL.Entities
         public int Phone { get; set; }
         public DateTime RegistrationDate { get; set; }
         public string ImageURL { get; set; }
+        public ICollection<Help> Helps { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }
