@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,15 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ConfigurationSetting.cs" />
+    <Compile Include="Core\SqlHelper.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Basket.cs" />
+    <Compile Include="Entities\BasketProducts.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\CategoryProduct.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Help.cs" />
     <Compile Include="Entities\Manufacturer.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderedProduct.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductImage.cs" />
+    <Compile Include="Entities\ProductSpecial.cs" />
     <Compile Include="Entities\Rewiev.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
