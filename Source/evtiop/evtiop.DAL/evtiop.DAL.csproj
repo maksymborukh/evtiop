@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ConfigurationSetting.cs" />
-    <Compile Include="Core\SqlHelper.cs" />
+    <Compile Include="Core\DBManager.cs" />
+    <Compile Include="Core\ProviderManager.cs" />
+    <Compile Include="Core\DBHelper.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Basket.cs" />
     <Compile Include="Entities\BasketProducts.cs" />

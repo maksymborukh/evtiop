@@ -16,7 +16,7 @@ namespace evtiop.DAL.Core
         {
             return database.GetConnection();
         }
-        
+
         public void CloseConnection(IDbConnection connection)
         {
             database.CloseConnection(connection);
