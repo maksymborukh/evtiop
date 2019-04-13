@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using Npgsql;
 
 namespace evtiop.DAL.Core
 {

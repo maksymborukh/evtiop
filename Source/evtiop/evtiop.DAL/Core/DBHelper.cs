@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.Common;
+using Npgsql;
 
 namespace evtiop.DAL.Core
 {
@@ -130,7 +131,7 @@ namespace evtiop.DAL.Core
 
                 return dbParameter;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new Exception("Invalid parameter or type.");
             }

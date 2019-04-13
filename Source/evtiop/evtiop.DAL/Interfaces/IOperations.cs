@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace evtiop.DAL.Interfaces
 {
-    public interface IRepository<T> where T : class
+    public interface IOperations<T> where T : class
     {
         ObservableCollection<T> GetAll();
         ObservableCollection<T> SelectAll();
