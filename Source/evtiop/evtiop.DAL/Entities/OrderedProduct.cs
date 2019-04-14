@@ -2,9 +2,9 @@
 {
     public class OrderedProduct
     {
-        public ulong ID { get; set; }
-        public ulong ProductID { get; set; }
-        public ulong OrderID { get; set; }
+        public long ID { get; set; }
+        public long ProductID { get; set; }
+        public long OrderID { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public int Quantity { get; set; }

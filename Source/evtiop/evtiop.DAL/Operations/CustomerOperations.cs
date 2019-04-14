@@ -24,7 +24,6 @@ namespace evtiop.DAL.Operations
         public ObservableCollection<Customer> GetAll()
         {
             string commandText = "select * from customers";
-            //var connection = dbManager.GetDbConnection();
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
             try
             {
@@ -62,7 +61,6 @@ namespace evtiop.DAL.Operations
             parameters.Add(dbManager.CreateParameter("@Id", id, DbType.Int64));
 
             string commandText = "select * from customers where Id = @Id;";
-            //var connection = dbManager.GetDbConnection();
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, parameters.ToArray(), out connection);
             try
             {

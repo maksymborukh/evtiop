@@ -8,8 +8,8 @@ namespace evtiop.DAL.Entities
 {
     public class ProductImage
     {
-        public ulong ID { get; set; }
-        public ulong ProductID { get; set; }
+        public long ID { get; set; }
+        public long ProductID { get; set; }
         public string Name { get; set; }
         public string ImageURL { get; set; }
     }

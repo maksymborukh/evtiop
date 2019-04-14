@@ -2,7 +2,7 @@
 {
     public class CategoryProduct
     {
-        public ulong ProductID { get; set; }
-        public ulong CategoryID { get; set; }
+        public long ProductID { get; set; }
+        public long CategoryID { get; set; }
     }
 }

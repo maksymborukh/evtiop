@@ -8,8 +8,8 @@ namespace evtiop.DAL.Entities
 {
     public class Basket
     {
-        public ulong ID { get; set; }
-        public ulong CustomerID { get; set; }
+        public long ID { get; set; }
+        public long CustomerID { get; set; }
         public DateTime Added { get; set; }
     }
 }
