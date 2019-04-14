@@ -131,7 +131,7 @@ namespace evtiop.DAL.Core
 
                 return dbParameter;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new Exception("Invalid parameter or type.");
             }
