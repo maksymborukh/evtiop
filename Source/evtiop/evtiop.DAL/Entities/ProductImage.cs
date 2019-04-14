@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace evtiop.DAL.Entities
+﻿namespace evtiop.DAL.Entities
 {
     public class ProductImage
     {
