@@ -94,6 +94,7 @@
     <Compile Include="Operations\OrderOperations.cs" />
     <Compile Include="Operations\ProductImageOperations.cs" />
     <Compile Include="Operations\ProductOperations.cs" />
+    <Compile Include="Operations\ProductSpecialOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Operations\CustomerOperations.cs" />
   </ItemGroup>
