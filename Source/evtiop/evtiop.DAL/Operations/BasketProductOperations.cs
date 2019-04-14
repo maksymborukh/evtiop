@@ -12,7 +12,7 @@ namespace evtiop.DAL.Operations
     {
         DBManager dbManager = new DBManager("shopdb");
         IDbConnection connection = null;
-        public void Delete(long id)
+        public void Delete(long id)//need to rewrite. id does not exist in table
         {
             var parameters = new List<IDbDataParameter>();
             parameters.Add(dbManager.CreateParameter("@Id", id, DbType.Int64));
