@@ -17,13 +17,13 @@ namespace evtiop.DAL.Operations
             var parameters = new List<IDbDataParameter>();
             parameters.Add(dbManager.CreateParameter("@Id", id, DbType.Int64));
 
-            string commandText = "delete from customer where Id = @Id;";
+            string commandText = "delete from customers where Id = @Id;";
             dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
         }
 
         public ObservableCollection<Customer> GetAll()
         {
-            string commandText = "select * from customer";
+            string commandText = "select * from customers";
             //var connection = dbManager.GetDbConnection();
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
             try
@@ -32,6 +32,7 @@ namespace evtiop.DAL.Operations
                 while (dataReader.Read())
                 {
                     var customer = new Customer();
+                    customer.ID = Convert.ToInt64(dataReader["Id"]);
                     customer.FirstName = dataReader["FirstName"].ToString();
                     customer.LastName = dataReader["LastName"].ToString();
                     customer.EmailAddress = dataReader["EmailAddress"].ToString();
@@ -60,7 +61,7 @@ namespace evtiop.DAL.Operations
             var parameters = new List<IDbDataParameter>();
             parameters.Add(dbManager.CreateParameter("@Id", id, DbType.Int64));
 
-            string commandText = "select * from customer where Id = @Id;";
+            string commandText = "select * from customers where Id = @Id;";
             //var connection = dbManager.GetDbConnection();
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, parameters.ToArray(), out connection);
             try
@@ -68,6 +69,7 @@ namespace evtiop.DAL.Operations
                 var customer = new Customer();
                 while (dataReader.Read())
                 {
+                    customer.ID = Convert.ToInt64(dataReader["Id"]);
                     customer.FirstName = dataReader["FirstName"].ToString();
                     customer.LastName = dataReader["LastName"].ToString();
                     customer.EmailAddress = dataReader["EmailAddress"].ToString();
@@ -99,20 +101,21 @@ namespace evtiop.DAL.Operations
 
         public void Insert(Customer customer)
         {
-            string commandText = "insert into customers (FirstName, LastName, EmailAddress, Password, Phone, Registration_date, ImageURL)" +
-                 "values (@FirstName, @LastName, @EmailAddress, @Password, @Phone, @Registration_date, @ImageURL);";
+            string commandText = "insert into customers (FirstName, LastName, EmailAddress, Password, Phone, RegistrationDate, ImageURL)" +
+                 "values (@FirstName, @LastName, @EmailAddress, @Password, @Phone, @RegistrationDate, @ImageURL);";
             dbManager.Insert(commandText, CommandType.Text, Param(customer).ToArray());
         }
 
         public ObservableCollection<Customer> SelectAll()
         {
-            string commandText = "select * from customer";
+            string commandText = "select * from customers";
 
             var customerDataTable = dbManager.GetDataTable(commandText, CommandType.Text);
             var customers = new ObservableCollection<Customer>();
             foreach (DataRow row in customerDataTable.Rows)
             {
                 var customer = new Customer();
+                customer.ID = Convert.ToInt64(row["Id"]);
                 customer.FirstName = row["FirstName"].ToString();
                 customer.LastName = row["LastName"].ToString();
                 customer.EmailAddress = row["EmailAddress"].ToString();
@@ -127,22 +130,23 @@ namespace evtiop.DAL.Operations
         }
 
         public void Update(Customer customer)
-        {
-            string commandText = "insert into customers (FirstName, LastName, EmailAddress, Password, Phone, Registration_date, ImageURL)" +
-                 "values (@FirstName, @LastName, @EmailAddress, @Password, @Phone, @Registration_date, @ImageURL);";
+        {            
+            string commandText = "update customers set FirstName = @FirstName, LastName = @LastName, " +
+                "Password = @Password, Phone = @Phone, ImageURL = @ImageURL where Id = @Id;";
             dbManager.Update(commandText, CommandType.Text, Param(customer).ToArray());
         }
 
         public List<IDbDataParameter> Param(Customer customer)
         {
             var parameters = new List<IDbDataParameter>();
+            parameters.Add(dbManager.CreateParameter("@Id", customer.ID, DbType.Int64));
             parameters.Add(dbManager.CreateParameter("@FirstName", 50, customer.FirstName, DbType.String));
             parameters.Add(dbManager.CreateParameter("@LastName", customer.LastName, DbType.String));
             parameters.Add(dbManager.CreateParameter("@EmailAddress", customer.EmailAddress, DbType.String));
             parameters.Add(dbManager.CreateParameter("@Password", customer.Password, DbType.String));
-            parameters.Add(dbManager.CreateParameter("@Phone", customer.Phone, DbType.Int32));
-            parameters.Add(dbManager.CreateParameter("@ImageURL", customer.ImageURL, DbType.String));
+            parameters.Add(dbManager.CreateParameter("@Phone", customer.Phone, DbType.Int32));           
             parameters.Add(dbManager.CreateParameter("@RegistrationDate", customer.RegistrationDate, DbType.DateTime));
+            parameters.Add(dbManager.CreateParameter("@ImageURL", customer.ImageURL, DbType.String));
 
             return parameters;
         }

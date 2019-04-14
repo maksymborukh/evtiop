@@ -5,7 +5,7 @@ namespace evtiop.DAL.Entities
 {
     public class Customer
     {
-        public ulong ID { get; set; }
+        public long ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
