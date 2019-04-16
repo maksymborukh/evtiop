@@ -10,6 +10,7 @@ namespace evtiop.DAL.Entities
         public int Quantity { get; set; }
         public int Price { get; set; }
         public long ManufacturerID { get; set; }
+        public long ImageID { get; set; }
         public ICollection<ProductImage> ProductImages { get; set; }
     }
 }
