@@ -10,6 +10,6 @@ namespace evtiop.DAL.Interfaces
         void Insert(T item);
         void Update(T item);
         void Delete(long id);
-        long GetScalarValue();
+        long GetScalarValue(string commandText);
     }
 }

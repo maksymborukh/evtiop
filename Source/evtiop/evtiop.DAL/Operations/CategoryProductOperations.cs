@@ -54,9 +54,8 @@ namespace evtiop.DAL.Operations
             throw new Exception("is not write");
         }
 
-        public long GetScalarValue()
+        public long GetScalarValue(string commandText)
         {
-            string commandText = ""; //must be scalar command
             object scalarValue = dbManager.GetScalarValue(commandText, CommandType.Text);
             return Convert.ToInt64(scalarValue);
         }
