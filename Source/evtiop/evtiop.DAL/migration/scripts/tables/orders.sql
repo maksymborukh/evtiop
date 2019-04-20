@@ -1,4 +1,4 @@
-create table orders(
+create table if not exists orders(
 	Id bigserial not null,
 	CustomerId bigserial not null,
 	AddressId bigserial not null,

@@ -1,4 +1,4 @@
-create table customers(
+create table if not exists customers(
 	Id bigserial not null,
 	FirstName varchar(255) null,
 	LastName varchar(255) null,
@@ -10,4 +10,4 @@ create table customers(
 	primary key(Id),
 	unique(EmailAddress)
 	);
-ALTER SEQUENCE customer_Id_seq RESTART WITH 4294967296;
+ALTER SEQUENCE customers_Id_seq RESTART WITH 4294967296;

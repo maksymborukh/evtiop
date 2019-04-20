@@ -1,4 +1,4 @@
-create table baskets(
+create table if not exists baskets(
 	id bigserial not null,
 	customerId bigserial not null,
 	Added timestamp not null,

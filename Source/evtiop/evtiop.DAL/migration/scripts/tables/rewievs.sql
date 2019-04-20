@@ -1,4 +1,4 @@
-create table reviews(
+create table if not exists reviews(
 	id bigserial not null,
 	ProductId bigserial not null,
 	ReviewerId bigserial not null,

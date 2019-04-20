@@ -1,4 +1,4 @@
-create table productspecials(
+create table if not exists productspecials(
 	Id bigserial,
 	ProductId bigserial not null,
 	Available timestamp,

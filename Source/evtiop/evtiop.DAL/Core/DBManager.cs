@@ -265,5 +265,16 @@ namespace evtiop.DAL.Core
                 }
             }
         }
+
+        public void ExecuteNonQuery(string commandText)
+        {
+            using(var connection = database.GetConnection())
+            {
+                using (var command = database.GetCommand(commandText, connection, CommandType.Text))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-create table products(
+create table if not exists products(
 	Id bigserial not null,
 	Name varchar(255) not null,
 	Description text,

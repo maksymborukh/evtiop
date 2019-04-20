@@ -1,4 +1,4 @@
-create table helps(
+create table if not exists helps(
 	Id bigserial,
 	FirstName varchar(255) not null,
 	LastName varchar(255)not null,

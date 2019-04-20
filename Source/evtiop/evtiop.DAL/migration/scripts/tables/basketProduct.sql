@@ -1,4 +1,4 @@
-create table basketproducts(
+create table if not exists basketproducts(
 	basketId bigserial not null,
 	productId bigserial not null,
 	quantity int,

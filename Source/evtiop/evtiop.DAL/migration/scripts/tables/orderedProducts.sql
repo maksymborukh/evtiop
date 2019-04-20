@@ -1,4 +1,4 @@
-create table orderedproducts(
+create table if not exists orderedproducts(
 	Id bigserial not null,
 	productId bigserial not null,
 	orderId bigserial not null,

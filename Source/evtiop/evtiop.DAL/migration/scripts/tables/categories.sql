@@ -1,4 +1,4 @@
-create table categories(
+create table if not exists categories(
 	Id bigserial not null,
 	Name varchar(255) not null,
 	ImageURL varchar(255) not null,

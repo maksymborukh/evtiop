@@ -1,4 +1,4 @@
-create table addresses(
+create table if not exists addresses(
 	Id bigserial not null,
 	Street varchar(255) null,
 	City varchar(255) null,
