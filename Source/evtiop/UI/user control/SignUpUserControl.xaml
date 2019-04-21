@@ -4,9 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI.user_control"
+             xmlns:BLL="clr-namespace:evtiop.BLL.Validation;assembly=evtiop.BLL"
              mc:Ignorable="d" 
-             d:DesignHeight="320" d:DesignWidth="310">
-    
+             d:DesignHeight="320" d:DesignWidth="310"
+             Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+
+        <!-- validation failed -->
+        <ControlTemplate x:Key="validationFailed">
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="Red" BorderThickness="0,0,0,1">
+                    <!--<AdornedElementPlaceholder/>-->
+                </Border>
+            </StackPanel>
+        </ControlTemplate>
+
+    </UserControl.Resources>
+
     <Grid>
 
         <!-- wrap for first name -->
@@ -23,16 +38,15 @@
                      FontSize="20"
                      Cursor="IBeam" 
                      Tag="First Name"
-                     Style="{StaticResource WaterMark}">
-                <!--Validation.ErrorTemplate="{StaticResource validationFailed}"
-                     >-->
-                <!--<TextBox.Text>
-                        <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <login:MyValidation type="Name"/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>-->
+                     Style="{StaticResource WaterMark}"
+                     Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
+                    <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <BLL:CustomerValidation type="Name"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
             </TextBox>
         </Grid>
 
@@ -50,16 +64,15 @@
                      FontSize="20"
                      Cursor="IBeam" 
                      Tag="Last Name"
-                     Style="{StaticResource WaterMark}">
-                <!--Validation.ErrorTemplate="{StaticResource validationFailed}"
-                     >-->
-                <!--<TextBox.Text>
-                        <Binding Path="LastName" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <login:MyValidation type="Name"/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>-->
+                     Style="{StaticResource WaterMark}"
+                     Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
+                    <Binding Path="LastName" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <BLL:CustomerValidation type="Name"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
             </TextBox>
         </Grid>
 
@@ -77,17 +90,15 @@
                      FontSize="20" 
                      Cursor="IBeam" 
                      Tag="Email" 
-                     Style="{StaticResource WaterMark}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0">
-                <!--Validation.ErrorTemplate="{StaticResource validationFailed}"
-                     --> 
-                     
-                <!--<TextBox.Text>
-                    <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                     Style="{StaticResource WaterMark}" 
+                     Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
+                    <Binding Path="EmailAddress" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <login:MyValidation type="Email"/>
+                            <BLL:CustomerValidation type="Email"/>
                         </Binding.ValidationRules>
                     </Binding>
-                </TextBox.Text>-->
+                </TextBox.Text>
             </TextBox>
 
         </Grid>
@@ -106,16 +117,15 @@
                      FontSize="20"
                      Cursor="IBeam" 
                      Tag="Password"
-                     Style="{StaticResource WaterMark}">
-                <!--Validation.ErrorTemplate="{StaticResource validationFailed}"-->
-                      
-                <!--<TextBox.Text>
+                     Style="{StaticResource WaterMark}"
+                     Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
                     <Binding Path="Password" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <login:MyValidation type="Password"/>
+                            <BLL:CustomerValidation type="Password"/>
                         </Binding.ValidationRules>
                     </Binding>
-                </TextBox.Text>-->
+                </TextBox.Text>
             </TextBox>
         </Grid>
 

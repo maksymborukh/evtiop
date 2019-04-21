@@ -225,5 +225,11 @@
     <Resource Include="images\star_gray_icon.png" />
     <Resource Include="images\star_yellow_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\evtiop.BLL\evtiop.BLL.csproj">
+      <Project>{77b1c8e6-10df-41ee-8f31-28026bea60c5}</Project>
+      <Name>evtiop.BLL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

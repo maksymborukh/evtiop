@@ -40,6 +40,13 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Foreground" Value="DimGray"/>
                         </Trigger>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={RelativeSource Self},
+                                    Path=(Validation.Errors)[0].ErrorContent}" />
+                            <Setter Property="Foreground" Value="Red" />
+                            
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
