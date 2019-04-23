@@ -9,19 +9,6 @@
              d:DesignHeight="320" d:DesignWidth="310"
              Loaded="UserControl_Loaded">
 
-    <UserControl.Resources>
-
-        <!-- validation failed -->
-        <ControlTemplate x:Key="validationFailed">
-            <StackPanel Orientation="Horizontal">
-                <Border BorderBrush="Red" BorderThickness="0,0,0,1">
-                    <!--<AdornedElementPlaceholder/>-->
-                </Border>
-            </StackPanel>
-        </ControlTemplate>
-
-    </UserControl.Resources>
-
     <Grid>
 
         <!-- wrap for first name -->
@@ -39,7 +26,7 @@
                      Cursor="IBeam" 
                      Tag="First Name"
                      Style="{StaticResource WaterMark}"
-                     Validation.ErrorTemplate="{StaticResource validationFailed}">
+                     Validation.ErrorTemplate="{x:Null}">
                 <TextBox.Text>
                     <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -65,7 +52,7 @@
                      Cursor="IBeam" 
                      Tag="Last Name"
                      Style="{StaticResource WaterMark}"
-                     Validation.ErrorTemplate="{StaticResource validationFailed}">
+                     Validation.ErrorTemplate="{x:Null}">
                 <TextBox.Text>
                     <Binding Path="LastName" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -91,7 +78,7 @@
                      Cursor="IBeam" 
                      Tag="Email" 
                      Style="{StaticResource WaterMark}" 
-                     Validation.ErrorTemplate="{StaticResource validationFailed}">
+                     Validation.ErrorTemplate="{x:Null}">
                 <TextBox.Text>
                     <Binding Path="EmailAddress" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -118,7 +105,7 @@
                      Cursor="IBeam" 
                      Tag="Password"
                      Style="{StaticResource WaterMark}"
-                     Validation.ErrorTemplate="{StaticResource validationFailed}">
+                     Validation.ErrorTemplate="{x:Null}">
                 <TextBox.Text>
                     <Binding Path="Password" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
