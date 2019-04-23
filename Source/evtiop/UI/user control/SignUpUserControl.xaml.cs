@@ -30,7 +30,7 @@ namespace UI.user_control
                 //TODO CREATING
             }
             else
-                MessageBox.Show("Incorrect input in fields.\nPlease recheck.");
+                MessageBox.Show("Incorrect input!");
         }
 
         private void ForceValidation()
