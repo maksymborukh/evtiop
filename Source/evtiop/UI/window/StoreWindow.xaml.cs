@@ -21,7 +21,7 @@ namespace UI.window
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.MinWidth = 800;
-            this.MinHeight = 600;           
+            this.MinHeight = 600;
         }
 
         private void searchIcon_MouseDown(object sender, MouseButtonEventArgs e)
@@ -62,7 +62,7 @@ namespace UI.window
             if (menuIcon.Tag.ToString() == "closed")
             {
                 Animation.Rotate(0, 90, 300, menuIcon);
-                menuIcon.Tag = "opened";              
+                menuIcon.Tag = "opened";
                 categories.Visibility = Visibility.Visible;
             }
             else if (menuIcon.Tag.ToString() == "opened")
@@ -152,9 +152,9 @@ namespace UI.window
 
         //close user menu
         private void CloseUserMenu()
-        {            
+        {
             userMenuButtons.Visibility = Visibility.Collapsed;
-            userMenuButtons.Tag = "closed";            
+            userMenuButtons.Tag = "closed";
         }
 
         //show user control page
@@ -162,12 +162,12 @@ namespace UI.window
         {
             GridForUserContorlContainer.Visibility = Visibility.Visible;
             header.IsEnabled = false;
-            ProductList.IsEnabled = false; 
+            ProductList.IsEnabled = false;
         }
 
         private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
 
         private void LeftArrow_MouseDown(object sender, MouseButtonEventArgs e)

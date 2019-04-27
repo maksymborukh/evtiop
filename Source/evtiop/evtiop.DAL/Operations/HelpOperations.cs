@@ -3,7 +3,6 @@ using evtiop.DAL.Entities;
 using evtiop.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 
 namespace evtiop.DAL.Operations
@@ -21,13 +20,13 @@ namespace evtiop.DAL.Operations
             dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
         }
 
-        public ObservableCollection<Help> GetAll()
+        public List<Help> GetAll()
         {
             string commandText = "select * from helps";
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
             try
             {
-                var helps = new ObservableCollection<Help>();
+                var helps = new List<Help>();
                 while (dataReader.Read())
                 {
                     var help = new Help();
@@ -101,12 +100,12 @@ namespace evtiop.DAL.Operations
             dbManager.Insert(commandText, CommandType.Text, Param(help).ToArray());
         }
 
-        public ObservableCollection<Help> SelectAll()
+        public List<Help> SelectAll()
         {
             string commandText = "select * from helps";
 
             var helpDataTable = dbManager.GetDataTable(commandText, CommandType.Text);
-            var helps = new ObservableCollection<Help>();
+            var helps = new List<Help>();
             foreach (DataRow row in helpDataTable.Rows)
             {
                 var help = new Help();

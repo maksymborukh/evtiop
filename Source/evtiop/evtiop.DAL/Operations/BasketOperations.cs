@@ -21,13 +21,13 @@ namespace evtiop.DAL.Operations
             dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
         }
 
-        public ObservableCollection<Basket> GetAll()
+        public List<Basket> GetAll()
         {
             string commandText = "select * from baskets";
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
             try
             {
-                var baskets = new ObservableCollection<Basket>();
+                var baskets = new List<Basket>();
                 while (dataReader.Read())
                 {
                     var basket = new Basket();
@@ -93,12 +93,12 @@ namespace evtiop.DAL.Operations
             dbManager.Insert(commandText, CommandType.Text, Param(basket).ToArray());
         }
 
-        public ObservableCollection<Basket> SelectAll()
+        public List<Basket> SelectAll()
         {
             string commandText = "select * from baskets";
 
             var basketDataTable = dbManager.GetDataTable(commandText, CommandType.Text);
-            var baskets = new ObservableCollection<Basket>();
+            var baskets = new List<Basket>();
             foreach (DataRow row in basketDataTable.Rows)
             {
                 var basket = new Basket();

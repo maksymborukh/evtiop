@@ -3,7 +3,6 @@ using evtiop.DAL.Entities;
 using evtiop.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 
 namespace evtiop.DAL.Operations
@@ -21,13 +20,13 @@ namespace evtiop.DAL.Operations
             dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
         }
 
-        public ObservableCollection<Rewiev> GetAll()
+        public List<Rewiev> GetAll()
         {
             string commandText = "select * from rewievs";
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
             try
             {
-                var rewievs = new ObservableCollection<Rewiev>();
+                var rewievs = new List<Rewiev>();
                 while (dataReader.Read())
                 {
                     var rewiev = new Rewiev();
@@ -97,12 +96,12 @@ namespace evtiop.DAL.Operations
             dbManager.Insert(commandText, CommandType.Text, Param(rewiev).ToArray());
         }
 
-        public ObservableCollection<Rewiev> SelectAll()
+        public List<Rewiev> SelectAll()
         {
             string commandText = "select * from rewievs";
 
             var rewievDataTable = dbManager.GetDataTable(commandText, CommandType.Text);
-            var rewievs = new ObservableCollection<Rewiev>();
+            var rewievs = new List<Rewiev>();
             foreach (DataRow row in rewievDataTable.Rows)
             {
                 var rewiev = new Rewiev();

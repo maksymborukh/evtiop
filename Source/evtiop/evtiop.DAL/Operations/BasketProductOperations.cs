@@ -3,12 +3,11 @@ using evtiop.DAL.Entities;
 using evtiop.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 
 namespace evtiop.DAL.Operations
 {
-    public class BasketProductOperations :  IOperations<BasketProducts>
+    public class BasketProductOperations : IOperations<BasketProducts>
     {
         DBManager dbManager = new DBManager("shopdb");
         IDbConnection connection = null;
@@ -21,13 +20,13 @@ namespace evtiop.DAL.Operations
             dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
         }
 
-        public ObservableCollection<BasketProducts> GetAll()
+        public List<BasketProducts> GetAll()
         {
             string commandText = "select * from basketProducts";
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
             try
             {
-                var basketProducts = new ObservableCollection<BasketProducts>();
+                var basketProducts = new List<BasketProducts>();
                 while (dataReader.Read())
                 {
                     var basketProduct = new BasketProducts();
@@ -93,12 +92,12 @@ namespace evtiop.DAL.Operations
             dbManager.Insert(commandText, CommandType.Text, Param(basketProducts).ToArray());
         }
 
-        public ObservableCollection<BasketProducts> SelectAll()
+        public List<BasketProducts> SelectAll()
         {
             string commandText = "select * from basketProducts";
 
             var basketProductsDataTable = dbManager.GetDataTable(commandText, CommandType.Text);
-            var basketProducts = new ObservableCollection<BasketProducts>();
+            var basketProducts = new List<BasketProducts>();
             foreach (DataRow row in basketProductsDataTable.Rows)
             {
                 var basketProduct = new BasketProducts();

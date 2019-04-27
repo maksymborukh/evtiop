@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using evtiop.BLL.Validation;
+using evtiop.BLL.User;
 
 namespace UI.user_control
 {
@@ -27,7 +28,16 @@ namespace UI.user_control
             if (!Validation.GetHasError(emailTextBox) && !Validation.GetHasError(passwordTextBox) &&
                 !Validation.GetHasError(firstNameTextBox) && !Validation.GetHasError(lastNameTextBox))
             {
-                //TODO CREATING
+                UserHelper userHelper = new UserHelper();
+
+                if (userHelper.CreateAccount(firstNameTextBox.Text, lastNameTextBox.Text, emailTextBox.Text, passwordTextBox.Text))
+                {
+                    MessageBox.Show("Successfully created.");
+                }
+                else
+                {
+                    MessageBox.Show("Error! Try again later.");
+                }
             }
             else
                 MessageBox.Show("Incorrect input!");

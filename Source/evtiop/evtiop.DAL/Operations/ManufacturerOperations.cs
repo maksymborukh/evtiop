@@ -3,7 +3,6 @@ using evtiop.DAL.Entities;
 using evtiop.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 namespace evtiop.DAL.Operations
 {
@@ -20,13 +19,13 @@ namespace evtiop.DAL.Operations
             dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
         }
 
-        public ObservableCollection<Manufacturer> GetAll()
+        public List<Manufacturer> GetAll()
         {
             string commandText = "select * from manufacturers";
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
             try
             {
-                var manufacturers = new ObservableCollection<Manufacturer>();
+                var manufacturers = new List<Manufacturer>();
                 while (dataReader.Read())
                 {
                     var manufacturer = new Manufacturer();
@@ -92,12 +91,12 @@ namespace evtiop.DAL.Operations
             dbManager.Insert(commandText, CommandType.Text, Param(manufacturer).ToArray());
         }
 
-        public ObservableCollection<Manufacturer> SelectAll()
+        public List<Manufacturer> SelectAll()
         {
             string commandText = "select * from manufacturers";
 
             var manufacturerDataTable = dbManager.GetDataTable(commandText, CommandType.Text);
-            var manufacturers = new ObservableCollection<Manufacturer>();
+            var manufacturers = new List<Manufacturer>();
             foreach (DataRow row in manufacturerDataTable.Rows)
             {
                 var manufacturer = new Manufacturer();

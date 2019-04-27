@@ -3,7 +3,6 @@ using evtiop.DAL.Entities;
 using evtiop.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 
 namespace evtiop.DAL.Operations
@@ -21,13 +20,48 @@ namespace evtiop.DAL.Operations
             dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
         }
 
-        public ObservableCollection<Customer> GetAll()
+        public Customer GetByEmail(string email)
+        {
+            var parameters = new List<IDbDataParameter>();
+            parameters.Add(dbManager.CreateParameter("@EmailAddress", email, DbType.String));
+
+            string commandText = "select * from customers where EmailAddress = @EmailAddress";
+            var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, parameters.ToArray(), out connection);
+            try
+            {
+                var customer = new Customer();
+                while (dataReader.Read())
+                {
+                    customer.ID = Convert.ToInt64(dataReader["Id"]);
+                    customer.FirstName = dataReader["FirstName"].ToString();
+                    customer.LastName = dataReader["LastName"].ToString();
+                    customer.EmailAddress = dataReader["EmailAddress"].ToString();
+                    customer.Password = dataReader["Password"].ToString();
+                    customer.Phone = Convert.ToInt32(dataReader["Phone"]);
+                    customer.RegistrationDate = Convert.ToDateTime(dataReader["RegistrationDate"]);
+                    customer.ImageURL = dataReader["ImageURL"].ToString();
+                }
+
+                return customer;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dataReader.Close();
+                dbManager.CloseConnection(connection);
+            }
+        }
+
+        public List<Customer> GetAll()
         {
             string commandText = "select * from customers";
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
             try
             {
-                var customers = new ObservableCollection<Customer>();
+                var customers = new List<Customer>();
                 while (dataReader.Read())
                 {
                     var customer = new Customer();
@@ -103,12 +137,12 @@ namespace evtiop.DAL.Operations
             dbManager.Insert(commandText, CommandType.Text, Param(customer).ToArray());
         }
 
-        public ObservableCollection<Customer> SelectAll()
+        public List<Customer> SelectAll()
         {
             string commandText = "select * from customers";
 
             var customerDataTable = dbManager.GetDataTable(commandText, CommandType.Text);
-            var customers = new ObservableCollection<Customer>();
+            var customers = new List<Customer>();
             foreach (DataRow row in customerDataTable.Rows)
             {
                 var customer = new Customer();
@@ -127,7 +161,7 @@ namespace evtiop.DAL.Operations
         }
 
         public void Update(Customer customer)
-        {            
+        {
             string commandText = "update customers set FirstName = @FirstName, LastName = @LastName, " +
                 "Password = @Password, Phone = @Phone, ImageURL = @ImageURL where Id = @Id;";
             dbManager.Update(commandText, CommandType.Text, Param(customer).ToArray());
@@ -141,7 +175,7 @@ namespace evtiop.DAL.Operations
             parameters.Add(dbManager.CreateParameter("@LastName", customer.LastName, DbType.String));
             parameters.Add(dbManager.CreateParameter("@EmailAddress", customer.EmailAddress, DbType.String));
             parameters.Add(dbManager.CreateParameter("@Password", customer.Password, DbType.String));
-            parameters.Add(dbManager.CreateParameter("@Phone", customer.Phone, DbType.Int32));           
+            parameters.Add(dbManager.CreateParameter("@Phone", customer.Phone, DbType.Int32));
             parameters.Add(dbManager.CreateParameter("@RegistrationDate", customer.RegistrationDate, DbType.DateTime));
             parameters.Add(dbManager.CreateParameter("@ImageURL", customer.ImageURL, DbType.String));
 

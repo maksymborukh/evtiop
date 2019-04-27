@@ -1,7 +1,8 @@
 ﻿using evtiop.BLL.Validation;
+using evtiop.BLL.User;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
+using UI.window;
 
 namespace UI.user_control
 {
@@ -14,7 +15,7 @@ namespace UI.user_control
         {
             InitializeComponent();
         }
-        
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             CustomerValidation customerValidation;
@@ -27,7 +28,19 @@ namespace UI.user_control
             ForceValidation();
             if (!Validation.GetHasError(emailTextBox) && !Validation.GetHasError(passwordTextBox))
             {
-                //TODO LOGGING
+                string ex = null;
+                UserHelper userHelper = new UserHelper();
+                if (userHelper.Authentication(emailTextBox.Text, passwordTextBox.Text, ref ex))
+                {
+                    StoreWindow storeWindow = new StoreWindow();
+                    var myWindow = Window.GetWindow(this);
+                    myWindow.Close();                 
+                    storeWindow.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show(ex);
+                }
             }
             else
                 MessageBox.Show("Incorrect input!");

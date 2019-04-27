@@ -21,13 +21,13 @@ namespace evtiop.DAL.Operations
             dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
         }
 
-        public ObservableCollection<Address> GetAll()
+        public List<Address> GetAll()
         {
             string commandText = "select * from addresses";
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
             try
             {
-                var addresses = new ObservableCollection<Address>();
+                var addresses = new List<Address>();
                 while (dataReader.Read())
                 {
                     var address = new Address();
@@ -99,12 +99,12 @@ namespace evtiop.DAL.Operations
             dbManager.Insert(commandText, CommandType.Text, Param(address).ToArray());
         }
 
-        public ObservableCollection<Address> SelectAll()
+        public List<Address> SelectAll()
         {
             string commandText = "select * from addresses";
 
             var addressDataTable = dbManager.GetDataTable(commandText, CommandType.Text);
-            var addresses = new ObservableCollection<Address>();
+            var addresses = new List<Address>();
             foreach (DataRow row in addressDataTable.Rows)
             {
                 var address  = new Address();

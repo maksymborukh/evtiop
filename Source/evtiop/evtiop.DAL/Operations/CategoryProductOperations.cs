@@ -3,7 +3,6 @@ using evtiop.DAL.Entities;
 using evtiop.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 
 namespace evtiop.DAL.Operations
@@ -21,13 +20,13 @@ namespace evtiop.DAL.Operations
             dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
         }
 
-        public ObservableCollection<CategoryProduct> GetAll()
+        public List<CategoryProduct> GetAll()
         {
             string commandText = "select * from categoryProducts";
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
             try
             {
-                var categoryProducts = new ObservableCollection<CategoryProduct>();
+                var categoryProducts = new List<CategoryProduct>();
                 while (dataReader.Read())
                 {
                     var categoryProduct = new CategoryProduct();
@@ -67,7 +66,7 @@ namespace evtiop.DAL.Operations
             dbManager.Insert(commandText, CommandType.Text, Param(categoryProduct).ToArray());
         }
 
-        public ObservableCollection<CategoryProduct> SelectAll() //write new select
+        public List<CategoryProduct> SelectAll() //write new select
         {
             throw new Exception("is not write");
         }

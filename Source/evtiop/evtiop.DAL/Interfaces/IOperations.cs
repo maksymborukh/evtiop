@@ -1,11 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 
 namespace evtiop.DAL.Interfaces
 {
     public interface IOperations<T> where T : class
     {
-        ObservableCollection<T> GetAll();
-        ObservableCollection<T> SelectAll();
+        List<T> GetAll();
+        List<T> SelectAll();
         T GetByID(long id);
         void Insert(T item);
         void Update(T item);
