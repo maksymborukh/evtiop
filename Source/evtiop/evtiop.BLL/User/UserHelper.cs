@@ -4,6 +4,7 @@ using Customer = evtiop.DAL.Entities.Customer;
 using CustomerB = evtiop.BLL.DTO.Customer;
 using Address = evtiop.DAL.Entities.Address;
 using AddressB = evtiop.BLL.DTO.Address;
+using evtiop.BLL.DTO;
 
 namespace evtiop.BLL.User
 {
@@ -127,5 +128,43 @@ namespace evtiop.BLL.User
 
             return addressB;
         }
+
+        public bool UpdateUser(UserInfo userInfo, long Id)
+        {
+            CustomerOperations customerOperations = new CustomerOperations();
+            AddressOperations addressOperations = new AddressOperations();
+
+            Customer customer = new Customer()
+            {
+                ID = Id,
+                FirstName = userInfo.firstname,
+                LastName = userInfo.lastname,
+                EmailAddress = userInfo.EmailAddress,
+                Password = userInfo.pass,
+                Phone = Convert.ToInt32(userInfo.phone),
+                RegistrationDate = userInfo.RegistrationDate,
+                ImageURL = userInfo.image
+            };
+
+            Address address = new Address()
+            {
+                ID = GetAddress(Id).ID,
+                Country = userInfo.country,
+                State = userInfo.state,
+                City = userInfo.city,
+                Street = userInfo.street,
+                CustomerID = 0 //does not update this field, but can not be empty, because null exception
+            };
+            try
+            {
+                customerOperations.Update(customer);
+                addressOperations.Update(address);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }   
     }
 }
