@@ -84,6 +84,7 @@ namespace UI.user_control
             else
             {
                 MessageBox.Show("Error. Try again later.");
+                EditInfo.Text = detectField(detect);
             }
             hideEditPage();
         }

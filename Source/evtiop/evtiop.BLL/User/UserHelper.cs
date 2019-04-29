@@ -38,17 +38,29 @@ namespace evtiop.BLL.User
         public bool CreateAccount(string firstName, string lastName, string email, string password)
         {
             CustomerOperations customerOperations = new CustomerOperations();
+            AddressOperations addressOperations = new AddressOperations();
             Customer customer = new Customer();
             customer.FirstName = firstName;
             customer.LastName = lastName;
             customer.EmailAddress = email;
             customer.Password = password;
             customer.RegistrationDate = DateTime.Now.ToUniversalTime();
-            customer.ImageURL = "";
+            customer.ImageURL = string.Empty;
 
             try
             {
-                customerOperations.Insert(customer);
+                customerOperations.InsertWithTransaction(customer);
+
+                Address address = new Address()
+                {
+                    CustomerID = GetId(email),
+                    Country = string.Empty,
+                    State = string.Empty,
+                    City = string.Empty,
+                    Street = string.Empty
+                };
+
+                addressOperations.InsertWithTransaction(address);
                 return true;
             }
             catch

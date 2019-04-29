@@ -115,7 +115,9 @@ namespace UI.window
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             //close app
+            MainWindow mainWindow = new MainWindow();
             this.Close();
+            mainWindow.ShowDialog();
         }
 
         //click on close icon in page

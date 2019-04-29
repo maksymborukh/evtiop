@@ -131,6 +131,13 @@ namespace evtiop.DAL.Operations
             dbManager.Insert(commandText, CommandType.Text, Param(address).ToArray());
         }
 
+        public void InsertWithTransaction(Address address)
+        {
+            string commandText = "insert into addresses (Street, City, State, Country, CustomerId)" +
+                 "values (@Street, @City, @State, @Country, @CustomerId);";
+            dbManager.InsertWithTransaction(commandText, CommandType.Text, Param(address).ToArray());
+        }
+
         public List<Address> SelectAll()
         {
             string commandText = "select * from addresses";
