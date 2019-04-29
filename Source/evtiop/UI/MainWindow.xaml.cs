@@ -17,8 +17,7 @@ namespace UI
 
         public MainWindow()
         {
-            InitializeComponent();
-            storeWindow = new StoreWindow();
+            InitializeComponent();            
         }
 
         private void windowLoaded(object sender, RoutedEventArgs e)
@@ -43,7 +42,6 @@ namespace UI
         private void CloseButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
-            storeWindow.Close();
         }
 
         private void login_Click(object sender, RoutedEventArgs e)
@@ -62,6 +60,7 @@ namespace UI
 
         private void SkipLogging_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
+            storeWindow = new StoreWindow();
             this.Close();
             storeWindow.ShowDialog();
             

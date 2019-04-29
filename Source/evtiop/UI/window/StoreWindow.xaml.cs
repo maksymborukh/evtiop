@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using evtiop.BLL.DTO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using UI.animation;
@@ -11,17 +12,24 @@ namespace UI.window
     /// </summary>
     public partial class StoreWindow : Window
     {
-
+        private long customerId;
         public StoreWindow()
         {
             InitializeComponent();
+            //todo make unable user icon
+        }
+
+        public StoreWindow(long Id)
+        {
+            InitializeComponent();
+            customerId = Id;
         }
 
         //set the minimum size of window
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.MinWidth = 800;
-            this.MinHeight = 600;           
+            this.MinHeight = 600;
         }
 
         private void searchIcon_MouseDown(object sender, MouseButtonEventArgs e)
@@ -62,7 +70,7 @@ namespace UI.window
             if (menuIcon.Tag.ToString() == "closed")
             {
                 Animation.Rotate(0, 90, 300, menuIcon);
-                menuIcon.Tag = "opened";              
+                menuIcon.Tag = "opened";
                 categories.Visibility = Visibility.Visible;
             }
             else if (menuIcon.Tag.ToString() == "opened")
@@ -93,7 +101,7 @@ namespace UI.window
         private void AccountPage_Click(object sender, RoutedEventArgs e)
         {
             //create account user control and add it to grid
-            Account account = new Account();
+            Account account = new Account(customerId);
             UserContorlContainer.Children.Add(account);
 
             //show account page
@@ -152,9 +160,9 @@ namespace UI.window
 
         //close user menu
         private void CloseUserMenu()
-        {            
+        {
             userMenuButtons.Visibility = Visibility.Collapsed;
-            userMenuButtons.Tag = "closed";            
+            userMenuButtons.Tag = "closed";
         }
 
         //show user control page
@@ -162,12 +170,12 @@ namespace UI.window
         {
             GridForUserContorlContainer.Visibility = Visibility.Visible;
             header.IsEnabled = false;
-            ProductList.IsEnabled = false; 
+            ProductList.IsEnabled = false;
         }
 
         private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
 
         private void LeftArrow_MouseDown(object sender, MouseButtonEventArgs e)

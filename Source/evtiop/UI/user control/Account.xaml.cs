@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using evtiop.BLL.DTO;
+using evtiop.BLL.User;
 
 namespace UI.user_control
 {
@@ -9,9 +11,18 @@ namespace UI.user_control
     /// </summary>
     public partial class Account : UserControl
     {
+        public UserInfo UserInfo { get; set; }
+
         public Account()
         {
             InitializeComponent();
+        }
+
+        public Account(long Id)
+        {
+            InitializeComponent();
+            UserInfo = new UserInfo(Id);
+            this.DataContext = UserInfo;
         }
 
         private void Edit_MouseDown(object sender, MouseButtonEventArgs e)
@@ -20,6 +31,7 @@ namespace UI.user_control
             PersonalDataPage.IsEnabled = false;
             Image image = (Image)sender;
             EditMessageTextBlock.Text = image.Tag.ToString();
+            //EditInfo.Text = UserInfo
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
