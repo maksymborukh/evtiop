@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using evtiop.BLL.DTO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using UI.animation;
@@ -11,10 +12,17 @@ namespace UI.window
     /// </summary>
     public partial class StoreWindow : Window
     {
-
+        private long customerId;
         public StoreWindow()
         {
             InitializeComponent();
+            //todo make unable user icon
+        }
+
+        public StoreWindow(long Id)
+        {
+            InitializeComponent();
+            customerId = Id;
         }
 
         //set the minimum size of window
@@ -93,7 +101,7 @@ namespace UI.window
         private void AccountPage_Click(object sender, RoutedEventArgs e)
         {
             //create account user control and add it to grid
-            Account account = new Account();
+            Account account = new Account(customerId);
             UserContorlContainer.Children.Add(account);
 
             //show account page

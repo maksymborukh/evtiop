@@ -3,7 +3,6 @@ using evtiop.DAL.Entities;
 using evtiop.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 
 namespace evtiop.DAL.Operations
@@ -86,6 +85,39 @@ namespace evtiop.DAL.Operations
             }
         }
 
+        public Address GetByCustID(long id)
+        {
+            var parameters = new List<IDbDataParameter>();
+            parameters.Add(dbManager.CreateParameter("@CustomerId", id, DbType.Int64));
+
+            string commandText = "select * from addresses where CustomerId = @CustomerId;";
+            var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, parameters.ToArray(), out connection);
+            try
+            {
+                var address = new Address();
+                while (dataReader.Read())
+                {
+                    address.ID = Convert.ToInt64(dataReader["Id"]);
+                    address.Street = dataReader["Street"].ToString();
+                    address.City = dataReader["City"].ToString();
+                    address.State = dataReader["State"].ToString();
+                    address.Country = dataReader["Country"].ToString();
+                    address.CustomerID = Convert.ToInt64(dataReader["CustomerID"]);
+                }
+
+                return address;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dataReader.Close();
+                dbManager.CloseConnection(connection);
+            }
+        }
+
         public long GetScalarValue(string commandText)
         {
             object scalarValue = dbManager.GetScalarValue(commandText, CommandType.Text);
@@ -107,7 +139,7 @@ namespace evtiop.DAL.Operations
             var addresses = new List<Address>();
             foreach (DataRow row in addressDataTable.Rows)
             {
-                var address  = new Address();
+                var address = new Address();
                 address.ID = Convert.ToInt64(row["Id"]);
                 address.Street = row["Street"].ToString();
                 address.City = row["City"].ToString();

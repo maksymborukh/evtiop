@@ -3,6 +3,7 @@ using evtiop.BLL.User;
 using System.Windows;
 using System.Windows.Controls;
 using UI.window;
+using evtiop.BLL.DTO;
 
 namespace UI.user_control
 {
@@ -32,7 +33,7 @@ namespace UI.user_control
                 UserHelper userHelper = new UserHelper();
                 if (userHelper.Authentication(emailTextBox.Text, passwordTextBox.Text, ref ex))
                 {
-                    StoreWindow storeWindow = new StoreWindow();
+                    StoreWindow storeWindow = new StoreWindow(userHelper.GetId(emailTextBox.Text));
                     var myWindow = Window.GetWindow(this);
                     myWindow.Close();                 
                     storeWindow.ShowDialog();

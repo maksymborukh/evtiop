@@ -1,6 +1,9 @@
-﻿using evtiop.DAL.Entities;
-using evtiop.DAL.Operations;
+﻿using evtiop.DAL.Operations;
 using System;
+using Customer = evtiop.DAL.Entities.Customer;
+using CustomerB = evtiop.BLL.DTO.Customer;
+using Address = evtiop.DAL.Entities.Address;
+using AddressB = evtiop.BLL.DTO.Address;
 
 namespace evtiop.BLL.User
 {
@@ -51,6 +54,78 @@ namespace evtiop.BLL.User
             {
                 return false;
             }
+        }
+
+        public long GetId(string email)
+        {
+            CustomerOperations customerOperations = new CustomerOperations();
+            try
+            {
+                Customer customer = customerOperations.GetByEmail(email);
+                return customer.ID;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public CustomerB GetUser(long id)
+        {
+            CustomerOperations customerOperations = new CustomerOperations();
+            try
+            {
+                Customer customer = customerOperations.GetByID(id);
+
+                return DintoB(customer);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public AddressB GetAddress(long id)
+        {
+            AddressOperations addressOperations = new AddressOperations();
+            try
+            {
+                Address address = addressOperations.GetByCustID(id);
+
+                return DintoB(address);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private CustomerB DintoB(Customer customer)
+        {
+            CustomerB customerB = new CustomerB();
+            customerB.ID = customer.ID;
+            customerB.FirstName = customer.FirstName;
+            customerB.LastName = customer.LastName;
+            customerB.EmailAddress = customer.EmailAddress;
+            customerB.Password = customer.Password;
+            customerB.Phone = customer.Phone.ToString();
+            customerB.RegistrationDate = customer.RegistrationDate;
+            customerB.ImageURL = customer.ImageURL;
+
+            return customerB;
+        }
+
+        private AddressB DintoB(Address address)
+        {
+            AddressB addressB = new AddressB();
+            addressB.ID = address.ID;
+            addressB.Street = address.Street;
+            addressB.City = address.City;
+            addressB.State = address.State;
+            addressB.Country = address.Country;
+            addressB.CustomerID = address.CustomerID;
+
+            return addressB;
         }
     }
 }
