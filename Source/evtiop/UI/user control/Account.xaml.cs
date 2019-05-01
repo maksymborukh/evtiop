@@ -1,8 +1,14 @@
-﻿using System.Windows;
+﻿using evtiop.BLL.DTO;
+using evtiop.BLL.User;
+using Microsoft.Win32;
+using System;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using evtiop.BLL.DTO;
-using evtiop.BLL.User;
+using System.Windows.Media.Imaging;
 
 namespace UI.user_control
 {
@@ -13,7 +19,8 @@ namespace UI.user_control
     {
         public UserInfo UserInfo { get; set; }
         private long UserId;
-
+        private string ImageName { get; set; }
+        private string ImagePath { get; set; }
         public Account()
         {
             InitializeComponent();
@@ -36,7 +43,7 @@ namespace UI.user_control
             string detect = EditMessageTextBlock.Text.ToString();
             detect = detect.ToLower();
             detect = detect.Replace(" ", string.Empty);
-            EditInfo.Text = detectField(detect);           
+            EditInfo.Text = detectField(detect);
         }
 
         private string detectField(string d)
@@ -129,7 +136,17 @@ namespace UI.user_control
 
         private void Upload_Click(object sender, RoutedEventArgs e)
         {
-
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+                UserImage.Source = new BitmapImage(new Uri(op.FileName));
+            }
+            ImageName = Path.GetFileName(op.FileName);
+            ImagePath = op.FileName;
         }
 
         private void hideEditPage()
@@ -137,6 +154,32 @@ namespace UI.user_control
             EditImagePage.Visibility = Visibility.Collapsed;
             EditPage.Visibility = Visibility.Collapsed;
             PersonalDataPage.IsEnabled = true;
+        }
+
+        private void SaveImageChange_Click(object sender, RoutedEventArgs e)
+        {
+            using (WebClient client = new WebClient())
+            {
+                client.Credentials = new NetworkCredential("admin", "admin");
+                client.UploadFile($"ftp://192.168.0.117/ {ImageName}", WebRequestMethods.Ftp.UploadFile, ImagePath);
+            }
+
+            using (WebClient client = new WebClient())
+            {
+                client.Credentials = new NetworkCredential("admin", "admin");
+                using (MemoryStream stream = new MemoryStream(client.DownloadData($"ftp://192.168.0.117/ {ImageName}")))
+                {
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.UriSource = null;
+                    image.StreamSource = stream;
+                    image.EndInit();
+
+                    UserImage.Source = image;
+                }
+            }
         }
     }
 }

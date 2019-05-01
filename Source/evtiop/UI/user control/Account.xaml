@@ -239,14 +239,14 @@
                 </Grid.RowDefinitions>
 
                 <!-- need to upload from computer -->
-                <Image Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" 
+                <Image x:Name="UserImage" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" 
                        Source="/UI;component/images/logo.png"/>
                 
                 <Button  Content="Upload" Grid.Column="1" Grid.Row="3"
                         Click="Upload_Click" Style="{StaticResource EditButton}"/>
 
                 <Button  Content="Save" Grid.Column="2" Grid.Row="3"
-                        Click="SaveChange_Click" Style="{StaticResource EditButton}"/>
+                        Click="SaveImageChange_Click" Style="{StaticResource EditButton}"/>
 
                 <Button  Content="Cancel" Grid.Column="3" Grid.Row="3"
                         Click="CancelChange_Click" Style="{StaticResource EditButton}"/>
