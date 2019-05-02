@@ -62,8 +62,7 @@ namespace UI
         {
             storeWindow = new StoreWindow();
             this.Close();
-            storeWindow.ShowDialog();
-            
+            storeWindow.ShowDialog();          
         }
 
         public void someAnimation(string tag) 

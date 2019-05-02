@@ -179,8 +179,10 @@
             <!-- user icon -->
             <Grid Grid.Column="5" Style="{StaticResource HighlightGrid}">
                 <Border x:Name="userIcon" MouseDown="userIcon_MouseDown" 
-                        CornerRadius="50,50,50,50" Background="Black" 
-                        Width="40" Height="40" Cursor="Hand"/>
+                        CornerRadius="50,50,50,50"
+                        Width="40" Height="40" Cursor="Hand">
+                    <Image Source="/UI;component/images/bars_icon.png" x:Name="UserIcon"/>
+                </Border>
             </Grid>
 
         </Grid>

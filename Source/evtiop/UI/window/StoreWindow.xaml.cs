@@ -1,7 +1,11 @@
 ﻿using evtiop.BLL.DTO;
+using evtiop.BLL.User;
+using System.IO;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using UI.animation;
 using UI.user_control;
 
@@ -13,16 +17,39 @@ namespace UI.window
     public partial class StoreWindow : Window
     {
         private long customerId;
+        private UserHelper userHelper;
         public StoreWindow()
         {
-            InitializeComponent();
+            InitializeComponent();           
             //todo make unable user icon
         }
 
         public StoreWindow(long Id)
         {
-            InitializeComponent();
+            InitializeComponent();         
             customerId = Id;
+            userHelper = new UserHelper();
+            LoadImage();
+        }
+
+        private void LoadImage()
+        {
+            using (WebClient client = new WebClient())
+            {
+                client.Credentials = new NetworkCredential("admin", "admin");
+                using (MemoryStream stream = new MemoryStream(client.DownloadData($"ftp://192.168.0.117/ {userHelper.GetUser(customerId).ImageURL}")))
+                {
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.UriSource = null;
+                    image.StreamSource = stream;
+                    image.EndInit();
+
+                    UserIcon.Source = image;
+                }
+            }
         }
 
         //set the minimum size of window
@@ -115,7 +142,9 @@ namespace UI.window
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             //close app
+            MainWindow mainWindow = new MainWindow();
             this.Close();
+            mainWindow.ShowDialog();
         }
 
         //click on close icon in page
@@ -130,6 +159,9 @@ namespace UI.window
             //enable header
             header.IsEnabled = true;
             ProductList.IsEnabled = true;
+
+            //update user icon
+            LoadImage();
         }
 
         private void SettingPage_Click(object sender, RoutedEventArgs e)

@@ -9,10 +9,10 @@ namespace evtiop.BLL.DTO
     {
         private string FirstName;
         private string LastName;
-        private string EmailAddress;
+        public string EmailAddress { get; private set; }
         private string Password;
         private string Phone;
-        public DateTime RegistrationDate;
+        public DateTime RegistrationDate { get; private set; }
         private string ImageURL;
         private string Street;
         private string City;
@@ -53,15 +53,6 @@ namespace evtiop.BLL.DTO
             {
                 LastName = value;
                 OnPropertyChanged("lastname");
-            }
-        }
-        public string email
-        {
-            get { return EmailAddress; }
-            set
-            {
-                EmailAddress = value;
-                OnPropertyChanged("email");
             }
         }
         public string pass

@@ -137,6 +137,13 @@ namespace evtiop.DAL.Operations
             dbManager.Insert(commandText, CommandType.Text, Param(customer).ToArray());
         }
 
+        public void InsertWithTransaction(Customer customer)
+        {
+            string commandText = "insert into customers (FirstName, LastName, EmailAddress, Password, Phone, RegistrationDate, ImageURL)" +
+                 "values (@FirstName, @LastName, @EmailAddress, @Password, @Phone, @RegistrationDate, @ImageURL);";
+            dbManager.InsertWithTransaction(commandText, CommandType.Text, Param(customer).ToArray());
+        }
+
         public List<Customer> SelectAll()
         {
             string commandText = "select * from customers";
