@@ -31,6 +31,8 @@ namespace UI.user_control
             InitializeComponent();
             UserInfo = new UserInfo(Id);
             UserId = Id;
+            ImageName = UserInfo.image;
+            LoadImage();
             this.DataContext = UserInfo;
         }
 
@@ -144,6 +146,7 @@ namespace UI.user_control
             if (op.ShowDialog() == true)
             {
                 UserImage.Source = new BitmapImage(new Uri(op.FileName));
+                UserImageSmall.Source = new BitmapImage(new Uri(op.FileName));
             }
             ImageName = Path.GetFileName(op.FileName);
             ImagePath = op.FileName;
@@ -164,6 +167,30 @@ namespace UI.user_control
                 client.UploadFile($"ftp://192.168.0.117/ {ImageName}", WebRequestMethods.Ftp.UploadFile, ImagePath);
             }
 
+            string detect = EditMessageTextBlock.Text.ToString();
+            detect = detect.ToLower();
+            detect = detect.Replace(" ", string.Empty);
+            setField(detect);
+            
+            UserHelper userHelper = new UserHelper();
+            UserInfo.image = Path.GetFileName(UserImage.Source.ToString());
+            //    ((BitmapFrame)UserImage.Source).Decoder.ToString();
+            if (userHelper.UpdateUser(UserInfo, UserId))
+            {
+                MessageBox.Show("Successfully updated.");
+            }
+            else
+            {
+                MessageBox.Show("Error. Try again later.");
+                setField(detect);
+            }
+            hideEditPage();
+
+            
+        }
+
+        private void LoadImage()
+        {
             using (WebClient client = new WebClient())
             {
                 client.Credentials = new NetworkCredential("admin", "admin");
@@ -178,8 +205,9 @@ namespace UI.user_control
                     image.EndInit();
 
                     UserImage.Source = image;
+                    UserImageSmall.Source = image;
                 }
-            }
+            }           
         }
     }
 }

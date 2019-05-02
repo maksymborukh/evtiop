@@ -55,7 +55,7 @@
                     BorderBrush="Gray" BorderThickness="0 0 0 1"/>
             <TextBlock Text="Photo" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
                            Foreground="Gray" Grid.Column="1" Grid.Row="3"/>
-            <Image Source="/UI;component/images/email_icon.png" HorizontalAlignment="Left" 
+            <Image x:Name="UserImageSmall" Source="/UI;component/images/email_icon.png" HorizontalAlignment="Left" 
                    Grid.Column="2" Grid.Row="3"/>
             <Image Style="{StaticResource EditButtonStyle}" 
                            MouseDown="Image_MouseDown" Grid.Column="3" Grid.Row="3"/>
