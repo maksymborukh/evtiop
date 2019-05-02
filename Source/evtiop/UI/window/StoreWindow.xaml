@@ -201,8 +201,8 @@
         <Border x:Name="userMenuButtons" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,5,0" Width="64" 
                 BorderBrush="Black" BorderThickness="1" Visibility="Collapsed" Tag="closed">
             <WrapPanel>
-                <Button Content="Account" Style="{StaticResource UserMenuButton}" Click="AccountPage_Click" Margin="2,5,2,5"/>
-                <Button Content="Setting" Style="{StaticResource UserMenuButton}" Click="SettingPage_Click" Margin="2,0,2,5" />
+                <Button x:Name="AccountUserButton" Content="Account" Style="{StaticResource UserMenuButton}" Click="AccountPage_Click" Margin="2,5,2,5"/>
+                <Button x:Name="SettingUserButton" Content="Setting" Style="{StaticResource UserMenuButton}" Click="SettingPage_Click" Margin="2,0,2,5" />
                 <Button Content="Help" Style="{StaticResource UserMenuButton}" Click="HelpPage_Click" Margin="2,0,2,5" />
                 <Separator Width="50" Background="Black"  Height="1" Margin="7,2,0,2"/>
                 <Button Content="Logout" Style="{StaticResource UserMenuButton}" Click="Logout_Click" Margin="2,0,2,5"/>

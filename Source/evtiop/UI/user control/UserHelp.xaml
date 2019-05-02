@@ -52,19 +52,19 @@
             <!-- Name -->
             <TextBlock Text="Name" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
                        Foreground="Gray" Grid.Column="1" Grid.Row="3"/>
-            <TextBox Text="Mike" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+            <TextBox Text="{Binding Path=firstname}" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
                        Grid.Column="2" Grid.Row="3"/>
 
             <!-- last Name -->
             <TextBlock Text="Last Name" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
                        Foreground="Gray" Grid.Column="1" Grid.Row="5"/>
-            <TextBox Text="Smith" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+            <TextBox Text="{Binding Path=lastname}" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
                        Grid.Column="2" Grid.Row="5"/>
 
             <!-- Email -->
             <TextBlock Text="Email" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
                        Foreground="Gray" Grid.Column="1" Grid.Row="7"/>
-            <TextBox Text="someone@example.com" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+            <TextBox Text="{Binding Path=email}" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
                        Grid.Column="2" Grid.Row="7"/>
 
             <!-- Subject -->

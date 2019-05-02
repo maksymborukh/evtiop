@@ -20,8 +20,9 @@ namespace UI.window
         private UserHelper userHelper;
         public StoreWindow()
         {
-            InitializeComponent();           
-            //todo make unable user icon
+            InitializeComponent();
+            AccountUserButton.IsEnabled = false;
+            SettingUserButton.IsEnabled = false;
         }
 
         public StoreWindow(long Id)
@@ -161,7 +162,10 @@ namespace UI.window
             ProductList.IsEnabled = true;
 
             //update user icon
-            LoadImage();
+            if (customerId != 0)
+            {
+                LoadImage();
+            }          
         }
 
         private void SettingPage_Click(object sender, RoutedEventArgs e)
@@ -180,14 +184,22 @@ namespace UI.window
         private void HelpPage_Click(object sender, RoutedEventArgs e)
         {
             //create help user control and add it to grid
-            UserHelp userHelp = new UserHelp();
+            UserHelp userHelp;
+            if (customerId != 0)
+            {
+                userHelp = new UserHelp(customerId);
+            }
+            else
+            {
+                userHelp = new UserHelp();
+            }
             UserContorlContainer.Children.Add(userHelp);
+            
+            //show help page
+            ShowUserControlPage();
 
             //close user menu
             CloseUserMenu();
-
-            //show help page
-            ShowUserControlPage();
         }
 
         //close user menu
