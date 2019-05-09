@@ -1,4 +1,5 @@
 ﻿using evtiop.BLL.DTO;
+using evtiop.BLL.User;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -26,7 +27,15 @@ namespace UI.user_control
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
-            //TODO sent message help page
+            UserHelper userHelper = new UserHelper();
+            if (!userHelper.SendMessage(email.Text, firstName.Text, lastName.Text, Subject.Text, message.Text, UserId))
+            {
+                MessageBox.Show("Error. Try again later.");
+            }
+            else
+            {
+                MessageBox.Show("Successfully sent.");
+            }
         }
     }
 }

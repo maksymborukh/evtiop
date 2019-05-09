@@ -285,7 +285,8 @@
         <Border x:Name="categories" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,65,5,0" 
                 BorderBrush="Black" BorderThickness="1" Visibility="Collapsed" Tag="closed">
             <ListBox ItemsPanel="{StaticResource categoryPanel}"
-                     ItemsSource="{Binding Source={StaticResource categoryProvider}}">
+                     ItemsSource="{Binding Source={StaticResource categoryProvider}}"
+                     SelectionChanged="Category_SelectionChanged">
                 <!-- style of product item -->
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}">

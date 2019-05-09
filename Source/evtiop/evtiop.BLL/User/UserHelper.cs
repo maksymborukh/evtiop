@@ -5,6 +5,7 @@ using CustomerB = evtiop.BLL.DTO.Customer;
 using Address = evtiop.DAL.Entities.Address;
 using AddressB = evtiop.BLL.DTO.Address;
 using evtiop.BLL.DTO;
+using evtiop.DAL.Entities;
 
 namespace evtiop.BLL.User
 {
@@ -178,5 +179,29 @@ namespace evtiop.BLL.User
                 return false;
             }
         }   
+
+        public bool SendMessage(string email, string name, string lastName, string subject, string message, long Id)
+        {
+            HelpOperations helpOperations = new HelpOperations();
+            Help help = new Help()
+            {
+                FirstName = name,
+                LastName = lastName,
+                EmailAddress = email,
+                Subject = subject,
+                Message = message,
+                CreatedAt = DateTime.Now.ToUniversalTime(),
+                CustomerID = Id
+            };
+            try
+            {
+                helpOperations.Insert(help);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

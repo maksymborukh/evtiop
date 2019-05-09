@@ -35,8 +35,9 @@ namespace evtiop.DAL.Operations
                     help.LastName = dataReader["LastName"].ToString();
                     help.EmailAddress = dataReader["EmailAddress"].ToString();
                     help.Message = dataReader["Message"].ToString();
+                    help.Subject = dataReader["Subject"].ToString();
                     help.CreatedAt = Convert.ToDateTime(dataReader["CreatedAt"]);
-                    help.ID = Convert.ToInt64(dataReader["Id"]);
+                    help.CustomerID = Convert.ToInt64(dataReader["CustomerId"]);
                     helps.Add(help);
                 }
 
@@ -70,8 +71,9 @@ namespace evtiop.DAL.Operations
                     help.LastName = dataReader["LastName"].ToString();
                     help.EmailAddress = dataReader["EmailAddress"].ToString();
                     help.Message = dataReader["Message"].ToString();
+                    help.Subject = dataReader["Subject"].ToString();
                     help.CreatedAt = Convert.ToDateTime(dataReader["CreatedAt"]);
-                    help.ID = Convert.ToInt64(dataReader["Id"]);
+                    help.CustomerID = Convert.ToInt64(dataReader["CustomerId"]);
                 }
 
                 return help;
@@ -95,8 +97,8 @@ namespace evtiop.DAL.Operations
 
         public void Insert(Help help)
         {
-            string commandText = "insert into helps (FirstName, LastName, EmailAddress, Message, CreatedAt)" +
-                 "values (@FirstName, @LastName, @EmailAddress, @Message, @CreatedAt);";
+            string commandText = "insert into helps (FirstName, LastName, EmailAddress, Message, Subject, CreatedAt, CustomerId)" +
+                 "values (@FirstName, @LastName, @EmailAddress, @Message, @Subject, @CreatedAt, @CustomerId);";
             dbManager.Insert(commandText, CommandType.Text, Param(help).ToArray());
         }
 
@@ -114,8 +116,9 @@ namespace evtiop.DAL.Operations
                 help.LastName = row["LastName"].ToString();
                 help.EmailAddress = row["EmailAddress"].ToString();
                 help.Message = row["Message"].ToString();
+                help.Subject = row["Subject"].ToString();
                 help.CreatedAt = Convert.ToDateTime(row["CreatedAt"]);
-                help.ID = Convert.ToInt64(row["Id"]);
+                help.CustomerID = Convert.ToInt64(row["CustomerId"]);
                 helps.Add(help);
             }
 
@@ -125,7 +128,7 @@ namespace evtiop.DAL.Operations
         public void Update(Help help)
         {
             string commandText = "update helps set FirstName = @FirstName, LastName = @LastName, " +
-                "EmailAddress = @EmailAddress, Message = @Message, CreatedAt = @CreatedAt where Id = @Id;";
+                "EmailAddress = @EmailAddress, Message = @Message, Subject = @Subject, CreatedAt = @CreatedAt, CustomerId = @CustomerId where Id = @Id;";
             dbManager.Update(commandText, CommandType.Text, Param(help).ToArray());
         }
 
@@ -133,10 +136,12 @@ namespace evtiop.DAL.Operations
         {
             var parameters = new List<IDbDataParameter>();
             parameters.Add(dbManager.CreateParameter("@Id", help.ID, DbType.Int64));
+            parameters.Add(dbManager.CreateParameter("@CustomerId", help.CustomerID, DbType.Int64));
             parameters.Add(dbManager.CreateParameter("@FirstName", 50, help.FirstName, DbType.String));
             parameters.Add(dbManager.CreateParameter("@LastName", help.LastName, DbType.String));
             parameters.Add(dbManager.CreateParameter("@EmailAddress", help.EmailAddress, DbType.String));
             parameters.Add(dbManager.CreateParameter("@Message", help.Message, DbType.String));
+            parameters.Add(dbManager.CreateParameter("@Subject", help.Subject, DbType.String));
             parameters.Add(dbManager.CreateParameter("@CreatedAt", help.CreatedAt, DbType.DateTime));
 
             return parameters;

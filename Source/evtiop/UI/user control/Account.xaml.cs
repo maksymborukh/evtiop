@@ -33,14 +33,7 @@ namespace UI.user_control
             UserId = Id;
             ImageName = UserInfo.image;
             ConnectionToServer = conn;
-            if (!ConnectionToServer)
-            {
-                MessageBox.Show("Cannot connect to server");
-            }
-            else
-            {
-                LoadImage();
-            }
+            LoadImage();
             this.DataContext = UserInfo;
         }
 

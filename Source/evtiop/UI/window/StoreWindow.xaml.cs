@@ -35,7 +35,14 @@ namespace UI.window
             userHelper = new UserHelper();
             ServerHelper serverHelper = new ServerHelper();
             ConnectionToServer = serverHelper.CheckFtpConnection();
-            LoadImage();
+            if (!ConnectionToServer)
+            {
+                MessageBox.Show("Cannot connect to server");
+            }
+            else
+            {
+                LoadImage();
+            }
         }
 
         private void LoadImage()
@@ -231,6 +238,11 @@ namespace UI.window
         private void RightArrow_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void Category_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //TODO category change
         }
     }
 }
