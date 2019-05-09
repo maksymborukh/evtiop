@@ -1,4 +1,5 @@
 ﻿using evtiop.BLL.DTO;
+using evtiop.BLL.Server;
 using evtiop.BLL.User;
 using Microsoft.Win32;
 using System;
@@ -20,17 +21,19 @@ namespace UI.user_control
         private long UserId;
         private string ImageName { get; set; }
         private string ImagePath { get; set; }
+        private bool ConnectionToServer = false;
         public Account()
         {
             InitializeComponent();
         }
 
-        public Account(long Id)
+        public Account(long Id, bool conn)
         {
             InitializeComponent();
             UserInfo = new UserInfo(Id);
             UserId = Id;
             ImageName = UserInfo.image;
+            ConnectionToServer = conn;
             LoadImage();
             this.DataContext = UserInfo;
         }
@@ -160,53 +163,57 @@ namespace UI.user_control
 
         private void SaveImageChange_Click(object sender, RoutedEventArgs e)
         {
-            using (WebClient client = new WebClient())
+            if (ConnectionToServer)
             {
-                client.Credentials = new NetworkCredential("admin", "admin");
-                client.UploadFile($"ftp://192.168.0.117/ {ImageName}", WebRequestMethods.Ftp.UploadFile, ImagePath);
-            }
+                ServerHelper serverHelper = new ServerHelper();
+                try
+                {
+                    serverHelper.UploadImageToServer(ImagePath, ImageName);
 
-            string detect = EditMessageTextBlock.Text.ToString();
-            detect = detect.ToLower();
-            detect = detect.Replace(" ", string.Empty);
-            setField(detect);
-            
-            UserHelper userHelper = new UserHelper();
-            UserInfo.image = Path.GetFileName(UserImage.Source.ToString());
-            //    ((BitmapFrame)UserImage.Source).Decoder.ToString();
-            if (userHelper.UpdateUser(UserInfo, UserId))
-            {
-                MessageBox.Show("Successfully updated.");
+                    string detect = EditMessageTextBlock.Text.ToString();
+                    detect = detect.ToLower();
+                    detect = detect.Replace(" ", string.Empty);
+                    setField(detect);
+
+                    UserHelper userHelper = new UserHelper();
+                    UserInfo.image = Path.GetFileName(UserImage.Source.ToString());
+                    if (userHelper.UpdateUser(UserInfo, UserId))
+                    {
+                        MessageBox.Show("Successfully updated.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error. Try again later.");
+                        setField(detect);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Error. Cannot upload image.");
+                }
             }
             else
             {
-                MessageBox.Show("Error. Try again later.");
-                setField(detect);
+                MessageBox.Show("Cannot connect to server");
             }
             hideEditPage();
-
-            
         }
 
         private void LoadImage()
         {
-            using (WebClient client = new WebClient())
+            if (ConnectionToServer)
             {
-                client.Credentials = new NetworkCredential("admin", "admin");
-                using (MemoryStream stream = new MemoryStream(client.DownloadData($"ftp://192.168.0.117/ {ImageName}")))
+                ServerHelper serverHelper = new ServerHelper();
+                try
                 {
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.UriSource = null;
-                    image.StreamSource = stream;
-                    image.EndInit();
-
-                    UserImage.Source = image;
-                    UserImageSmall.Source = image;
+                    UserImage.Source = serverHelper.GetImageFromServer(ImageName);
+                    UserImageSmall.Source = serverHelper.GetImageFromServer(ImageName);
                 }
-            }           
+                catch
+                {
+                    MessageBox.Show("Cannot connect to server.");
+                }
+            }
         }
     }
 }

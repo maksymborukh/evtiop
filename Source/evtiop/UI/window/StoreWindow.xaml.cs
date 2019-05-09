@@ -1,4 +1,5 @@
 ﻿using evtiop.BLL.DTO;
+using evtiop.BLL.Server;
 using evtiop.BLL.User;
 using System.IO;
 using System.Net;
@@ -18,6 +19,7 @@ namespace UI.window
     {
         private long customerId;
         private UserHelper userHelper;
+        private bool ConnectionToServer = false;
         public StoreWindow()
         {
             InitializeComponent();
@@ -30,27 +32,25 @@ namespace UI.window
             InitializeComponent();         
             customerId = Id;
             userHelper = new UserHelper();
+            ServerHelper serverHelper = new ServerHelper();
+            ConnectionToServer = serverHelper.CheckFtpConnection();
             LoadImage();
         }
 
         private void LoadImage()
         {
-            using (WebClient client = new WebClient())
+            if (ConnectionToServer)
             {
-                client.Credentials = new NetworkCredential("admin", "admin");
-                using (MemoryStream stream = new MemoryStream(client.DownloadData($"ftp://192.168.0.117/ {userHelper.GetUser(customerId).ImageURL}")))
+                ServerHelper serverHelper = new ServerHelper();
+                try
                 {
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.UriSource = null;
-                    image.StreamSource = stream;
-                    image.EndInit();
-
-                    UserIcon.Source = image;
+                    UserIcon.Source = serverHelper.GetImageFromServer(userHelper.GetUser(customerId).ImageURL);
                 }
-            }
+                catch
+                {
+                    MessageBox.Show("Cannot connect to server.");
+                }
+            }          
         }
 
         //set the minimum size of window
@@ -129,7 +129,7 @@ namespace UI.window
         private void AccountPage_Click(object sender, RoutedEventArgs e)
         {
             //create account user control and add it to grid
-            Account account = new Account(customerId);
+            Account account = new Account(customerId, ConnectionToServer);
             UserContorlContainer.Children.Add(account);
 
             //show account page

@@ -26,7 +26,7 @@ namespace UI.user_control
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
-
+            //TODO sent message help page
         }
     }
 }
