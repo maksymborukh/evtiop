@@ -4,7 +4,6 @@ using evtiop.BLL.User;
 using Microsoft.Win32;
 using System;
 using System.IO;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -34,7 +33,14 @@ namespace UI.user_control
             UserId = Id;
             ImageName = UserInfo.image;
             ConnectionToServer = conn;
-            LoadImage();
+            if (!ConnectionToServer)
+            {
+                MessageBox.Show("Cannot connect to server");
+            }
+            else
+            {
+                LoadImage();
+            }
             this.DataContext = UserInfo;
         }
 

@@ -181,7 +181,7 @@
                 <Border x:Name="userIcon" MouseDown="userIcon_MouseDown" 
                         CornerRadius="50,50,50,50"
                         Width="40" Height="40" Cursor="Hand">
-                    <Image Source="/UI;component/images/bars_icon.png" x:Name="UserIcon"/>
+                    <Image Source="/UI;component/images/user_icon_w.png" x:Name="UserIcon"/>
                 </Border>
             </Grid>
 
