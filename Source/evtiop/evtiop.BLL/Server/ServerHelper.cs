@@ -37,10 +37,11 @@ namespace evtiop.BLL.Server
         {
             FtpWebRequest webRequest = (FtpWebRequest)FtpWebRequest.Create("ftp://192.168.0.117");
             webRequest.Credentials = new NetworkCredential("admin", "admin");
+            webRequest.Method = WebRequestMethods.Ftp.PrintWorkingDirectory;
 
             try
             {
-                WebResponse webResponse = webRequest.GetResponse();
+                webRequest.GetResponse();
                 return true;
             }
             catch

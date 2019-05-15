@@ -56,7 +56,7 @@
 
             <!-- menu icon -->
             <Grid Grid.Column="0" Style="{StaticResource HighlightGrid}">
-                <Image x:Name="menuIcon"  MouseDown="menuIcon_MouseDown" 
+                <Image x:Name="menuIcon"  MouseDown="MenuIcon_MouseDown" 
                        Source="/UI;component/images/bars_icon.png" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
@@ -91,14 +91,14 @@
                 </Grid>
 
                 <Grid Grid.Column="2" Style="{StaticResource HighlightGrid}" HorizontalAlignment="Left" Margin="0,14,0,16" Width="30">
-                    <Image x:Name="searchIcon" MouseDown="searchIcon_MouseDown" Cursor="Hand" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/UI;component/images/search_icon.png" Width="20" Height="20" Margin="1,0,0,0" />
+                    <Image x:Name="searchIcon" MouseDown="SearchIcon_MouseDown" Cursor="Hand" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/UI;component/images/search_icon.png" Width="20" Height="20" Margin="1,0,0,0" />
                 </Grid>
 
             </Grid>
 
             <!-- wish list icon -->
             <Grid Grid.Column="3" Style="{StaticResource HighlightGrid}">
-                <Image x:Name="heartIcon" MouseDown="heartIcon_MouseDown" Cursor="Hand" Source="/UI;component/images/heart_icon.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Image x:Name="heartIcon" MouseDown="HeartIcon_MouseDown" Cursor="Hand" Source="/UI;component/images/heart_icon.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
 
             <!-- basket icon -->
@@ -109,7 +109,7 @@
 
             <!-- user icon -->
             <Grid Grid.Column="5" Style="{StaticResource HighlightGrid}">
-                <Border x:Name="userIcon" MouseDown="userIcon_MouseDown" 
+                <Border x:Name="userIcon" MouseDown="UserIcon_MouseDown" 
                         CornerRadius="50,50,50,50"
                         Width="40" Height="40" Cursor="Hand">
                     <Image Source="/UI;component/images/user_icon_w.png" x:Name="UserIcon"/>

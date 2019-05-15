@@ -18,9 +18,9 @@ namespace UI.window
     /// </summary>
     public partial class StoreWindow : Window
     {
-        private long customerId;
-        private UserHelper userHelper;
-        private bool ConnectionToServer = false;
+        private readonly long customerId;
+        private readonly UserHelper userHelper;
+        private readonly bool ConnectionToServer = false;
         public StoreWindow()
         {
             InitializeComponent();
@@ -68,7 +68,7 @@ namespace UI.window
             this.MinHeight = 600;
         }
 
-        private void searchIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        private void SearchIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
         }
@@ -87,7 +87,7 @@ namespace UI.window
         }
 
         //click on heart icon
-        private void heartIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        private void HeartIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //create wishlist user control
             WishList wishList = new WishList();
@@ -100,7 +100,7 @@ namespace UI.window
         }
 
         //click on menu icon
-        private void menuIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        private void MenuIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //animate bars icon
             if (menuIcon.Tag.ToString() == "closed")
@@ -118,7 +118,7 @@ namespace UI.window
         }
 
         //click on user icon 
-        private void userIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        private void UserIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //open or close menu
             if (userMenuButtons.Tag.ToString() == "closed")
