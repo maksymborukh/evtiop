@@ -1,4 +1,5 @@
-﻿using evtiop.BLL.Server;
+﻿using evtiop.BLL.DTO;
+using evtiop.BLL.Server;
 using evtiop.BLL.Static;
 using evtiop.BLL.Transfer;
 using evtiop.BLL.User;
@@ -28,6 +29,9 @@ namespace UI.window
             SettingUserButton.IsEnabled = false;
 
             StaticUserInfo.CustomerId = 0;
+
+            CartPage cartPage = new CartPage();
+            AmountInCart.Text = StaticBasketInfo.ProductsInBasket.ToString();
         }
 
         public StoreWindow(long Id)
@@ -36,6 +40,8 @@ namespace UI.window
 
             StaticUserInfo.CustomerId = Id;
 
+            CartPage cartPage = new CartPage();
+            AmountInCart.Text = StaticBasketInfo.ProductsInBasket.ToString();
             userHelper = new UserHelper();
 
             ServerHelper serverHelper = new ServerHelper();
@@ -180,6 +186,8 @@ namespace UI.window
             {
                 LoadImage();
             }
+
+            AmountInCart.Text = StaticBasketInfo.ProductsInBasket.ToString();
         }
 
         private void SettingPage_Click(object sender, RoutedEventArgs e)
@@ -257,9 +265,8 @@ namespace UI.window
 
             dynamic item = ProductList.SelectedItem as dynamic;
             long prodId = item.ID;
-            int q = item.Quantity;
 
-            if (!cartHelper.Add(prodId, q))
+            if (!cartHelper.Add(prodId))
             {
                 MessageBox.Show("Error. Try again later.");
             }
@@ -267,7 +274,7 @@ namespace UI.window
             {
                 MessageBox.Show("Added to cart.");
             }
-            //todo check if basket exist
+            
         }
     }
 }

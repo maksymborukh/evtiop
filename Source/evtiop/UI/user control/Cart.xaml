@@ -88,7 +88,8 @@
             </Grid>
 
             <!-- container of products -->
-            <ListBox Grid.Column="1" Grid.Row="3" 
+            <ListBox x:Name="CartList" Grid.Column="1" Grid.Row="3" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      ItemsSource="{Binding Source={StaticResource cartProvider}}"
                      ItemsPanel="{StaticResource cartPlacement}">
                 <!-- style of product item -->
@@ -133,19 +134,21 @@
                                                     </Grid.ColumnDefinitions>
 
                                                     <!-- minus icon -->
-                                                    <Image Grid.Column="0" Height="15" Cursor="Hand" Source="/UI;component/images/minus_icon.png" 
-                                   MouseDown="Minus_MouseDown"/>
+                                                    <Button Grid.Column="0" Height="15" Cursor="Hand" Click="Minus_MouseDown">
+                                                        <Image  Source="/UI;component/images/minus_icon.png"/>
+                                                    </Button>
 
                                                     <!-- quantity number -->
-                                                    <TextBox x:Name="quantityTextBox" x:Uid="t" Text="1" Grid.Column="1" Height="20" Margin="3 0 3 0"/>
+                                                    <TextBox x:Name="quantityTextBox" Text="{Binding Path=quantity}" Grid.Column="1" Height="20" Margin="3 0 3 0"/>
 
                                                     <!-- plus icon -->
-                                                    <Image Grid.Column="2" Height="15" Cursor="Hand" Source="/UI;component/images/plus_icon.png"
-                                   MouseDown="Plus_MouseDown"/>
+                                                    <Button Grid.Column="2" Height="15" Cursor="Hand" Click="Plus_MouseDown">
+                                                        <Image Source="/UI;component/images/plus_icon.png"/>
+                                                    </Button>
                                                 </Grid>
 
                                                 <!-- total price -->
-                                                <TextBlock Grid.Column="5" Text="{Binding Path=Total}" FontFamily="SimSun" FontSize="14" 
+                                                <TextBlock Grid.Column="5" Text="{Binding Path=total}" FontFamily="SimSun" FontSize="14" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                                                 <!-- remove from cart -->
@@ -155,6 +158,13 @@
                                             </Grid>
                                         </Border>
                                     </StackPanel>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                            <Setter Property="IsSelected" Value="True"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                    
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
