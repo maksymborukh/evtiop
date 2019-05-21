@@ -1,9 +1,14 @@
 ﻿using evtiop.BLL.DTO;
 using evtiop.BLL.ObsCollections;
 using evtiop.BLL.Server;
+using evtiop.BLL.Transfer;
 using evtiop.BLL.User;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -18,9 +23,11 @@ namespace UI.window
     /// </summary>
     public partial class StoreWindow : Window
     {
-        private readonly long customerId;
+        private readonly long customerId = 0;
         private readonly UserHelper userHelper;
         private readonly bool ConnectionToServer = false;
+        private int inCart = 0;
+
         public StoreWindow()
         {
             InitializeComponent();
@@ -41,7 +48,7 @@ namespace UI.window
             }
             else
             {
-                LoadImage();
+                LoadImage();              
             }
         }
 
@@ -77,7 +84,7 @@ namespace UI.window
         private void Basket_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //create cart user control
-            Cart basket = new Cart();
+            Cart basket = new Cart(customerId);
 
             //add cart user control to grid
             UserContorlContainer.Children.Add(basket);
@@ -243,6 +250,26 @@ namespace UI.window
         private void Category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //TODO category change
+        }
+
+        private void Buy_Click(object sender, RoutedEventArgs e)
+        {
+            //ProductList.se
+            CartHelper cartHelper = new CartHelper();
+            
+            dynamic item = ProductList.SelectedItem as dynamic;
+            long prodId = item.ID;
+            int q = item.Quantity;
+
+            if (!cartHelper.Add(customerId, prodId, q))
+            {
+                MessageBox.Show("Error. Try again later.");
+            }
+            else
+            {
+                MessageBox.Show("Ok");
+            }
+            //todo check if basket exist
         }
     }
 }

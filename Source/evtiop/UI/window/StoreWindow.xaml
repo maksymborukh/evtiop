@@ -15,20 +15,10 @@
 
     <Window.Resources>
         
-        <!-- provider for getting data -->
-        <!--<ObjectDataProvider x:Key="productProvider"
-                ObjectType="{x:Type local:ProductRepository}" MethodName="GetProducts" />-->
-
         <!-- placement of product items -->
         <ItemsPanelTemplate x:Key="listPanelTemplate">
             <WrapPanel />
         </ItemsPanelTemplate>
-
-        <!-- style of product in categories -->
-        <DataTemplate x:Key="Categories">
-            <!--<Button Content="{Binding Path=Name}" Style="{StaticResource CategoryButton}"/>-->
-            <ListBoxItem Content="f" />
-        </DataTemplate>
 
         <!-- placement of categories -->
         <ItemsPanelTemplate x:Key="categoryPanel">
@@ -39,6 +29,10 @@
         <ObjectDataProvider x:Key="categoryProvider" 
                             ObjectType="{x:Type Rep:CategoryRepository}" MethodName="GetCategories"/>
 
+        <!-- provider for getting data -->
+        <ObjectDataProvider x:Key="productProvider"
+                            ObjectType="{x:Type Rep:ProductRepository}" MethodName="GetProducts"/>
+        
     </Window.Resources>
 
     <Grid>
@@ -104,7 +98,9 @@
             <!-- basket icon -->
             <Grid Grid.Column="4" Style="{StaticResource HighlightGrid}">
                 <Image MouseDown="Basket_MouseDown" Cursor="Hand" Source="/UI;component/images/cart_icon.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Border x:Name="quantityInBasket" Cursor="Hand" MouseDown="Basket_MouseDown" CornerRadius="10,10,10,10" Background="Black" Width="25" Height="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,12,10.4,0"/>
+                <Border x:Name="quantityInBasket" Cursor="Hand" MouseDown="Basket_MouseDown" CornerRadius="10,10,10,10" Background="White" Width="25" Height="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,12,10.4,0">
+                    <TextBlock x:Name="AmountInCart" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
             </Grid>
 
             <!-- user icon -->
@@ -123,8 +119,8 @@
                      SelectionChanged="ProductList_SelectionChanged"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      ItemsPanel="{StaticResource listPanelTemplate}"
-                     Margin="0,60,0,0">
-            <!--ItemsSource="{Binding Source={StaticResource productProvider}}"-->
+                     Margin="0,60,0,0"
+            ItemsSource="{Binding Source={StaticResource productProvider}}">
 
             <!-- style of product item -->
             <ListBox.ItemContainerStyle>
@@ -148,7 +144,7 @@
                                                    Cursor="Hand"/>
 
                                             <!-- images of product -->
-                                            <Image Source="/UI;component/images/noserverconn.png"  Grid.Column="1"
+                                            <Image x:Name="MainProductImage" Source="{Binding Path=ImageSource}" Grid.Column="1"
                                                    Width="220" Height="220"/>
 
                                             <!-- right arrow -->
@@ -199,7 +195,7 @@
                                             <TextBlock Width="100" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="5,5,0,0" Text="{Binding Path=Price}" FontSize="24" />
 
                                             <!-- buy button-->
-                                            <Button  Width="90" Height="40" Margin="10,5,0,0" Style="{StaticResource  BuyButton}">
+                                            <Button  Width="90" Height="40" Margin="10,5,0,0" Style="{StaticResource  BuyButton}" Click="Buy_Click">
                                                 <WrapPanel >
                                                     <Image Height="20" Source="/UI;component/images/cart_icon.png"  />
                                                     <TextBlock Text="Buy" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="8,0,0,0"/>
@@ -225,6 +221,9 @@
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </EventTrigger>
+                                    <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                        <Setter Property="IsSelected" Value="True"/>
+                                    </Trigger>
                                 </ControlTemplate.Triggers>
 
                             </ControlTemplate>

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using evtiop.BLL.DTO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -9,8 +10,9 @@ namespace UI.user_control
     /// </summary>
     public partial class Cart : UserControl
     {
-        public Cart()
+        public Cart(long id)
         {
+            CartPage cartPage = new CartPage(id);
             InitializeComponent();
         }
 

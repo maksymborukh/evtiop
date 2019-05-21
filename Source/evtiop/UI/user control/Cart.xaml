@@ -4,71 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI.user_control"
+             xmlns:Rep="clr-namespace:evtiop.BLL.DTO;assembly=evtiop.BLL"
              mc:Ignorable="d" 
              MinHeight="360" MinWidth="560">
 
     <UserControl.Resources>
-                
-        <DataTemplate x:Key="CartProduct">
-            <!-- style of product in cart -->
-            <StackPanel Margin="0 0 0 5" Width="Auto" Height="42" Grid.Column="1" Grid.Row="3">
-                <Border BorderBrush="Black" BorderThickness="0 1 0 1">
-                    <Grid Height="40">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5"/>
-                            <ColumnDefinition Width="0.7*"/>
-                            <ColumnDefinition Width="1.3*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="5"/>
-                        </Grid.ColumnDefinitions>
 
-                        <!-- product image -->
-                        <Image Grid.Column="1" Source="/UI;component/images/bars_icon.png" />
+        <!-- placement of categories -->
+        <ItemsPanelTemplate x:Key="cartPlacement">
+            <StackPanel />
+        </ItemsPanelTemplate>
 
-                        <!-- product name and details -->
-                        <TextBlock Grid.Column="2" Text="Example" FontFamily="SimSun" 
-                                   HorizontalAlignment="Center" FontSize="14"/>
-
-                        <!-- product price -->
-                        <TextBlock Grid.Column="3" Text="Price" FontFamily="SimSun" 
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   FontSize="14"/>
-
-                        <!-- make form for quantity -->
-                        <Grid Grid.Column="4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <!-- minus icon -->
-                            <Image Grid.Column="0" Height="15" Cursor="Hand" Source="/UI;component/images/minus_icon.png" 
-                                   MouseDown="Minus_MouseDown"/>
-
-                            <!-- quantity number -->
-                            <TextBox x:Name="quantityTextBox" x:Uid="t" Text="1" Grid.Column="1" Height="20" Margin="3 0 3 0"/>
-
-                            <!-- plus icon -->
-                            <Image Grid.Column="2" Height="15" Cursor="Hand" Source="/UI;component/images/plus_icon.png"
-                                   MouseDown="Plus_MouseDown"/>
-                        </Grid>
-
-                        <!-- total price -->
-                        <TextBlock Grid.Column="5" Text="Total" FontFamily="SimSun" FontSize="14" 
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-                        <!-- remove from cart -->
-                        <Image Grid.Column="6" Height="15"
-                               MouseDown="RemoveFromCart_MouseDown" 
-                               Style="{StaticResource CloseButtonStyle}"/>
-                    </Grid>
-                </Border>
-            </StackPanel>
-        </DataTemplate>
+        <!-- provider for getting categories -->
+        <ObjectDataProvider x:Key="cartProvider" 
+                            ObjectType="{x:Type Rep:CartPage}" MethodName="GetProducts"/>
 
     </UserControl.Resources>
     
@@ -140,8 +89,77 @@
 
             <!-- container of products -->
             <ListBox Grid.Column="1" Grid.Row="3" 
-                     ItemTemplate="{StaticResource CartProduct}">
-                
+                     ItemsSource="{Binding Source={StaticResource cartProvider}}"
+                     ItemsPanel="{StaticResource cartPlacement}">
+                <!-- style of product item -->
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <!-- style of product in cart -->
+                                    <StackPanel Margin="0 0 0 5" Width="Auto" Height="42" Grid.Column="1" Grid.Row="3">
+                                        <Border BorderBrush="Black" BorderThickness="0 1 0 1">
+                                            <Grid Height="40">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="5"/>
+                                                    <ColumnDefinition Width="0.7*"/>
+                                                    <ColumnDefinition Width="1.3*"/>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="30"/>
+                                                    <ColumnDefinition Width="5"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- product image -->
+                                                <Image Grid.Column="1" Source="/UI;component/images/noserverconn.png" />
+
+                                                <!-- product name and details -->
+                                                <TextBlock Grid.Column="2" Text="{Binding Path=Description}" FontFamily="SimSun" 
+                                   HorizontalAlignment="Center" FontSize="14"/>
+
+                                                <!-- product price -->
+                                                <TextBlock Grid.Column="3" Text="{Binding Path=Price}" FontFamily="SimSun" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="14"/>
+
+                                                <!-- make form for quantity -->
+                                                <Grid Grid.Column="4">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="2*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <!-- minus icon -->
+                                                    <Image Grid.Column="0" Height="15" Cursor="Hand" Source="/UI;component/images/minus_icon.png" 
+                                   MouseDown="Minus_MouseDown"/>
+
+                                                    <!-- quantity number -->
+                                                    <TextBox x:Name="quantityTextBox" x:Uid="t" Text="1" Grid.Column="1" Height="20" Margin="3 0 3 0"/>
+
+                                                    <!-- plus icon -->
+                                                    <Image Grid.Column="2" Height="15" Cursor="Hand" Source="/UI;component/images/plus_icon.png"
+                                   MouseDown="Plus_MouseDown"/>
+                                                </Grid>
+
+                                                <!-- total price -->
+                                                <TextBlock Grid.Column="5" Text="{Binding Path=Total}" FontFamily="SimSun" FontSize="14" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                                <!-- remove from cart -->
+                                                <Image Grid.Column="6" Height="15"
+                               MouseDown="RemoveFromCart_MouseDown" 
+                               Style="{StaticResource CloseButtonStyle}"/>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
             </ListBox>
 
 
