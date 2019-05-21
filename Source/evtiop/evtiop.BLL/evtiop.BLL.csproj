@@ -54,6 +54,9 @@
     <Compile Include="ObsCollections\ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\ServerHelper.cs" />
+    <Compile Include="Static\StaticBasketInfo.cs" />
+    <Compile Include="Static\StaticServerInfo.cs" />
+    <Compile Include="Static\StaticUserInfo.cs" />
     <Compile Include="Transfer\CartHelper.cs" />
     <Compile Include="User\UserHelper.cs" />
     <Compile Include="Validation\CustomerValidation.cs" />

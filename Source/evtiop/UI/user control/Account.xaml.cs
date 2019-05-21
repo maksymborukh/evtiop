@@ -1,5 +1,6 @@
 ﻿using evtiop.BLL.DTO;
 using evtiop.BLL.Server;
+using evtiop.BLL.Static;
 using evtiop.BLL.User;
 using Microsoft.Win32;
 using System;
@@ -17,23 +18,18 @@ namespace UI.user_control
     public partial class Account : UserControl
     {
         public UserInfo UserInfo { get; set; }
-        private long UserId;
         private string ImageName { get; set; }
         private string ImagePath { get; set; }
-        private bool ConnectionToServer = false;
+
         public Account()
         {
             InitializeComponent();
-        }
-
-        public Account(long Id, bool conn)
-        {
-            InitializeComponent();
-            UserInfo = new UserInfo(Id);
-            UserId = Id;
+            UserInfo = new UserInfo(StaticUserInfo.CustomerId);
             ImageName = UserInfo.image;
-            ConnectionToServer = conn;
-            LoadImage();
+            if (StaticServerInfo.IsEnableConnectionToServer)
+            {
+                LoadImage();
+            }
             this.DataContext = UserInfo;
         }
 
@@ -87,7 +83,7 @@ namespace UI.user_control
             detect = detect.Replace(" ", string.Empty);
             setField(detect);
             UserHelper userHelper = new UserHelper();
-            if (userHelper.UpdateUser(UserInfo, UserId))
+            if (userHelper.UpdateUser(UserInfo, StaticUserInfo.CustomerId))
             {
                 MessageBox.Show("Successfully updated.");
             }
@@ -162,7 +158,7 @@ namespace UI.user_control
 
         private void SaveImageChange_Click(object sender, RoutedEventArgs e)
         {
-            if (ConnectionToServer)
+            if (StaticServerInfo.IsEnableConnectionToServer)
             {
                 ServerHelper serverHelper = new ServerHelper();
                 try
@@ -176,7 +172,7 @@ namespace UI.user_control
 
                     UserHelper userHelper = new UserHelper();
                     UserInfo.image = Path.GetFileName(UserImage.Source.ToString());
-                    if (userHelper.UpdateUser(UserInfo, UserId))
+                    if (userHelper.UpdateUser(UserInfo, StaticUserInfo.CustomerId))
                     {
                         MessageBox.Show("Successfully updated.");
                     }
@@ -200,7 +196,7 @@ namespace UI.user_control
 
         private void LoadImage()
         {
-            if (ConnectionToServer)
+            if (StaticServerInfo.IsEnableConnectionToServer)
             {
                 ServerHelper serverHelper = new ServerHelper();
                 try

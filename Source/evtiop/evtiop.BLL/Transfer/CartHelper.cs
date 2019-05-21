@@ -1,4 +1,5 @@
-﻿using evtiop.DAL.Entities;
+﻿using evtiop.BLL.Static;
+using evtiop.DAL.Entities;
 using evtiop.DAL.Operations;
 using System;
 
@@ -6,12 +7,12 @@ namespace evtiop.BLL.Transfer
 {
     public class CartHelper
     {
-        public bool Add(long custId, long productId, int quant)
+        public bool Add(long productId, int quant)
         {
             BasketOperations basketOperations = new BasketOperations();
             Basket basket = new Basket();
 
-            basket.CustomerID = custId;
+            basket.CustomerID = StaticUserInfo.CustomerId;
 
             BasketProducts basketProducts = new BasketProducts();
             
@@ -21,7 +22,7 @@ namespace evtiop.BLL.Transfer
             try
             {
                 basketOperations.Insert(basket);
-                basketProducts.BasketID = basketOperations.GetByCustomerID(custId);
+                basketProducts.BasketID = basketOperations.GetByCustomerID(StaticUserInfo.CustomerId);
 
                 BasketProductOperations basketProductOperations = new BasketProductOperations();
                 basketProductOperations.Insert(basketProducts);

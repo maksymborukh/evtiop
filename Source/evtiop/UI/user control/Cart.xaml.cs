@@ -1,5 +1,4 @@
-﻿using evtiop.BLL.DTO;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -10,25 +9,24 @@ namespace UI.user_control
     /// </summary>
     public partial class Cart : UserControl
     {
-        public Cart(long id)
+        public Cart()
         {
-            CartPage cartPage = new CartPage(id);
             InitializeComponent();
         }
 
         private void Buy_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void Minus_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+
         }
 
         private void Plus_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+
         }
 
         private void RemoveFromCart_MouseDown(object sender, MouseButtonEventArgs e)

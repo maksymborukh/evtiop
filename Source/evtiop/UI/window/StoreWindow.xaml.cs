@@ -1,18 +1,10 @@
-﻿using evtiop.BLL.DTO;
-using evtiop.BLL.ObsCollections;
-using evtiop.BLL.Server;
+﻿using evtiop.BLL.Server;
+using evtiop.BLL.Static;
 using evtiop.BLL.Transfer;
 using evtiop.BLL.User;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Net;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using UI.animation;
 using UI.user_control;
 
@@ -23,49 +15,56 @@ namespace UI.window
     /// </summary>
     public partial class StoreWindow : Window
     {
-        private readonly long customerId = 0;
         private readonly UserHelper userHelper;
-        private readonly bool ConnectionToServer = false;
-        private int inCart = 0;
 
         public StoreWindow()
         {
             InitializeComponent();
+
+            ServerHelper serverHelper = new ServerHelper();
+            StaticServerInfo.IsEnableConnectionToServer = serverHelper.CheckFtpConnection();
+
             AccountUserButton.IsEnabled = false;
             SettingUserButton.IsEnabled = false;
+
+            StaticUserInfo.CustomerId = 0;
         }
 
         public StoreWindow(long Id)
         {
-            InitializeComponent();         
-            customerId = Id;
+            InitializeComponent();
+
+            StaticUserInfo.CustomerId = Id;
+
             userHelper = new UserHelper();
+
             ServerHelper serverHelper = new ServerHelper();
-            ConnectionToServer = serverHelper.CheckFtpConnection();
-            if (!ConnectionToServer)
+            StaticServerInfo.IsEnableConnectionToServer = serverHelper.CheckFtpConnection();
+
+            if (!StaticServerInfo.IsEnableConnectionToServer)
             {
                 MessageBox.Show("Cannot connect to server");
             }
             else
             {
-                LoadImage();              
+                LoadImage();
             }
         }
 
         private void LoadImage()
         {
-            if (ConnectionToServer)
+            if (StaticServerInfo.IsEnableConnectionToServer)
             {
                 ServerHelper serverHelper = new ServerHelper();
                 try
                 {
-                    UserIcon.Source = serverHelper.GetImageFromServer(userHelper.GetUser(customerId).ImageURL);
+                    UserIcon.Source = serverHelper.GetImageFromServer(userHelper.GetUser(StaticUserInfo.CustomerId).ImageURL);
                 }
                 catch
                 {
                     MessageBox.Show("Cannot connect to server.");
                 }
-            }          
+            }
         }
 
         //set the minimum size of window
@@ -84,7 +83,7 @@ namespace UI.window
         private void Basket_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //create cart user control
-            Cart basket = new Cart(customerId);
+            Cart basket = new Cart();
 
             //add cart user control to grid
             UserContorlContainer.Children.Add(basket);
@@ -144,7 +143,7 @@ namespace UI.window
         private void AccountPage_Click(object sender, RoutedEventArgs e)
         {
             //create account user control and add it to grid
-            Account account = new Account(customerId, ConnectionToServer);
+            Account account = new Account();
             UserContorlContainer.Children.Add(account);
 
             //show account page
@@ -177,10 +176,10 @@ namespace UI.window
             ProductList.IsEnabled = true;
 
             //update user icon
-            if (customerId != 0)
+            if (StaticUserInfo.CustomerId != 0)
             {
                 LoadImage();
-            }          
+            }
         }
 
         private void SettingPage_Click(object sender, RoutedEventArgs e)
@@ -200,16 +199,16 @@ namespace UI.window
         {
             //create help user control and add it to grid
             UserHelp userHelp;
-            if (customerId != 0)
+            if (StaticUserInfo.CustomerId != 0)
             {
-                userHelp = new UserHelp(customerId);
+                userHelp = new UserHelp(StaticUserInfo.CustomerId);
             }
             else
             {
                 userHelp = new UserHelp();
             }
             UserContorlContainer.Children.Add(userHelp);
-            
+
             //show help page
             ShowUserControlPage();
 
@@ -254,20 +253,19 @@ namespace UI.window
 
         private void Buy_Click(object sender, RoutedEventArgs e)
         {
-            //ProductList.se
             CartHelper cartHelper = new CartHelper();
-            
+
             dynamic item = ProductList.SelectedItem as dynamic;
             long prodId = item.ID;
             int q = item.Quantity;
 
-            if (!cartHelper.Add(customerId, prodId, q))
+            if (!cartHelper.Add(prodId, q))
             {
                 MessageBox.Show("Error. Try again later.");
             }
             else
             {
-                MessageBox.Show("Ok");
+                MessageBox.Show("Added to cart.");
             }
             //todo check if basket exist
         }
