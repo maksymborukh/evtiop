@@ -55,6 +55,15 @@ namespace evtiop.BLL.DTO
                 OnPropertyChanged("lastname");
             }
         }
+        public string email
+        {
+            get { return EmailAddress; }
+            set
+            {
+                EmailAddress = value;
+                OnPropertyChanged("email");
+            }
+        }
         public string pass
         {
             get { return Password; }

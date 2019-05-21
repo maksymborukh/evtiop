@@ -52,31 +52,31 @@
             <!-- Name -->
             <TextBlock Text="Name" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
                        Foreground="Gray" Grid.Column="1" Grid.Row="3"/>
-            <TextBox Text="Mike" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+            <TextBox x:Name="firstName" Text="{Binding Path=firstname}" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
                        Grid.Column="2" Grid.Row="3"/>
 
             <!-- last Name -->
             <TextBlock Text="Last Name" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
                        Foreground="Gray" Grid.Column="1" Grid.Row="5"/>
-            <TextBox Text="Smith" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+            <TextBox x:Name="lastName" Text="{Binding Path=lastname}" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
                        Grid.Column="2" Grid.Row="5"/>
 
             <!-- Email -->
             <TextBlock Text="Email" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
                        Foreground="Gray" Grid.Column="1" Grid.Row="7"/>
-            <TextBox Text="someone@example.com" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+            <TextBox x:Name="email" Text="{Binding Path=email}" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
                        Grid.Column="2" Grid.Row="7"/>
 
             <!-- Subject -->
             <TextBlock Text="Subject" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
                        Foreground="Gray" Grid.Column="1" Grid.Row="9"/>
-            <TextBox Text="Subject" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
+            <TextBox x:Name="Subject" Text="Subject" FontSize="16" FontFamily="SimSun" FontWeight="Bold"
                        Grid.Column="2" Grid.Row="9"/>
 
             <!-- Message -->
             <TextBlock Text="Message" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
                        Foreground="Gray" Grid.Column="1" Grid.Row="11"/>
-            <TextBox Text="Message" FontSize="16" FontFamily="SimSun"
+            <TextBox x:Name="message" Text="Message" FontSize="16" FontFamily="SimSun"
                        Grid.Column="2" Grid.Row="11" Grid.RowSpan="7" AutoWordSelection="True" AcceptsTab="True" TextWrapping="Wrap"/>
 
             <Button  Content="Send" Grid.Column="1" Grid.Row="19"

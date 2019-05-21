@@ -80,6 +80,36 @@ namespace evtiop.DAL.Operations
             }
         }
 
+        public long GetByCustomerID(long cusId)
+        {
+            var parameters = new List<IDbDataParameter>();
+            parameters.Add(dbManager.CreateParameter("@CustomerId", cusId, DbType.Int64));
+
+            string commandText = "select * from baskets where CustomerId = @CustomerId;";
+            var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, parameters.ToArray(), out connection);
+            try
+            {
+                var basket = new Basket();
+                while (dataReader.Read())
+                {
+                    basket.ID = Convert.ToInt64(dataReader["Id"]);
+                    basket.CustomerID = Convert.ToInt64(dataReader["CustomerId"]);
+                    basket.Added = Convert.ToDateTime(dataReader["Added"]);
+                }
+
+                return basket.ID;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dataReader.Close();
+                dbManager.CloseConnection(connection);
+            }
+        }
+
         public long GetScalarValue(string commandText)
         {
             object scalarValue = dbManager.GetScalarValue(commandText, CommandType.Text);
@@ -121,7 +151,7 @@ namespace evtiop.DAL.Operations
         {
             var parameters = new List<IDbDataParameter>();
             parameters.Add(dbManager.CreateParameter("@Id", basket.ID, DbType.Int64));
-            parameters.Add(dbManager.CreateParameter("@CustomerID", 50, basket.CustomerID, DbType.String));
+            parameters.Add(dbManager.CreateParameter("@CustomerID", basket.CustomerID, DbType.Int64));
             parameters.Add(dbManager.CreateParameter("@Added", basket.Added, DbType.DateTime));
 
             return parameters;

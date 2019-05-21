@@ -3,6 +3,7 @@ create table if not exists helps(
 	FirstName varchar(255) not null,
 	LastName varchar(255)not null,
 	EmailAddress varchar(255) not null,
+	Subject varchar(255) not null,
 	Message text not null,
 	CreatedAt timestamp DEFAULT CURRENT_TIMESTAMP not null,
 	CustomerId bigserial not null,

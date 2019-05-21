@@ -231,5 +231,11 @@
       <Name>evtiop.BLL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\noserverconn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\user_icon_w.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,14 +1,5 @@
 ﻿using evtiop.DAL.Core;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
 
 namespace evtiop.DAL.Migration
 {
@@ -22,7 +13,7 @@ namespace evtiop.DAL.Migration
 
             string path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())));
             DirectoryInfo TablesdirectoryInfo = new DirectoryInfo(path + @"\evtiop.DAL\Migration\Scripts\Tables\");
-            
+
             //string tables = "select count(*) from INFORMATION_SCHEMA.TABLES where table_type = 'BASE TABLE' and table_schema = 'public';";
 
             foreach (var file in TablesdirectoryInfo.GetFiles("*.sql"))

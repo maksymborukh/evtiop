@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using UI.window;
 using evtiop.BLL.DTO;
+using System.Net;
 
 namespace UI.user_control
 {

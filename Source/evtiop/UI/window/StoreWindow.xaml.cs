@@ -1,11 +1,11 @@
 ﻿using evtiop.BLL.DTO;
+using evtiop.BLL.Server;
+using evtiop.BLL.Static;
+using evtiop.BLL.Transfer;
 using evtiop.BLL.User;
-using System.IO;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using UI.animation;
 using UI.user_control;
 
@@ -16,38 +16,59 @@ namespace UI.window
     /// </summary>
     public partial class StoreWindow : Window
     {
-        private long customerId;
-        private UserHelper userHelper;
+        private readonly UserHelper userHelper;
+
         public StoreWindow()
         {
-            InitializeComponent();           
-            //todo make unable user icon
+            InitializeComponent();
+
+            ServerHelper serverHelper = new ServerHelper();
+            StaticServerInfo.IsEnableConnectionToServer = serverHelper.CheckFtpConnection();
+
+            AccountUserButton.IsEnabled = false;
+            SettingUserButton.IsEnabled = false;
+
+            StaticUserInfo.CustomerId = 0;
+
+            CartPage cartPage = new CartPage();
+            AmountInCart.Text = StaticBasketInfo.ProductsInBasket.ToString();
         }
 
         public StoreWindow(long Id)
         {
-            InitializeComponent();         
-            customerId = Id;
+            InitializeComponent();
+
+            StaticUserInfo.CustomerId = Id;
+
+            CartPage cartPage = new CartPage();
+            AmountInCart.Text = StaticBasketInfo.ProductsInBasket.ToString();
             userHelper = new UserHelper();
-            LoadImage();
+
+            ServerHelper serverHelper = new ServerHelper();
+            StaticServerInfo.IsEnableConnectionToServer = serverHelper.CheckFtpConnection();
+
+            if (!StaticServerInfo.IsEnableConnectionToServer)
+            {
+                MessageBox.Show("Cannot connect to server");
+            }
+            else
+            {
+                LoadImage();
+            }
         }
 
         private void LoadImage()
         {
-            using (WebClient client = new WebClient())
+            if (StaticServerInfo.IsEnableConnectionToServer)
             {
-                client.Credentials = new NetworkCredential("admin", "admin");
-                using (MemoryStream stream = new MemoryStream(client.DownloadData($"ftp://192.168.0.117/ {userHelper.GetUser(customerId).ImageURL}")))
+                ServerHelper serverHelper = new ServerHelper();
+                try
                 {
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.UriSource = null;
-                    image.StreamSource = stream;
-                    image.EndInit();
-
-                    UserIcon.Source = image;
+                    UserIcon.Source = serverHelper.GetImageFromServer(userHelper.GetUser(StaticUserInfo.CustomerId).ImageURL);
+                }
+                catch
+                {
+                    MessageBox.Show("Cannot connect to server.");
                 }
             }
         }
@@ -59,7 +80,7 @@ namespace UI.window
             this.MinHeight = 600;
         }
 
-        private void searchIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        private void SearchIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
         }
@@ -78,7 +99,7 @@ namespace UI.window
         }
 
         //click on heart icon
-        private void heartIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        private void HeartIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //create wishlist user control
             WishList wishList = new WishList();
@@ -91,7 +112,7 @@ namespace UI.window
         }
 
         //click on menu icon
-        private void menuIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        private void MenuIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //animate bars icon
             if (menuIcon.Tag.ToString() == "closed")
@@ -109,7 +130,7 @@ namespace UI.window
         }
 
         //click on user icon 
-        private void userIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        private void UserIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //open or close menu
             if (userMenuButtons.Tag.ToString() == "closed")
@@ -128,7 +149,7 @@ namespace UI.window
         private void AccountPage_Click(object sender, RoutedEventArgs e)
         {
             //create account user control and add it to grid
-            Account account = new Account(customerId);
+            Account account = new Account();
             UserContorlContainer.Children.Add(account);
 
             //show account page
@@ -161,7 +182,12 @@ namespace UI.window
             ProductList.IsEnabled = true;
 
             //update user icon
-            LoadImage();
+            if (StaticUserInfo.CustomerId != 0)
+            {
+                LoadImage();
+            }
+
+            AmountInCart.Text = StaticBasketInfo.ProductsInBasket.ToString();
         }
 
         private void SettingPage_Click(object sender, RoutedEventArgs e)
@@ -180,14 +206,22 @@ namespace UI.window
         private void HelpPage_Click(object sender, RoutedEventArgs e)
         {
             //create help user control and add it to grid
-            UserHelp userHelp = new UserHelp();
+            UserHelp userHelp;
+            if (StaticUserInfo.CustomerId != 0)
+            {
+                userHelp = new UserHelp(StaticUserInfo.CustomerId);
+            }
+            else
+            {
+                userHelp = new UserHelp();
+            }
             UserContorlContainer.Children.Add(userHelp);
-
-            //close user menu
-            CloseUserMenu();
 
             //show help page
             ShowUserControlPage();
+
+            //close user menu
+            CloseUserMenu();
         }
 
         //close user menu
@@ -218,6 +252,29 @@ namespace UI.window
         private void RightArrow_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void Category_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //TODO category change
+        }
+
+        private void Buy_Click(object sender, RoutedEventArgs e)
+        {
+            CartHelper cartHelper = new CartHelper();
+
+            dynamic item = ProductList.SelectedItem as dynamic;
+            long prodId = item.ID;
+
+            if (!cartHelper.Add(prodId))
+            {
+                MessageBox.Show("Error. Try again later.");
+            }
+            else
+            {
+                MessageBox.Show("Added to cart.");
+            }
+            
         }
     }
 }

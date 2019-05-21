@@ -36,7 +36,7 @@ namespace evtiop.DAL.Operations
                     product.Price = Convert.ToInt32(dataReader["Price"]);
                     product.Quantity = Convert.ToInt32(dataReader["Quantity"]);
                     product.ManufacturerID = Convert.ToInt64(dataReader["ManufacturerId"]);
-                    product.ImageID = Convert.ToInt64(dataReader["ImageId"]);
+                    product.ImageURL = dataReader["ImageURL"].ToString();
                     products.Add(product);
                 }
 
@@ -71,7 +71,7 @@ namespace evtiop.DAL.Operations
                     product.Price = Convert.ToInt32(dataReader["Price"]);
                     product.Quantity = Convert.ToInt32(dataReader["Quantity"]);
                     product.ManufacturerID = Convert.ToInt64(dataReader["ManufacturerId"]);
-                    product.ImageID = Convert.ToInt64(dataReader["ImageId"]);
+                    product.ImageURL = dataReader["ImageURL"].ToString();
                 }
 
                 return product;
@@ -95,8 +95,8 @@ namespace evtiop.DAL.Operations
 
         public void Insert(Product product)
         {
-            string commandText = "insert into products (Name, Description, Price, Quantity, ManufacturerId, ImageId)" +
-                 "values (@Name, @Description, @Price, @Quantity, @ManufacturerId, @ImageId);";
+            string commandText = "insert into products (Name, Description, Price, Quantity, ManufacturerId, ImageURL)" +
+                 "values (@Name, @Description, @Price, @Quantity, @ManufacturerId, @ImageURL);";
             dbManager.Insert(commandText, CommandType.Text, Param(product).ToArray());
         }
 
@@ -115,7 +115,7 @@ namespace evtiop.DAL.Operations
                 product.Price = Convert.ToInt32(row["Price"]);
                 product.Quantity = Convert.ToInt32(row["Quantity"]);
                 product.ManufacturerID = Convert.ToInt64(row["ManufacturerId"]);
-                product.ImageID = Convert.ToInt64(row["ImageID"]);
+                product.ImageURL = row["ImageURL"].ToString();
                 products.Add(product);
             }
 
@@ -125,7 +125,7 @@ namespace evtiop.DAL.Operations
         public void Update(Product product)
         {
             string commandText = "update products set Name = @Name, Description = @Description, " +
-                "Price = @Price, Quantity = @Quantity, ManufacturerId = @ManufacturerId, ImageId = @ImageId where Id = @Id;";
+                "Price = @Price, Quantity = @Quantity, ManufacturerId = @ManufacturerId, ImageURL = @ImageURL where Id = @Id;";
             dbManager.Update(commandText, CommandType.Text, Param(product).ToArray());
         }
 
@@ -138,7 +138,7 @@ namespace evtiop.DAL.Operations
             parameters.Add(dbManager.CreateParameter("@Price", product.Price, DbType.Int32));
             parameters.Add(dbManager.CreateParameter("@Quantity", product.Quantity, DbType.Int32));
             parameters.Add(dbManager.CreateParameter("@ManufacturerId", product.ManufacturerID, DbType.Int64));
-            parameters.Add(dbManager.CreateParameter("@ImageId", product.ImageID, DbType.Int64));
+            parameters.Add(dbManager.CreateParameter("@ImageURL", product.ImageURL, DbType.String));
 
             return parameters;
         }

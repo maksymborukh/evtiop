@@ -55,7 +55,7 @@
                     BorderBrush="Gray" BorderThickness="0 0 0 1"/>
             <TextBlock Text="Photo" FontSize="16" FontFamily="SimSun" FontWeight="Bold" 
                            Foreground="Gray" Grid.Column="1" Grid.Row="3"/>
-            <Image x:Name="UserImageSmall" Source="/UI;component/images/email_icon.png" HorizontalAlignment="Left" 
+            <Image x:Name="UserImageSmall" Source="/UI;component/images/noserverconn.png" HorizontalAlignment="Left" 
                    Grid.Column="2" Grid.Row="3"/>
             <Image Style="{StaticResource EditButtonStyle}" 
                            MouseDown="Image_MouseDown" Grid.Column="3" Grid.Row="3"/>
@@ -240,7 +240,7 @@
 
                 <!-- need to upload from computer -->
                 <Image x:Name="UserImage" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2" 
-                       Source="/UI;component/images/logo.png"/>
+                       Source="/UI;component/images/noserverconn.png"/>
                 
                 <Button  Content="Upload" Grid.Column="1" Grid.Row="3"
                         Click="Upload_Click" Style="{StaticResource EditButton}"/>

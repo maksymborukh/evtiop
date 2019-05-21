@@ -16,7 +16,7 @@ namespace evtiop.DAL.Operations
             var parameters = new List<IDbDataParameter>();
             parameters.Add(dbManager.CreateParameter("@Id", id, DbType.Int64));
 
-            string commandText = "delete from basketProducts where Id = @Id;";
+            string commandText = "delete from basketProducts where BasketId = @BasketId;";
             dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
         }
 
@@ -49,12 +49,44 @@ namespace evtiop.DAL.Operations
             }
         }
 
+        public List<BasketProducts> GetAllByID(long id)
+        {
+            var parameters = new List<IDbDataParameter>();
+            parameters.Add(dbManager.CreateParameter("@BasketId", id, DbType.Int64));
+
+            string commandText = "select * from basketProducts where BasketId = @BasketId";
+            var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
+            try
+            {
+                var basketProducts = new List<BasketProducts>();
+                while (dataReader.Read())
+                {
+                    var basketProduct = new BasketProducts();
+                    basketProduct.ProductID = Convert.ToInt64(dataReader["ProductId"]);
+                    basketProduct.BasketID = Convert.ToInt64(dataReader["BasketId"]);
+                    basketProduct.Quantity = Convert.ToInt32(dataReader["Quantity"]);
+                    basketProducts.Add(basketProduct);
+                }
+
+                return basketProducts;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dataReader.Close();
+                dbManager.CloseConnection(connection);
+            }
+        }
+
         public BasketProducts GetByID(long id)
         {
             var parameters = new List<IDbDataParameter>();
-            parameters.Add(dbManager.CreateParameter("@Id", id, DbType.Int64));
+            parameters.Add(dbManager.CreateParameter("@BasketId", id, DbType.Int64));
 
-            string commandText = "select * from basketProducts where Id = @Id;";
+            string commandText = "select * from basketProducts where BasketId = @BasketId;";
             var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, parameters.ToArray(), out connection);
             try
             {
@@ -112,7 +144,7 @@ namespace evtiop.DAL.Operations
 
         public void Update(BasketProducts basketProducts)
         {
-            string commandText = "update basketProducts set ProductId = @ProductId, BasketId = @BasketId, Quantity = @Quantity where Id = @Id;";
+            string commandText = "update basketProducts set ProductId = @ProductId, BasketId = @BasketId, Quantity = @Quantity where basketId = @BasketId;";
             dbManager.Update(commandText, CommandType.Text, Param(basketProducts).ToArray());
         }
 
