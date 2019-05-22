@@ -15,9 +15,7 @@
             <StackPanel />
         </ItemsPanelTemplate>
 
-        <!-- provider for getting categories -->
-        <ObjectDataProvider x:Key="cartProvider" 
-                            ObjectType="{x:Type Rep:CartPage}" MethodName="GetProducts"/>
+        <Rep:TotalPrice x:Key="TotalSum"/>
 
     </UserControl.Resources>
     
@@ -90,7 +88,7 @@
             <!-- container of products -->
             <ListBox x:Name="CartList" Grid.Column="1" Grid.Row="3" 
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                     ItemsSource="{Binding Source={StaticResource cartProvider}}"
+                     ItemsSource="{Binding}"
                      ItemsPanel="{StaticResource cartPlacement}">
                 <!-- style of product item -->
                 <ListBox.ItemContainerStyle>
@@ -114,7 +112,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <!-- product image -->
-                                                <Image Grid.Column="1" Source="/UI;component/images/noserverconn.png" />
+                                                <Image Grid.Column="1" Source="{Binding Path=ImageSource}" />
 
                                                 <!-- product name and details -->
                                                 <TextBlock Grid.Column="2" Text="{Binding Path=Description}" FontFamily="SimSun" 
@@ -163,6 +161,9 @@
                                         <Trigger Property="IsKeyboardFocusWithin" Value="True">
                                             <Setter Property="IsSelected" Value="True"/>
                                         </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="IsSelected" Value="True"/>
+                                        </Trigger>
                                     </ControlTemplate.Triggers>
                                     
                                 </ControlTemplate>
@@ -187,7 +188,7 @@
                            HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <!-- price amount -->
-                <TextBlock Text="352" Grid.Column="1" FontFamily="SimSun" FontSize="16"
+                <TextBlock x:Name="SumUp" Text="{Binding Source={StaticResource TotalSum}, Path=sumUp}" Grid.Column="1" FontFamily="SimSun" FontSize="16"
                            HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 
                 <!--buy all button -->

@@ -49,6 +49,7 @@
     <Compile Include="DTO\CartPage.cs" />
     <Compile Include="DTO\CartProduct.cs" />
     <Compile Include="DTO\Customer.cs" />
+    <Compile Include="DTO\TotalPrice.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="ObsCollections\CategoryRepository.cs" />
     <Compile Include="ObsCollections\ProductRepository.cs" />

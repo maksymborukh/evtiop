@@ -11,13 +11,10 @@ namespace evtiop.DAL.Operations
     {
         DBManager dbManager = new DBManager("shopdb");
         IDbConnection connection = null;
-        public void Delete(long id)//need to rewrite. id does not exist in table
+        public void Delete(BasketProducts basketProducts)
         {
-            var parameters = new List<IDbDataParameter>();
-            parameters.Add(dbManager.CreateParameter("@Id", id, DbType.Int64));
-
-            string commandText = "delete from basketProducts where BasketId = @BasketId;";
-            dbManager.Delete(commandText, CommandType.Text, parameters.ToArray());
+            string commandText = "delete from basketProducts where basketId = @BasketId and ProductId = @ProductId;";
+            dbManager.Delete(commandText, CommandType.Text, Param(basketProducts).ToArray());
         }
 
         public List<BasketProducts> GetAll()
@@ -144,7 +141,7 @@ namespace evtiop.DAL.Operations
 
         public void Update(BasketProducts basketProducts)
         {
-            string commandText = "update basketProducts set ProductId = @ProductId, BasketId = @BasketId, Quantity = @Quantity where basketId = @BasketId;";
+            string commandText = "update basketProducts set ProductId = @ProductId, BasketId = @BasketId, Quantity = @Quantity where basketId = @BasketId and ProductId = @ProductId;";
             dbManager.Update(commandText, CommandType.Text, Param(basketProducts).ToArray());
         }
 
@@ -156,6 +153,11 @@ namespace evtiop.DAL.Operations
             parameters.Add(dbManager.CreateParameter("@Quantity", basketProducts.Quantity, DbType.Int32));
 
             return parameters;
+        }
+
+        public void Delete(long id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

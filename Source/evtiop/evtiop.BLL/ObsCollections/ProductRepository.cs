@@ -1,4 +1,5 @@
 ﻿using evtiop.BLL.Server;
+using evtiop.BLL.Static;
 using evtiop.DAL.Entities;
 using evtiop.DAL.Operations;
 using System;
@@ -17,9 +18,8 @@ namespace evtiop.BLL.ObsCollections
             List<Product> list = productOperations.GetAll();
 
             ServerHelper serverHelper = new ServerHelper();
-            bool conn = serverHelper.CheckFtpConnection();
 
-            if (conn)
+            if (StaticServerInfo.IsEnableConnectionToServer)
             {
                 foreach (Product p in list)
                 {

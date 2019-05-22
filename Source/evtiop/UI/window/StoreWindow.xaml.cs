@@ -20,10 +20,10 @@ namespace UI.window
 
         public StoreWindow()
         {
-            InitializeComponent();
-
             ServerHelper serverHelper = new ServerHelper();
             StaticServerInfo.IsEnableConnectionToServer = serverHelper.CheckFtpConnection();
+
+            InitializeComponent();
 
             AccountUserButton.IsEnabled = false;
             SettingUserButton.IsEnabled = false;
@@ -272,9 +272,9 @@ namespace UI.window
             }
             else
             {
+                AmountInCart.Text = (StaticBasketInfo.ProductsInBasket += 1).ToString();
                 MessageBox.Show("Added to cart.");
-            }
-            
+            }          
         }
     }
 }

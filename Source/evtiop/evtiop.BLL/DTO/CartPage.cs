@@ -1,9 +1,11 @@
-﻿using evtiop.BLL.Static;
+﻿using evtiop.BLL.Server;
+using evtiop.BLL.Static;
 using evtiop.DAL.Entities;
 using evtiop.DAL.Operations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Media.Imaging;
 
 namespace evtiop.BLL.DTO
 {
@@ -23,6 +25,7 @@ namespace evtiop.BLL.DTO
 
             ProductOperations productOperations = new ProductOperations();
 
+            StaticBasketInfo.SumUp = 0;
             try
             {
                 foreach (BasketProducts el in list)
@@ -38,25 +41,35 @@ namespace evtiop.BLL.DTO
                     cartProduct.quantity = Convert.ToInt32(amount);
                     cartProduct.total = cartProduct.Price * cartProduct.quantity;
                     cartProduct.Id = product.ID;
+                    cartProduct.ImageURL = product.ImageURL;
+                    StaticBasketInfo.SumUp += cartProduct.total;
                     l.Add(cartProduct);
-                    //if (!l.Any(item => item.Id == cartProduct.Id))
-                    //{
-                    //    l.Add(cartProduct);
-                    //}
-                    //else
-                    //{
-                    //    var index = l.FindIndex(c => c.Id == cartProduct.Id);
-                    //    cartProduct.Quantity = l[index].Quantity + 1;
-                    //    cartProduct.Total = cartProduct.Price * cartProduct.Quantity;
-                    //    l[index] = cartProduct;
-                    //}
                 }
             }
             catch
             {
 
             }
+            ServerHelper serverHelper = new ServerHelper();
 
+            if (StaticServerInfo.IsEnableConnectionToServer)
+            {
+                foreach (CartProduct p in l)
+                {
+                    p.ImageSource = serverHelper.GetImageFromServer(p.ImageURL);
+                }
+            }
+            else
+            {
+                foreach (CartProduct p in l)
+                {
+                    BitmapImage bimage = new BitmapImage();
+                    bimage.BeginInit();
+                    bimage.UriSource = new Uri("/UI;component/images/noserverconn.png", UriKind.Relative);
+                    bimage.EndInit();
+                    p.ImageSource = bimage;
+                }
+            }
             cartProducts = new ObservableCollection<CartProduct>(l);
             StaticBasketInfo.ProductsInBasket = cartProducts.Count;
         }
