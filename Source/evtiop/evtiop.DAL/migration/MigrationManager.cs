@@ -7,7 +7,7 @@ namespace evtiop.DAL.Migration
     {
         private const double version = 1.0;
 
-        public void WindowLoaded()
+        public void StartMigration()
         {
             DBManager dbManager = new DBManager("shopdb");
 

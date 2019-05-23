@@ -53,6 +53,7 @@
     <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="DTO\TotalPrice.cs" />
     <Compile Include="DTO\UserInfo.cs" />
+    <Compile Include="Migration\Migration.cs" />
     <Compile Include="ObsCollections\CategoryRepository.cs" />
     <Compile Include="ObsCollections\ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
