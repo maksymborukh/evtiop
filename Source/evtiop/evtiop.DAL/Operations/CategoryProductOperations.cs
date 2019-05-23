@@ -48,6 +48,31 @@ namespace evtiop.DAL.Operations
             }
         }
 
+        public List<long> GetOnePage(int limit, int offset, long categId)
+        {
+            string commandText = $"select productId from categoryProducts where categoryid = {categId} limit {limit} offset {offset} ";
+            var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
+            try
+            {
+                var prodList = new List<long>();
+                while (dataReader.Read())
+                {
+                    prodList.Add(Convert.ToInt64(dataReader["ProductId"]));
+                }
+
+                return prodList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dataReader.Close();
+                dbManager.CloseConnection(connection);
+            }
+        }
+
         public CategoryProduct GetByID(long id) //can not get by id
         {
             throw new Exception("is not write");

@@ -272,7 +272,32 @@ namespace UI.window
 
         private void Category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //TODO category change
+            StaticPageInfo.CurrentOffset = 0;
+            StaticPageInfo.Page = 1;
+
+            var item = CategoryList.SelectedItem as dynamic;
+            if (item != null)
+            {
+                long categId = item.ID;
+
+                ProductRepository productRepository = new ProductRepository();
+                products.Clear();
+
+                if (categId == 4294967300)
+                {
+                    PageInfo pageInfo = new PageInfo();
+                    StaticPageInfo.Page = 1;
+                    StaticPageInfo.Offset = pageInfo.GetOffest();
+                    productRepository.LoadProducts();
+                }
+                else
+                {
+                    productRepository.LoadProducts(categId);
+                }
+
+                products = productRepository.GetProducts();
+                this.DataContext = products;
+            }
         }
 
         private void Buy_Click(object sender, RoutedEventArgs e)
@@ -295,13 +320,20 @@ namespace UI.window
 
         private void ProductList_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            if (e.VerticalOffset + e.ViewportHeight == e.ExtentHeight || e.ViewportHeight > e.ExtentHeight)
+            if (e.VerticalOffset + e.ViewportHeight == e.ExtentHeight)
             {
                 Pagination.Visibility = Visibility.Visible;
+            }
+            else if (e.ViewportHeight > e.ExtentHeight)
+            {
+                Pagination.Visibility = Visibility.Visible;
+                PageN.IsEnabled = false;
             }
             else
             {
                 Pagination.Visibility = Visibility.Collapsed;
+                PageN.IsEnabled = true;
+                PageP.IsEnabled = true;
             }
         }
 
@@ -313,7 +345,18 @@ namespace UI.window
                 StaticPageInfo.Page -= 1;
                 ProductRepository productRepository = new ProductRepository();
                 products.Clear();
-                productRepository.LoadProducts();
+
+                if (CategoryList.SelectedItem == null)
+                {
+                    productRepository.LoadProducts();
+                }
+                else
+                {
+                    var item = CategoryList.SelectedItem as dynamic;
+                    long categId = item.ID;
+                    productRepository.LoadProducts(categId);
+                }
+
                 products = productRepository.GetProducts();
                 this.DataContext = products;
             }
@@ -324,15 +367,39 @@ namespace UI.window
 
         private void NextPage_Click(object sender, RoutedEventArgs e)
         {
+            StaticPageInfo.CurrentOffset += StaticPageInfo.Limit;
+            StaticPageInfo.Page += 1;
+
             if (StaticPageInfo.CurrentOffset < StaticPageInfo.Offset)
             {
-                StaticPageInfo.CurrentOffset += StaticPageInfo.Limit;
-                StaticPageInfo.Page += 1;
                 ProductRepository productRepository = new ProductRepository();
                 products.Clear();
-                productRepository.LoadProducts();
+
+                if (CategoryList.SelectedItem == null)
+                {
+                    productRepository.LoadProducts();
+                }
+                else
+                {
+                    var item = CategoryList.SelectedItem as dynamic;
+                    long categId = item.ID;
+                    if (categId == 4294967300)
+                    {
+                        productRepository.LoadProducts();
+                    }
+                    else
+                    {
+                        productRepository.LoadProducts(categId);
+                    }
+                }
+
                 products = productRepository.GetProducts();
                 this.DataContext = products;              
+            }
+            else
+            {
+                StaticPageInfo.CurrentOffset -= StaticPageInfo.Limit;
+                StaticPageInfo.Page -= 1;
             }
 
             ProductList.SelectedIndex = 0;

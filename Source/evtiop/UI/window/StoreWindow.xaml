@@ -287,7 +287,7 @@
         <!-- categories -->
         <Border x:Name="categories" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,65,5,0" 
                 BorderBrush="Black" BorderThickness="1" Visibility="Collapsed" Tag="closed">
-            <ListBox ItemsPanel="{StaticResource categoryPanel}"
+            <ListBox x:Name="CategoryList" ItemsPanel="{StaticResource categoryPanel}"
                      ItemsSource="{Binding Source={StaticResource categoryProvider}}"
                      SelectionChanged="Category_SelectionChanged">
                 <!-- style of product item -->
@@ -296,7 +296,13 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                    <Button Content="{Binding Path=Name}" Style="{StaticResource CategoryButton}"/>
+                                    <Button Content="{Binding Path=Name}" Style="{StaticResource CategoryButton}" />
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                            <Setter Property="IsSelected" Value="True"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -316,8 +322,8 @@
                     <ColumnDefinition Width="10"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="1" Height="30" Content="Previous" Click="PreviousPage_Click"/>
-                <Button Grid.Column="3" Height="30" Content="Next" Click="NextPage_Click"/>
+                <Button x:Name="PageP" Grid.Column="1" Height="30" Content="Previous" Click="PreviousPage_Click"/>
+                <Button x:Name="PageN" Grid.Column="3" Height="30" Content="Next" Click="NextPage_Click"/>
             </Grid>
         </Border>
     </Grid>

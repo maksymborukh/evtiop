@@ -37,20 +37,5 @@ namespace evtiop.BLL.DTO
             }
             return Convert.ToInt32(amount);
         }
-
-        public bool LoadPage()
-        {
-            ProductOperations productOperations = new ProductOperations();
-            try
-            {
-                List<Product> list = productOperations.GetOnePage(StaticPageInfo.Limit, StaticPageInfo.CurrentOffset);
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }
