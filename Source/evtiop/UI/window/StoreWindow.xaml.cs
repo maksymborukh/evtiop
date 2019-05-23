@@ -1,8 +1,10 @@
 ﻿using evtiop.BLL.DTO;
+using evtiop.BLL.ObsCollections;
 using evtiop.BLL.Server;
 using evtiop.BLL.Static;
 using evtiop.BLL.Transfer;
 using evtiop.BLL.User;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,35 +19,33 @@ namespace UI.window
     public partial class StoreWindow : Window
     {
         private readonly UserHelper userHelper;
+        public ObservableCollection<ProductDTO> products = new ObservableCollection<ProductDTO>();
 
         public StoreWindow()
         {
-            ServerHelper serverHelper = new ServerHelper();
-            StaticServerInfo.IsEnableConnectionToServer = serverHelper.CheckFtpConnection();
+            StaticUserInfo.CustomerId = 0;
+
+            LoadMainInfo();
 
             InitializeComponent();
 
+            AmountInCart.Text = StaticBasketInfo.ProductsInBasket.ToString();
+
             AccountUserButton.IsEnabled = false;
             SettingUserButton.IsEnabled = false;
-
-            StaticUserInfo.CustomerId = 0;
-
-            CartPage cartPage = new CartPage();
-            AmountInCart.Text = StaticBasketInfo.ProductsInBasket.ToString();
         }
 
         public StoreWindow(long Id)
         {
-            InitializeComponent();
-
             StaticUserInfo.CustomerId = Id;
 
-            CartPage cartPage = new CartPage();
-            AmountInCart.Text = StaticBasketInfo.ProductsInBasket.ToString();
-            userHelper = new UserHelper();
+            LoadMainInfo();
 
-            ServerHelper serverHelper = new ServerHelper();
-            StaticServerInfo.IsEnableConnectionToServer = serverHelper.CheckFtpConnection();
+            InitializeComponent();
+
+            AmountInCart.Text = StaticBasketInfo.ProductsInBasket.ToString();
+
+            userHelper = new UserHelper();
 
             if (!StaticServerInfo.IsEnableConnectionToServer)
             {
@@ -55,6 +55,29 @@ namespace UI.window
             {
                 LoadImage();
             }
+        }
+
+        private void LoadMainInfo()
+        {
+            //set page info
+            PageInfo pageInfo = new PageInfo();
+            StaticPageInfo.Page = 1;
+            StaticPageInfo.Offset = pageInfo.GetOffest();
+            StaticPageInfo.CurrentOffset = 0;
+            StaticPageInfo.Limit = 20;
+
+            //check server connection
+            ServerHelper serverHelper = new ServerHelper();
+            StaticServerInfo.IsEnableConnectionToServer = serverHelper.CheckFtpConnection();
+
+            //basket
+            CartPage cartPage = new CartPage();
+
+            ProductRepository productRepository = new ProductRepository();
+            productRepository.LoadProducts();
+
+            products = productRepository.GetProducts();
+            this.DataContext = products;
         }
 
         private void LoadImage()
@@ -85,7 +108,6 @@ namespace UI.window
 
         }
 
-        //click on cart icon 
         private void Basket_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //create cart user control
@@ -98,7 +120,6 @@ namespace UI.window
             ShowUserControlPage();
         }
 
-        //click on heart icon
         private void HeartIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //create wishlist user control
@@ -111,7 +132,6 @@ namespace UI.window
             ShowUserControlPage();
         }
 
-        //click on menu icon
         private void MenuIcon_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //animate bars icon
@@ -145,7 +165,6 @@ namespace UI.window
             }
         }
 
-        //click account item in user menu
         private void AccountPage_Click(object sender, RoutedEventArgs e)
         {
             //create account user control and add it to grid
@@ -159,7 +178,6 @@ namespace UI.window
             CloseUserMenu();
         }
 
-        //click on logout in user menu
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             //close app
@@ -224,14 +242,12 @@ namespace UI.window
             CloseUserMenu();
         }
 
-        //close user menu
         private void CloseUserMenu()
         {
             userMenuButtons.Visibility = Visibility.Collapsed;
             userMenuButtons.Tag = "closed";
         }
 
-        //show user control page
         private void ShowUserControlPage()
         {
             GridForUserContorlContainer.Visibility = Visibility.Visible;
@@ -274,7 +290,53 @@ namespace UI.window
             {
                 AmountInCart.Text = (StaticBasketInfo.ProductsInBasket += 1).ToString();
                 MessageBox.Show("Added to cart.");
-            }          
+            }
+        }
+
+        private void ProductList_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            if (e.VerticalOffset + e.ViewportHeight == e.ExtentHeight || e.ViewportHeight > e.ExtentHeight)
+            {
+                Pagination.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Pagination.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void PreviousPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (StaticPageInfo.Page > 1)
+            {
+                StaticPageInfo.CurrentOffset -= StaticPageInfo.Limit;
+                StaticPageInfo.Page -= 1;
+                ProductRepository productRepository = new ProductRepository();
+                products.Clear();
+                productRepository.LoadProducts();
+                products = productRepository.GetProducts();
+                this.DataContext = products;
+            }
+
+            ProductList.SelectedIndex = 0;
+            ProductList.ScrollIntoView(ProductList.SelectedItem);
+        }
+
+        private void NextPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (StaticPageInfo.CurrentOffset < StaticPageInfo.Offset)
+            {
+                StaticPageInfo.CurrentOffset += StaticPageInfo.Limit;
+                StaticPageInfo.Page += 1;
+                ProductRepository productRepository = new ProductRepository();
+                products.Clear();
+                productRepository.LoadProducts();
+                products = productRepository.GetProducts();
+                this.DataContext = products;              
+            }
+
+            ProductList.SelectedIndex = 0;
+            ProductList.ScrollIntoView(ProductList.SelectedItem);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using evtiop.BLL.Server;
+﻿using evtiop.BLL.DTO;
+using evtiop.BLL.Server;
 using evtiop.BLL.Static;
 using evtiop.DAL.Entities;
 using evtiop.DAL.Operations;
@@ -11,11 +12,11 @@ namespace evtiop.BLL.ObsCollections
 {
     public class ProductRepository
     {
-        public ObservableCollection<Product> products;
-        public ProductRepository()
+        public ObservableCollection<ProductDTO> products;
+        public void LoadProducts()
         {
             ProductOperations productOperations = new ProductOperations();
-            List<Product> list = productOperations.GetAll();
+            List<Product> list = productOperations.GetOnePage(StaticPageInfo.Limit, StaticPageInfo.CurrentOffset);
 
             ServerHelper serverHelper = new ServerHelper();
 
@@ -37,9 +38,26 @@ namespace evtiop.BLL.ObsCollections
                     p.ImageSource = bimage;
                 }
             }
-            products = new ObservableCollection<Product>(list);
+
+            List<ProductDTO> listD = new List<ProductDTO>();
+            foreach (Product el in list)
+            {
+                ProductDTO productDTO = new ProductDTO();
+                productDTO.ID = el.ID;
+                productDTO.Name = el.Name;
+                productDTO.Description = el.Description;
+                productDTO.Quantity = el.Quantity;
+                productDTO.Price = el.Price;
+                productDTO.ManufacturerID = el.ManufacturerID;
+                productDTO.ImageURL = el.ImageURL;
+                productDTO.ProductImages = el.ProductImages;
+                productDTO.ImageSource = el.ImageSource;
+                listD.Add(productDTO);
+            }
+
+            products = new ObservableCollection<ProductDTO>(listD);
         }
-        public ObservableCollection<Product> GetProducts()
+        public ObservableCollection<ProductDTO> GetProducts()
         {
             return products;
         }

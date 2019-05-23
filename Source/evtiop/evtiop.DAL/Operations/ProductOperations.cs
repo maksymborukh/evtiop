@@ -53,6 +53,40 @@ namespace evtiop.DAL.Operations
             }
         }
 
+        public List<Product> GetOnePage(int limit, int offset)
+        {
+            string commandText = $"select * from products limit {limit} offset {offset}";
+            var dataReader = dbManager.GetDataReader(commandText, CommandType.Text, null, out connection);
+            try
+            {
+                var products = new List<Product>();
+                while (dataReader.Read())
+                {
+                    var product = new Product();
+                    product.ID = Convert.ToInt64(dataReader["Id"]);
+                    product.Name = dataReader["Name"].ToString();
+                    product.Description = dataReader["Description"].ToString();
+                    product.Price = Convert.ToInt32(dataReader["Price"]);
+                    product.Quantity = Convert.ToInt32(dataReader["Quantity"]);
+                    product.ManufacturerID = Convert.ToInt64(dataReader["ManufacturerId"]);
+                    product.ImageURL = dataReader["ImageURL"].ToString();
+                    products.Add(product);
+                }
+
+                return products;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dataReader.Close();
+                dbManager.CloseConnection(connection);
+            }
+        }
+
+
         public Product GetByID(long id)
         {
             var parameters = new List<IDbDataParameter>();
