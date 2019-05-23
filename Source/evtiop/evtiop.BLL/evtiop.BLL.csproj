@@ -49,12 +49,17 @@
     <Compile Include="DTO\CartPage.cs" />
     <Compile Include="DTO\CartProduct.cs" />
     <Compile Include="DTO\Customer.cs" />
+    <Compile Include="DTO\PageInfo.cs" />
+    <Compile Include="DTO\ProductDTO.cs" />
+    <Compile Include="DTO\TotalPrice.cs" />
     <Compile Include="DTO\UserInfo.cs" />
+    <Compile Include="Migration\Migration.cs" />
     <Compile Include="ObsCollections\CategoryRepository.cs" />
     <Compile Include="ObsCollections\ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\ServerHelper.cs" />
     <Compile Include="Static\StaticBasketInfo.cs" />
+    <Compile Include="Static\StaticPageInfo.cs" />
     <Compile Include="Static\StaticServerInfo.cs" />
     <Compile Include="Static\StaticUserInfo.cs" />
     <Compile Include="Transfer\CartHelper.cs" />

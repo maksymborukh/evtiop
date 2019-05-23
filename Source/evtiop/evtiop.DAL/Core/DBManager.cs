@@ -266,6 +266,17 @@ namespace evtiop.DAL.Core
             }
         }
 
+        public object GetScalarValue(string commandText)
+        {
+            using (var connection = database.GetConnection())
+            {
+                using (var command = database.GetCommand(commandText, connection, CommandType.Text))
+                {
+                    return command.ExecuteScalar();
+                }
+            }
+        }
+
         public void ExecuteNonQuery(string commandText)
         {
             using(var connection = database.GetConnection())

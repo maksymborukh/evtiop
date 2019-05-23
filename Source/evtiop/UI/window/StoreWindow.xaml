@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:UI.window"
         xmlns:user_control="clr-namespace:UI.user_control"
         xmlns:Rep="clr-namespace:evtiop.BLL.ObsCollections;assembly=evtiop.BLL"
+        xmlns:DTO="clr-namespace:evtiop.BLL.DTO;assembly=evtiop.BLL"
         mc:Ignorable="d"
         Title="evtiop" 
         Height="600" Width="800"
@@ -14,7 +15,9 @@
         Loaded="Window_Loaded">
 
     <Window.Resources>
-        
+
+        <DTO:TotalPrice x:Key="Amount"/>
+
         <!-- placement of product items -->
         <ItemsPanelTemplate x:Key="listPanelTemplate">
             <WrapPanel />
@@ -99,7 +102,7 @@
             <Grid Grid.Column="4" Style="{StaticResource HighlightGrid}">
                 <Image MouseDown="Basket_MouseDown" Cursor="Hand" Source="/UI;component/images/cart_icon.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Border x:Name="quantityInBasket" Cursor="Hand" MouseDown="Basket_MouseDown" CornerRadius="10,10,10,10" Background="White" Width="25" Height="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,12,10.4,0">
-                    <TextBlock x:Name="AmountInCart" Text="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBlock x:Name="AmountInCart" Text="{Binding Source={StaticResource Amount}, Path=amount}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
             </Grid>
 
@@ -120,7 +123,8 @@
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      ItemsPanel="{StaticResource listPanelTemplate}"
                      Margin="0,60,0,0"
-            ItemsSource="{Binding Source={StaticResource productProvider}}">
+                     ItemsSource="{Binding}"
+                     ScrollViewer.ScrollChanged="ProductList_ScrollChanged">
 
             <!-- style of product item -->
             <ListBox.ItemContainerStyle>
@@ -235,7 +239,7 @@
 
         <!-- buttons for account control -->
         <Border x:Name="userMenuButtons" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,5,0" Width="64" 
-                BorderBrush="Black" BorderThickness="1" Visibility="Collapsed" Tag="closed">
+                BorderBrush="Black" BorderThickness="1" Visibility="Collapsed" Tag="closed" Background="White">
             <WrapPanel>
                 <Button x:Name="AccountUserButton" Content="Account" Style="{StaticResource UserMenuButton}" Click="AccountPage_Click" Margin="2,5,2,5"/>
                 <Button x:Name="SettingUserButton" Content="Setting" Style="{StaticResource UserMenuButton}" Click="SettingPage_Click" Margin="2,0,2,5" />
@@ -283,7 +287,7 @@
         <!-- categories -->
         <Border x:Name="categories" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,65,5,0" 
                 BorderBrush="Black" BorderThickness="1" Visibility="Collapsed" Tag="closed">
-            <ListBox ItemsPanel="{StaticResource categoryPanel}"
+            <ListBox x:Name="CategoryList" ItemsPanel="{StaticResource categoryPanel}"
                      ItemsSource="{Binding Source={StaticResource categoryProvider}}"
                      SelectionChanged="Category_SelectionChanged">
                 <!-- style of product item -->
@@ -292,7 +296,13 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                    <Button Content="{Binding Path=Name}" Style="{StaticResource CategoryButton}"/>
+                                    <Button Content="{Binding Path=Name}" Style="{StaticResource CategoryButton}" />
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                            <Setter Property="IsSelected" Value="True"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -301,5 +311,20 @@
             </ListBox>
         </Border>
 
+        <!-- pagination -->
+        <Border x:Name="Pagination" Height="40" Width="200" VerticalAlignment="Bottom" Margin="0,0,0,10" Visibility="Collapsed" Background="{StaticResource VeryLightTealBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="PageP" Grid.Column="1" Height="30" Content="Previous" Click="PreviousPage_Click"/>
+                <Button x:Name="PageN" Grid.Column="3" Height="30" Content="Next" Click="NextPage_Click"/>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

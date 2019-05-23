@@ -11,3 +11,5 @@ create table if not exists customers(
 	unique(EmailAddress)
 	);
 ALTER SEQUENCE customers_Id_seq RESTART WITH 4294967296;
+
+CREATE if UNIQUE INDEX if not exists emailIndex ON customers (EmailAddress);

@@ -5,6 +5,7 @@ using System.Windows.Media;
 using UI.user_control;
 using UI.animation;
 using UI.window;
+using evtiop.BLL.Migration;
 
 namespace UI
 {
@@ -17,7 +18,14 @@ namespace UI
 
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            Migration migration = new Migration();
+
+            if (!migration.Migrate())
+            {
+                MessageBox.Show("Error. Something wrong with database.");
+            }
         }
 
         private void windowLoaded(object sender, RoutedEventArgs e)

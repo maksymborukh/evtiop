@@ -80,5 +80,25 @@ namespace evtiop.BLL.Transfer
                 return false;
             }
         }
+
+        public bool Delete(long productId)
+        {
+            BasketProductOperations basketProductOperations = new BasketProductOperations();
+            BasketOperations basketOperations = new BasketOperations();
+            BasketProducts basketProducts = new BasketProducts();
+
+            basketProducts.ProductID = productId;
+            basketProducts.BasketID = basketOperations.GetByCustomerID(StaticUserInfo.CustomerId);
+
+            try
+            {
+                basketProductOperations.Delete(basketProducts);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
